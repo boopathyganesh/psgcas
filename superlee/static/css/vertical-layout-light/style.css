@@ -22336,7 +22336,8 @@ code {
   min-height: 18px;
   display: block;
   margin-left: 1.75rem;
-  font-size: 0.875rem;
+  font-size: 1.05rem;
+  font-weight: normal;
   line-height: 1.5;
 }
 
@@ -22797,7 +22798,8 @@ select.border-dark.tt-hint:focus {
 }
 
 .form-group label {
-  font-size: 0.875rem;
+  font-size: 1.05rem;
+  font-weight: 600;
   line-height: 1.4rem;
   vertical-align: top;
   margin-bottom: .5rem;
