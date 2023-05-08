@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Sorry!</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="../../vendors/feather/feather.css">
+  <link rel="stylesheet" href="../../vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="{% static 'css/vertical-layout-light/dashboard.min.css' %}">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="../../css/vertical-layout-light/style.css">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="../../images/favicon.png" />
+</head>
+
+<body>
+  <div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+      <!-- <div class="content-wrapper d-flex align-items-center text-center error-page bg-primary">
+        <div class="row flex-grow">
+          <div class="col-lg-7 mx-auto text-white">
+            
+            <div class="row mt-5">
+              <div class="col-12 mt-xl-2">
+                <p class="text-white font-weight-medium text-center">Copyright &copy; 2021  All rights reserved.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <div id="wrapper">
+        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Main Content -->
+            <div id="content div-center">
+              <!-- Begin Page Content -->
+              <div class="container-fluid">
+                <!-- Page Heading -->
+                <!-- Content Row -->
+                <div class="row " id="new">
+                  <div class="col-12">
+                    <div class="d-grid divcenter div-hello">
+                      <div class="row create divcenter">
+                        <img src="../static/images/Under-construction.svg" alt="">
+                      </div>
+                      <div class="row create-btn">
+                        <div class="col-12 text-center">
+                          <h2>Sorry for the Inconvenience!</h2>
+                          <h3>This site is Under Construction</h3>
+                        </div>
+                      </div>
+                      <div class="row create-btn">
+                        <div class="col-12 d-flex divcenter"  style="margin-bottom: 1.2rem;">
+                            <a href="/home">Back to Dashboard</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Content Row -->
+                </div>
+                <!-- /.container-fluid -->
+              </div>
+              <!-- End of Main Content -->
+              <!-- Modal Section Start -->
+            <section id="modals">
+                <!-- resumeType -->
+                        <div class="modal fade resume" id="resumeType" data-backdrop="static-top" data-keyboard="true" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content p-4">
+                                    <div class="modal-header pt-1 pl-2 div-center">
+                                        <h5 id="resumetypeLabel">Choose your Resume Format</h5>
+                                        <!-- <h5 class="modal-title" id="resumetypeLabel">Choose your Resume Format</h5> -->
+                                    </div>
+                                    <div class="modal-body d-flex flex-column align-items-center justify-content-center">
+                                      <a href="{{ url_for('contact1') }}" class="btn btn-theme btn-lg mt-2 w-100">General-Purpose Resumes</a>
+                                        <!-- <button class="btn btn-theme btn-lg mt-2 w-100" id="gp">General-Purpose Resumes</button> -->
+                                        <button class="btn btn-theme btn-lg mt-2 w-100" disabled>Job-Tailed Resumes</button>
+                                        <button class="btn btn-theme btn-lg mt-2 w-100" disabled>Professional Resumes</button>
+                                      </div>
+                                    <div class="modal-footer d-flex flex-column align-items-center justify-content-center">
+                                        <a href="/login">Skip and Back to Dashboard</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                <!-- resumeType -->
+                <!-- download -->
+                <div class="modal fade " id="download" data-backdrop="static-top" data-keyboard="true" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: fit-content;">
+                      <div class="modal-content p-4">
+                          <div class="modal-header pt-1 pl-2 div-center">
+                              <h3 id="download-title">Your Resume is ready to Download</h3>
+                              <!-- <h5 class="modal-title" id="resumetypeLabel">Choose your Resume Format</h5> -->
+                          </div>
+                          <div class="modal-body d-flex flex-column align-items-center justify-content-center">
+                            <h4>ResumateAI Keeps your resumes more Safe</h4>
+                            <h4>You can download this resume Whenever You Need</h4>
+                            <button class="btn btn-success mt-3">DOWNLOAD</button>
+                          </div>
+                          <div class="modal-footer d-flex flex-column align-items-center justify-content-center">
+                              <a href="/login">Skip and Back to Dashboard</a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+                <!-- download -->
+                
+            </section>
+              <!-- Modal Section Ends -->
+              <!-- Footer -->
+              <footer class="sticky-footer" style="background: none; background-color: #f8f9fc">
+                <div class="container my-auto">
+                  <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Reserved</span>
+                  </div>
+                </div>
+              </footer>
+              <!-- End of Footer -->
+            </div>
+            <!-- End of Content Wrapper -->
+          </div>
+      <!-- content-wrapper ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  <script src="../../vendors/js/vendor.bundle.base.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="../../js/off-canvas.js"></script>
+  <script src="../../js/hoverable-collapse.js"></script>
+  <script src="../../js/template.js"></script>
+  <script src="../../js/settings.js"></script>
+  <script src="../../js/todolist.js"></script>
+  <!-- endinject -->
+</body>
+
+</html>

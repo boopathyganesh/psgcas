@@ -1,0 +1,686 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Superlee : Dashboard</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{% static 'vendors/feather/feather.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/css/vendor.bundle.base.css' %}">
+  <link href="{% static 'css/sortable.css' %}" rel="stylesheet" />
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <link rel="stylesheet" href="{% static 'vendors/datatables.net-bs4/dataTables.bootstrap4.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'js/select.dataTables.min.css' %}">
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{% static 'css/vertical-layout-light/style.css' %}">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/autofill/2.5.3/css/autoFill.dataTables.min.css">
+</head>
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="{% static 'images/psgcas.png' %}" class="mr-4" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{% static 'images/PSG Logo 97 Years (1).png' %}" alt="logo"/></a>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="icon-menu"></span>
+        </button>
+        <ul class="navbar-nav mr-lg-2">
+          <li class="nav-item nav-search d-none d-lg-block">
+            <div class="input-group">
+              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                <span class="input-group-text" id="search">
+                  <i class="icon-search"></i>
+                </span>
+              </div>
+              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+              <img src="{% static 'images/faces/face28.jpg' %}" alt="profile"/>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+              <a class="dropdown-item">
+                <i class="ti-settings text-primary"></i>
+                Settings
+              </a>
+              <a class="dropdown-item">
+                <i class="ti-power-off text-primary"></i>
+                Logout
+              </a>
+            </div>
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="icon-menu"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_settings-panel.html -->
+      <div class="theme-setting-wrapper">
+        <div id="settings-trigger"><i class="ti-settings"></i></div>
+        <div id="theme-settings" class="settings-panel">
+          <i class="settings-close ti-close"></i>
+          <p class="settings-heading">SIDEBAR SKINS</p>
+          <div class="sidebar-bg-options selected" id="sidebar-light-theme"><div class="img-ss rounded-circle bg-light border mr-3"></div>Light</div>
+          <div class="sidebar-bg-options" id="sidebar-dark-theme"><div class="img-ss rounded-circle bg-dark border mr-3"></div>Dark</div>
+          <p class="settings-heading mt-2">HEADER SKINS</p>
+          <div class="color-tiles mx-0 px-4">
+            <div class="tiles success"></div>
+            <div class="tiles warning"></div>
+            <div class="tiles danger"></div>
+            <div class="tiles info"></div>
+            <div class="tiles dark"></div>
+            <div class="tiles default"></div>
+          </div>
+        </div>
+      </div>
+      <div id="right-sidebar" class="settings-panel">
+        <i class="settings-close ti-close"></i>
+        <ul class="nav nav-tabs border-top" id="setting-panel" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="todo-tab" data-toggle="tab" href="#todo-section" role="tab" aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="chats-tab" data-toggle="tab" href="#chats-section" role="tab" aria-controls="chats-section">CHATS</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="setting-content">
+          <div class="tab-pane fade show active scroll-wrapper" id="todo-section" role="tabpanel" aria-labelledby="todo-section">
+            <div class="add-items d-flex px-3 mb-0">
+              <form class="form w-100">
+                <div class="form-group d-flex">
+                  <input type="text" class="form-control todo-list-input" placeholder="Add To-do">
+                  <button type="submit" class="add btn btn-primary todo-list-add-btn" id="add-task">Add</button>
+                </div>
+              </form>
+            </div>
+            <div class="list-wrapper px-3">
+              <ul class="d-flex flex-column-reverse todo-list">
+                <li>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="checkbox" type="checkbox">
+                      Team review meeting at 3.00 PM
+                    </label>
+                  </div>
+                  <i class="remove ti-close"></i>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="checkbox" type="checkbox">
+                      Prepare for presentation
+                    </label>
+                  </div>
+                  <i class="remove ti-close"></i>
+                </li>
+                <li>
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="checkbox" type="checkbox">
+                      Resolve all the low priority tickets due today
+                    </label>
+                  </div>
+                  <i class="remove ti-close"></i>
+                </li>
+                <li class="completed">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="checkbox" type="checkbox" checked>
+                      Schedule meeting for next week
+                    </label>
+                  </div>
+                  <i class="remove ti-close"></i>
+                </li>
+                <li class="completed">
+                  <div class="form-check">
+                    <label class="form-check-label">
+                      <input class="checkbox" type="checkbox" checked>
+                      Project review
+                    </label>
+                  </div>
+                  <i class="remove ti-close"></i>
+                </li>
+              </ul>
+            </div>
+            <h4 class="px-3 text-muted mt-5 font-weight-light mb-0">Events</h4>
+            <div class="events pt-4 px-3">
+              <div class="wrapper d-flex mb-2">
+                <i class="ti-control-record text-primary mr-2"></i>
+                <span>Feb 11 2018</span>
+              </div>
+              <p class="mb-0 font-weight-thin text-gray">Creating component page build a js</p>
+              <p class="text-gray mb-0">The total number of sessions</p>
+            </div>
+            <div class="events pt-4 px-3">
+              <div class="wrapper d-flex mb-2">
+                <i class="ti-control-record text-primary mr-2"></i>
+                <span>Feb 7 2018</span>
+              </div>
+              <p class="mb-0 font-weight-thin text-gray">Meeting with Alisa</p>
+              <p class="text-gray mb-0 ">Call Sarah Graves</p>
+            </div>
+          </div>
+          <!-- To do section tab ends -->
+          <div class="tab-pane fade" id="chats-section" role="tabpanel" aria-labelledby="chats-section">
+            <div class="d-flex align-items-center justify-content-between border-bottom">
+              <p class="settings-heading border-top-0 mb-3 pl-3 pt-0 border-bottom-0 pb-0">Friends</p>
+              <small class="settings-heading border-top-0 mb-3 pt-0 border-bottom-0 pb-0 pr-3 font-weight-normal">See All</small>
+            </div>
+            <ul class="chat-list">
+              <li class="list active">
+                <div class="profile"><img src="{% static 'images/faces/face1.jpg' %}" alt="image"><span class="online"></span></div>
+                <div class="info">
+                  <p>Thomas Douglas</p>
+                  <p>Available</p>
+                </div>
+                <small class="text-muted my-auto">19 min</small>
+              </li>
+              <li class="list">
+                <div class="profile"><img src="{% static 'images/faces/face2.jpg' %}" alt="image"><span class="offline"></span></div>
+                <div class="info">
+                  <div class="wrapper d-flex">
+                    <p>Catherine</p>
+                  </div>
+                  <p>Away</p>
+                </div>
+                <div class="badge badge-success badge-pill my-auto mx-2">4</div>
+                <small class="text-muted my-auto">23 min</small>
+              </li>
+              <li class="list">
+                <div class="profile"><img src="{% static 'images/faces/face3.jpg' %}" alt="image"><span class="online"></span></div>
+                <div class="info">
+                  <p>Daniel Russell</p>
+                  <p>Available</p>
+                </div>
+                <small class="text-muted my-auto">14 min</small>
+              </li>
+              <li class="list">
+                <div class="profile"><img src="{% static 'images/faces/face4.jpg' %}" alt="image"><span class="offline"></span></div>
+                <div class="info">
+                  <p>James Richardson</p>
+                  <p>Away</p>
+                </div>
+                <small class="text-muted my-auto">2 min</small>
+              </li>
+              <li class="list">
+                <div class="profile"><img src="{% static 'images/faces/face5.jpg' %}" alt="image"><span class="online"></span></div>
+                <div class="info">
+                  <p>Madeline Kennedy</p>
+                  <p>Available</p>
+                </div>
+                <small class="text-muted my-auto">5 min</small>
+              </li>
+              <li class="list">
+                <div class="profile"><img src="{% static 'images/faces/face6.jpg' %}" alt="image"><span class="online"></span></div>
+                <div class="info">
+                  <p>Sarah Graves</p>
+                  <p>Available</p>
+                </div>
+                <small class="text-muted my-auto">47 min</small>
+              </li>
+            </ul>
+          </div>
+          <!-- chat tab ends -->
+        </div>
+      </div>
+      <!-- partial -->
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="icon-paper menu-icon"></i>
+              <span class="menu-title">Documentation</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <i class="icon-layout menu-icon"></i>
+              <span class="menu-title">Campus Drives </span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{% static 'pages/samples/error.html' %}">All Drives</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% static 'pages/samples/error.html' %}">Eligible Drives</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% static 'pages/samples/error.html' %}">Opted Drives</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title active">Attendance</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Certificate Vault</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <i class="icon-layout menu-icon"></i>
+              <span class="menu-title">Profile Settings</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{% static 'pages/samples/error.html' %}">Personal Details</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% static 'pages/samples/error.html' %}">Academic Details</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% static 'pages/samples/error.html' %}">Change Password</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% static 'pages/documentation/documentation.html' %}">
+              <i class="icon-paper menu-icon"></i>
+              <span class="menu-title">Documentation</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- partial -->
+      <div class="container-fluid main-panel scroll" style="width: 100%;">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="row">
+              <div class="col-9 col-xl-8 m-5 mb-xl-0">
+                <h3 class="font-weight-bold">Welcome <span style="color: gold;">Administrator</span></h3>
+                <h6 class="font-weight-normal mb-0">Enter the attendance here</h6>
+              </div>
+            </div>
+            <div class="row m-4">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title text-center">Catalog of Drives - 2023-2024</p>
+                  <div class="row d-flex justify-content-center">
+                    <div class="col-4 d-flex justify-content-center">
+                      <select class="custom-select" id="company">
+                        <option selected>Drive Name</option>
+                        <option value="Google">Google</option>
+                        <option value="Caterpillar">Caterpillar</option>
+                        <option value="TCS">TCS</option>
+                        <option value="Avasoft">Avasoft</option>
+                        <option value="Mahathi Infotech">Mahathi Infotech</option>
+                        <option value="Aveon Infotech">Aveon Infotech</option>
+                        <option value="Cloud Destination">Cloud Destination</option>
+                        <option value="Innocap">Innocap</option>
+                        <option value="Craftsman Automation">Craftsman Automation</option>
+                      </select>
+                    </div>
+                    <div class="col-4 d-flex justify-content-center">
+                      <select class="custom-select" id="batch">
+                        <option selected>Batch</option>
+                        <option value="Batch-1">Batch-1</option>
+                        <option value="Batch-2">Batch-2</option>
+                        <option value="Batch-3">Batch-3</option>
+                        <option value="Batch-4">Batch-4</option>
+                        <option value="Batch-5">Batch-5</option>
+                        <option value="Batch-6">Batch-6</option>
+                      </select>
+                    </div>
+                    <div class="col-4 d-flex justify-content-center">
+                      <!-- <span><a href="" class="btn btn-success">View Attendance Report</a></span> -->
+                      <span><button class="btn btn-success" id="sendData">Get List</button></span>
+                      {% csrf_token %}
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="row m-4">
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <div class=""></div>
+                  <p id="sdrive" class="card-title text-center">{{title}}</p>
+                  <!-- <p id="sdrive" class="card-title text-center">{{count}}</p> -->
+                  <div class="row ">
+                    <div class="col-12 dropdown d-flex justify-content-end mr-5 mb-5">
+                      <button class="btn btn-inverse-warning dropdown-toggle" type="button" id="dropdownMenuButton4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Export Data
+                      </button>
+                      <div class="dropdown-menu " aria-labelledby="dropdownMenuButton4">
+                        <a class="dropdown-item" href="#">Spreadsheet</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Export to G-Sheets</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row m-3">
+                    <div class="search-container col">
+                      <span class="d-flex justify-content-start">
+                        <div class="search mr-3">
+                          <svg class="icon" aria-hidden="true" viewBox="0 0 24 24">
+                              <g>
+                                  <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
+                              </g>
+                          </svg>
+                          <input placeholder="Enter Reg.No" type="search" class="input1" id="searchInput" name="searchInput">
+                        </div>
+                      <button id="searchBtn" class="btn btn-inverse-success">Search</button>
+                      {% csrf_token %}
+                      </span>
+                    </div>
+                    <div class="col d-flex justify-content-lg-end">
+                      <span id="sdrive" class="card-title mr-5 mb-0">Present 26 | Absent 5</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="table-responsive table-wrapper">
+                        <table class="sortable display-4 expandable-table text-center" id="attendance-table" style="width:100%">
+                            <thead>
+                              <tr>
+                                <th>S.No</th>
+                                <th>Register Number</th>
+                                <th>Student Name</th>
+                                <th>Department</th>
+                                <th>Batch</th>
+                                <th>Attendance</th>
+                              </tr>
+                            </thead>
+                            <tbody id="searchtb">
+                              {% for item in data %}
+                                  <tr>
+                                      <td>{{ item.S_No }}</td>
+                                      <td>{{ item.Roll_Number }}</td>
+                                      <td>{{ item.Name }}</td>
+                                      <td>{{ item.Department }}</td>
+                                      <td>{{ item.Batch }}</td>
+                                      <td class="d-flex justify-content-center">{{ tsg|safe }}</td>
+                                  </tr>
+                              {% endfor %}
+                          </tbody>                          
+                      </table>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+          </div>
+        </div>
+      </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <!-- <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
+          </div>
+          <div class="d-sm-flex justify-content-center justify-content-sm-between">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Distributed by <a href="https://www.themewagon.com/" target="_blank">Themewagon</a></span> 
+          </div>
+        </footer>  -->
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  <!-- container-scroller -->
+  <!-- <script>
+    const searchvalue = document.getElementById('searchInput');
+    const searchbtn = document.getElementById('searchBtn');
+    const csrfToken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
+    const tableBody = document.querySelector('tbody');
+
+buttonElement.addEventListener('click', function() {
+  const searchValue = searchvalue.value;
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', '/superlee/input-attendance');
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.setRequestHeader('X-CSRFToken', csrfToken);
+
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+      const data = JSON.parse(xhr.responseText).data;
+      tableBody.innerHTML = '';
+      data.forEach(function(item) {
+        let tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${item.S_no}</td>
+          <td>${item.Roll_Number}</td>
+          <td>${item.Name}</td>
+          <td>${item.Department}</td>
+          <td>${item.Batch}</td>
+          <td class="d-flex justify-content-center">
+                                          <div class="form-check form-check-success m-1">
+                                            <label class="form-check-label">
+                                              <input type="checkbox" class="form-check-input">
+                                              Present
+                                            </label>
+                                          </div>
+                                          <div class="form-check form-check-danger m-1">
+                                            <label class="form-check-label">
+                                              <input type="checkbox" class="form-check-input">
+                                              Absent
+                                            </label>
+                                          </div>
+                                        </td>
+        `;
+        tableBody.appendChild(tr);
+      });
+    }
+  };
+
+  xhr.send(JSON.stringify({ search: searchValue }));
+});
+  </script> -->
+  <!-- <script>
+    const searchInput = document.getElementById('searchInput');
+const searchBtn = document.getElementById('searchBtn');
+
+searchBtn.addEventListener('click', function() {
+  const searchValue = searchInput.value;
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', '/superlee/input-attendance');
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhr.setRequestHeader('X-CSRFToken', '{{ csrf_token }}');
+
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+      const data = JSON.parse(xhr.responseText);
+      console.log(data);
+      // do something with the search results
+      
+    }
+  };
+
+  xhr.send('search=' + searchValue);
+});
+
+  </script> -->
+  <script>
+const searchInput = document.getElementById('searchInput');
+const searchBtn = document.getElementById('searchBtn');
+const tableBody = document.getElementById('searchtb');
+
+searchBtn.addEventListener('click', function() {
+  const searchValue = searchInput.value;
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', '/superlee/input-attendance');
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhr.setRequestHeader('X-CSRFToken', '{{ csrf_token }}');
+
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+      const data = JSON.parse(xhr.responseText).data;
+      const tsg = JSON.parse(xhr.responseText).tsg;
+      tableBody.innerHTML = '';
+      data.forEach(function(item) {
+        let tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${item.S_No}</td>
+          <td>${item.Roll_Number}</td>
+          <td>${item.Name}</td>
+          <td>${item.Department}</td>
+          <td>${item.Batch}</td>
+          <td class="d-flex justify-content-center">${tsg}</td>
+        `;
+        tableBody.appendChild(tr);
+      });
+
+      const radioButtons = document.getElementsByName('membershipRadios');
+      radioButtons.forEach(function(radioButton) {
+        radioButton.addEventListener('click', function(event) {
+          const target = event.target;
+          console.log(`radio button clicked: ${target.value}`);
+        });
+      });
+    }
+  };
+
+  xhr.send('search=' + searchValue);
+});
+
+  </script>
+
+  <!-- <script>
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    const tableBody = document.getElementById('searchtb');
+    
+    searchBtn.addEventListener('click', function() {
+      const searchValue = searchInput.value;
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', '/superlee/input-attendance');
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      xhr.setRequestHeader('X-CSRFToken', '{{ csrf_token }}');
+    
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+          const data = JSON.parse(xhr.responseText).data;
+          const tsg = xhr.responseText.includes('tsg') ? JSON.parse(xhr.responseText).tsg : '';
+          tableBody.innerHTML = '';
+          data.forEach(function(item) {
+            let tr = document.createElement('tr');
+            tr.innerHTML = `
+              <td>${item.S_No}</td>
+              <td>${item.Roll_Number}</td>
+              <td>${item.Name}</td>
+              <td>${item.Department}</td>
+              <td>${item.Batch}</td>
+              <td class="d-flex justify-content-center">${tsg}</td>
+              <td class="d-flex justify-content-center">
+                <div class="form-check form-check-success">
+                  <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="attendance_${item.Roll_Number}" value="present" checked>
+                    Present
+                  </label>
+                </div>
+                <div class="form-check form-check-danger ml-5">
+                  <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="attendance_${item.Roll_Number}" value="absent">
+                    Absent
+                  </label>
+                </div>
+              </td>
+            `;
+            tableBody.appendChild(tr);
+          });
+    
+          // add event listener for the click event on the checkboxes in the tsg template
+          tableBody.addEventListener('click', function(event) {
+            const target = event.target;
+            if (target.type === 'checkbox') { 
+              console.log(`checkbox clicked`);
+            }
+          });
+    
+          // add event listener for the change event on the radio buttons
+          tableBody.addEventListener('change', function(event) {
+            const target = event.target;
+            if (target.type === 'radio') {
+              const formData = new FormData();
+              const name = target.name.split('_')[1];
+              formData.append('roll_number', name);
+              formData.append('attendance', target.value);
+              const xhr2 = new XMLHttpRequest();
+              xhr2.open('POST', '/superlee/input-attendance');
+              xhr2.setRequestHeader('X-CSRFToken', '{{ csrf_token }}');
+              xhr2.onreadystatechange = function() {
+                if (xhr2.readyState === XMLHttpRequest.DONE && xhr2.status === 200) {
+                  console.log(xhr2.responseText);
+                }
+              };
+              xhr2.send(formData);
+            }
+          });
+        }
+      };
+    
+      xhr.send('search=' + searchValue);
+    });
+    </script> -->
+    
+    
+
+
+
+
+
+  <!-- plugins:js -->
+  <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
+  <script src="{% static 'js/sortable.js' %}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <script src="{% static 'vendors/chart.js/Chart.min.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net/jquery.dataTables.js' %}"></script>
+  <script src="{% static 'vendors/datatables.net-bs4/dataTables.bootstrap4.js' %}"></script>
+  <script src="{% static 'js/dataTables.select.min.js' %}"></script>
+
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="{% static 'js/off-canvas.js' %}"></script>
+  <script src="{% static 'js/hoverable-collapse.js' %}"></script>
+  <script src="{% static 'js/template.js' %}"></script>
+  <script src="{% static 'js/settings.js' %}"></script>
+  <script src="{% static 'js/todolist.js' %}"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="{% static 'js/dashboard.js' %}"></script>
+  <script src="{% static 'js/Chart.roundedBarCharts.js' %}"></script>
+  <!-- End custom js for this page-->
+  <!-- CSS -->
+
+<!-- JavaScript -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/autofill/2.5.3/js/dataTables.autoFill.min.js"></script>
+
+
+</body>
+
+</html>
+

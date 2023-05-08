@@ -1,0 +1,13 @@
+{
+    "builds": [{
+        "src": "irogen/wsgi.py",
+        "use": "@vercel/python",
+        "config": {"runtime": "python3.10" }
+    }],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "irogen/wsgi.py"
+        }
+    ]
+}
