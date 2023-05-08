@@ -52,7 +52,35 @@ id=[]
 
 
 def index(request):
+    template=loader.get_template('index.html')
+    return HttpResponse(template.render())
+
+def dashboard(request):
     template=loader.get_template('dashboard.html')
+    return HttpResponse(template.render())
+
+def vision(request):
+    template=loader.get_template('vision.html')
+    return HttpResponse(template.render())
+
+def mission(request):
+    template=loader.get_template('mission.html')
+    return HttpResponse(template.render())
+
+def p_process(request):
+    template=loader.get_template('placementprocess.html')
+    return HttpResponse(template.render())
+
+def infrastructure(request):
+    template=loader.get_template('infrastructure.html')
+    return HttpResponse(template.render())
+
+def contact(request):
+    template=loader.get_template('contact.html')
+    return HttpResponse(template.render())
+
+def companies(request):
+    template=loader.get_template('companies.html')
     return HttpResponse(template.render())
 
 """def attendance(request):

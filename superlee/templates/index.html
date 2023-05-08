@@ -1,0 +1,360 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>PSGCAS BCC Home</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendors/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'css/templatemo-digimedia-v3.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animated.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.css' %}">
+  </head>
+
+<body>
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+            <!-- ***** Logo Start ***** -->
+            <a href="index.html" class="logo">
+              <img src="{% static 'images/psg/psgcas.png' %}" alt="">
+            </a>
+            <!-- ***** Logo End ***** -->
+            <!-- ***** Menu Start ***** -->
+            <ul class="nav">
+              <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+              <li class="scroll-to-section"><a href="#about">About </a></li>
+              <li class="scroll-to-section"><a href="#services">Vision & Mission</a></li>
+              <li class="scroll-to-section"><a href="{% url 'p_process' %}">Process</a></li>
+              <li class="scroll-to-section"><a href="{% url 'infrastructure' %}">Infrastructure</a></li>
+              <li class="scroll-to-section"><a href="#">Rules</a></li>
+              <li class="scroll-to-section"><a href="{% url 'contact' %}">Contact</a></li> 
+              <li id="sign-btn" class="scroll-to-section"><div class="border-first-button"><a href="#">Sign Up Here <i class='bx bxs-plane-take-off bx-sm'></i> </a></div></li> 
+            </ul>
+            <a class='menu-trigger'>
+                <span>Menu</span>
+            </a>
+            <!-- ***** Menu End ***** -->
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <div class="main-banner wow fadeIn" id="top" data-wow-duration="1s" data-wow-delay="0.5s">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-lg-6 align-self-center">
+              <div class="left-content show-up header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <h2>CAREER DEVELOPMENT CENTER</h2>
+                    <h4>Opportunities don’t happen, you create them</h4>
+                  </div>
+                  <div class="col-lg-12 mt-4">
+                    <div class="border-first-button scroll-to-section">
+                      <a href="#"> Get Started <i class='bx bxs-rocket'></i> </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="right-image wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
+                <img src="{% static 'images/home2.jpg' %}" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="about" class="about section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row m-4">
+            <div class="col-lg-6">
+              <div class="about-left-image  wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.5s">
+                <img src="{% static 'images/home_illus3.jpg' %}" alt="">
+              </div>
+            </div>
+            <div class="col-lg-6 align-self-center  wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
+              <div class="about-right-content">
+                <div class="section-heading">
+                  <h4>About Us</h4>
+                  <h5>Branding & Corporate Communication</h5>
+                  <div class="line-dec"></div>
+                </div>
+          <!--About Us Points-->
+                  <div class="ticks-list m-4"><span><i class="fa fa-check"></i>The Career Development Centre at PSG Institutions acts as a bridge between the expectations of the Recruiters and the dreams of the students.We tie up with top-emerging companies and 
+                    provide knowledge for students about industry standards and make them more employable.<br><br></span>
+                     <span><i class="fa fa-check"></i> Our mission is to help students to achieve their career goals by providing a range of resources and 
+                      services to support their job opportunities and professional development.</span>
+                     </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <div id="services" class="services section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
+            <h4>Vision & <em> <main>  Mission</main></em></h4>
+            <div class="line-dec"></div>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="naccs">
+            <div class="grid">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="menu">
+                    <div class="first-thumb active">
+                      <div class="thumb">
+                        <span class="icon"><img src="{% static 'images/vision_icon1.svg' %}" alt=""></span>
+                        Vision
+                      </div>
+                    </div>
+                    <div>
+                      <div class="thumb">                 
+                        <span class="icon"><img src="{% static 'images/mission_icon.svg' %}" alt=""></span>
+                        <!-- <span class="icon"><box-icon name='paper-plane' type='solid' animation='tada' color='#228cec' ></box-icon></span> -->
+                        Mission
+                      </div>
+                    </div>
+                  </div>
+                </div> 
+                <div class="col-lg-12">
+                  <ul class="nacc">
+                    <li class="active">
+                      <div>
+                        <div class="thumb">
+                          <div class="row">
+                            <div class="col-lg-6 align-self-center">
+                              <div class="left-text">
+                                <h4>Our Vision</h4>
+                                <p>Placement cell serves as the connecting point between the collegian of our College with prospective employers by enabling students to realize 
+                                  their dream jobs before they leave the campus. </p>
+                                <div class="ticks-list"><span><i class="fa fa-check"></i> 100% Placements</span> <span><i class="fa fa-check"></i> Tied-up with Top MNC's & Startups</span> <span><i class="fa fa-check"></i> Choosing up the best path</span>
+                                  <span><i class="fa fa-check"></i> Enhancing Opportunities</span></div>
+                                <p> Getting a dream job through placements can provide a strong foundation for career growth and development. It can open doors to new learning 
+                                  opportunities, opening up with large network of emerging top companies, which can all contribute to professional development.</p>
+                                  <a href="vision.html" class="btn btn-primary">View More</a>
+                              </div>
+                            </div>
+                            <div class="col-lg-6 align-self-center">
+                              <div class="right-image">
+                                <img src="{% static 'images/vision_Success.jpg' %}" alt="">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                        <div class="thumb">
+                          <div class="row">
+                            <div class="col-lg-6 align-self-center">
+                              <div class="left-text">
+                                <h4> Our Mission</h4>
+                                <p> <p>The ultimate goal of campus placements is to support the professional development of students and 
+                                  prepare them to be successful and productive members of the workforce.</p></p>
+                                <div class="ticks-list"><span><i class="fa fa-check"></i> Preparing students for the job market </span> <span><i class="fa fa-check"></i> Emerging with trends</span> 
+                                  <span><i class="fa fa-check"></i> Collaboration with Industry Partners</span>
+                                 <span><i class="fa fa-check"></i> Career Development </span></div>
+                                <p>The mission of our placements is to help students in successfully transition from their academic studies to their professional careers by providing them with the skills, knowledge, and opportunities needed to secure employment in their desired field. </p>
+                                <a href="mission.html" class="btn btn-primary">View More</a>
+                              </div>
+                            </div>
+                            <div class="col-lg-6 align-self-center">
+                              <div class="right-image">
+                                <img src="{% static 'images/vision_img.jpg' %}" alt="">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div>
+                    </li>
+                  </ul>
+                </div>          
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!--IT Top companies-->
+  <div id="portfolio" class="our-portfolio section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5">
+          <div class="section-heading wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.3s">
+            <h6>Our Top Recruiters</h6>
+            <h4><em>Leads of IT</em></h4>
+            <div class="line-dec"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid wow fadeIn" data-wow-duration="1s" data-wow-delay="0.7s">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="loop owl-carousel owl-dots.disabled">
+            <div class="item">
+              <a href="#">
+                <div class="portfolio-item">
+                <div class="thumb">
+                  <img src="{% static 'images/companies/IT/caterpillar.png' %}" alt="">
+                </div>
+              </div>
+              </a>  
+            </div>
+            <div class="item">
+              <a href="#">
+                <div class="portfolio-item">
+                <div class="thumb">
+                  <img src="{% static 'images/companies/IT/Zoho-logo.png' %}" alt="">
+                </div>
+              </div>
+              </a>  
+            </div>
+            <div class="item">
+              <a href="#">
+                <div class="portfolio-item">
+                <div class="thumb">
+                  <img src="{% static 'images/companies/IT/tcs.png' %}" alt="">
+                </div>
+              </div>
+              </a>  
+            </div>
+            <div class="item">
+              <a href="#">
+                <div class="portfolio-item">
+                <div class="thumb">
+                  <img src="{% static 'images/companies/IT/accenture.png' %}" alt="">
+                </div>
+              </div>
+              </a>  
+            </div>
+            <div class="item">
+              <a href="#">
+                <div class="portfolio-item">
+                <div class="thumb">
+                  <img src="{% static 'images/companies/IT/Thoughtworks_logo.png' %}" alt="">
+                </div>
+              </div>
+              </a>  
+            </div>
+            <div class="item">
+              <a href="#">
+                <div class="portfolio-item">
+                <div class="thumb">
+                  <img src="{% static 'images/companies/IT/kanini.png' %}" alt="">
+                </div>
+              </div>
+              </a>  
+            </div>
+            <div class="item">
+              <a href="#">
+                <div class="portfolio-item">
+                <div class="thumb">
+                  <img src="{% static 'images/companies/IT/clouddestination.jpg' %}" alt="">
+                </div>
+              </div>
+              </a>  
+            </div>
+            <div class="item">
+              <a href="#">
+                <div class="portfolio-item">
+                <div class="thumb">
+                  <img src="{% static 'images/companies/Maths Stat Eco/craftsman.png' %}" alt="">
+                </div>
+              </div>
+              </a>  
+            </div>
+            <!--end div sec-->
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-end me-4 mt-4">
+      <a href="companies.html" class="btn btn-primary">View More</a>
+    </div>
+  </div>
+<!--Commerce Top companies-->
+
+
+
+  <!--footer-->
+  <footer>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <p>Copyright © 2023 R&D of PSGCAS Placement Centre. All Rights Reserved. 
+          <br>Images by <a href="https://www.freepik.com/" target="_parent" title="Freepik.com">Freepik</a>
+        </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+  <script src="{% static 'vendors/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendors/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'js/owl-carousel.js' %}"></script>
+  <script src="{% static 'js/animation.js' %}"></script>
+  <script src="{% static 'js/imagesloaded.js' %}"></script>
+  <script src="{% static 'js/custom.js' %}"></script>
+
+</body>
+</html>

@@ -17,5 +17,12 @@ urlpatterns = [
     path('superlee/intern-punch/', views.intern_attendance_login, name='intern_attendance_login'),
     path('superlee/intern-punch/signin', views.intern_attendance, name='intern_attendance'),
     path('superlee/intern-punch/signout', views.intern_attendance_out, name='intern_attendance_out'),
-    path('', views.index, name='index')
+    path('', views.index, name='index'),
+    path('dashboard', views.dashboard, name='dashboard'),
+    path('our-vision', views.vision, name='vision'),
+    path('our-mission', views.mission, name='mission'),
+    path('contacts', views.contact, name='contact'),
+    path('our-top-recruiters', views.companies, name='companies'),
+    path('Placement-Process', views.p_process, name='p_process'),
+    path('our-infrastructure', views.infrastructure, name='infrastructure'),
 ]
