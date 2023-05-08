@@ -22799,7 +22799,7 @@ select.border-dark.tt-hint:focus {
 
 .form-group label {
   font-size: 1.05rem;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.4rem;
   vertical-align: top;
   margin-bottom: .5rem;
@@ -30859,3 +30859,5 @@ div.tagsinput span.tag a {
   padding: 5px;
   border: 2px solid #fff ;
 }
+
+
