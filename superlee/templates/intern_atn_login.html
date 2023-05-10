@@ -375,7 +375,26 @@
             url: '/superlee/intern-punch/',
             data: form_data,
             success: function(response) {
+              const Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 1000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+              }
+            })
+
+            Toast.fire({
+              icon: 'success',
+              title: 'Signed in successfully'
+            })
+            setTimeout(function() {
               window.location.href = "/superlee/intern-punch/signin";
+            }, 1000);
+              // window.location.href = "/superlee/intern-punch/signin";
             },
             error: function(response) {
               Swal.fire({

@@ -13399,6 +13399,7 @@ input[type="button"].btn-block {
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 1rem;
+  height: max-content;
 }
 
 .navbar .container,
@@ -28578,7 +28579,8 @@ div.tagsinput span.tag a {
 .sidebar .nav .nav-item .nav-link .menu-title {
   color: inherit;
   display: inline-block;
-  font-size: 0.875rem;
+  font-size: 1rem;
+  font-weight: 500;
   line-height: 1;
   vertical-align: middle;
 }
@@ -28626,7 +28628,7 @@ div.tagsinput span.tag a {
 }
 
 .sidebar .nav:not(.sub-menu) {
-  margin-top: 1.45rem;
+  margin-top: 2.45rem;
   margin-left: 1rem;
   margin-right: 1rem;
 }
@@ -28636,7 +28638,7 @@ div.tagsinput span.tag a {
 }
 
 .sidebar .nav:not(.sub-menu) > .nav-item:hover > .nav-link, .sidebar .nav:not(.sub-menu) > .nav-item:hover[aria-expanded="true"] {
-  background: #4B49AC;
+  background: #3E4095;
   color: #fff;
 }
 
@@ -28646,12 +28648,12 @@ div.tagsinput span.tag a {
 
 .sidebar .nav:not(.sub-menu) > .nav-item > .nav-link[aria-expanded="true"] {
   border-radius: 8px 8px 0 0;
-  background: #4B49AC;
+  background: #3E4095;
   color: #fff;
 }
 
 .sidebar .nav:not(.sub-menu) > .nav-item.active {
-  background: #4B49AC;
+  background: #3E4095;
 }
 
 .sidebar .nav.sub-menu {
@@ -28659,7 +28661,7 @@ div.tagsinput span.tag a {
   margin-top: 0;
   list-style: none;
   padding: 0.25rem 0 0 3.07rem;
-  background: #4B49AC;
+  background: #3E4095;
   padding-bottom: 12px;
 }
 
@@ -28808,7 +28810,7 @@ div.tagsinput span.tag a {
   -webkit-transition: width 0.25s ease, background 0.25s ease;
   -moz-transition: width 0.25s ease, background 0.25s ease;
   -ms-transition: width 0.25s ease, background 0.25s ease;
-  width: 235px;
+  width: max-content;
   height: 60px;
 }
 
@@ -28833,7 +28835,8 @@ div.tagsinput span.tag a {
 
 .navbar .navbar-brand-wrapper .navbar-brand img {
   max-width: 100%;
-  height: 50px;
+  height: 65px;
+  width: auto;
   margin: auto;
   vertical-align: middle;
 }
@@ -28844,7 +28847,7 @@ div.tagsinput span.tag a {
 }
 
 .navbar .navbar-brand-wrapper .brand-logo-mini img {
-  width: calc(70px - 30px);
+  /* width: calc(70px - 30px); */
   max-width: 100%;
   margin: auto;
 }
@@ -28855,7 +28858,7 @@ div.tagsinput span.tag a {
   -webkit-transition: width 0.25s ease;
   -moz-transition: width 0.25s ease;
   -ms-transition: width 0.25s ease;
-  color: #6C7383;
+  color: #000;
   padding-right: 2.375rem;
   padding-left: 2.375rem;
   width: calc(100% - 235px);
@@ -30875,4 +30878,16 @@ div.tagsinput span.tag a {
   display: block;
   max-height:100%;
   max-width: 100%;
+}
+
+.custom-nav{
+  height: 80px;
+}
+
+.sidebar-title{
+  color: #4b49ac;
+  font-size: 0.91rem ;
+  font-family: "Nunito", sans-serif;
+  font-weight: 450;
+  margin: 10px;
 }

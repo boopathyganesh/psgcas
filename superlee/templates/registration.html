@@ -32,12 +32,12 @@
 <body>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row custom-nav">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="{% static 'images/psgcas.png' %}" class="mr-4" alt="logo"/></a>
-        <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{% static 'images/PSG Logo 97 Years (1).png' %}" alt="logo"/></a>
+        <a class="navbar-brand brand-logo ml-3 mt-2" href="index.html"><img src="{% static 'images/psg/psgcas.png' %}" class="mr-4" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini ml-3" href="index.html"><img src="{% static 'images/psg/psg-75.png' %}" alt="logo"/></a>
       </div>
-      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+      <div class="col navbar-menu-wrapper d-flex align-items-center justify-content-start">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
           <span class="icon-menu"></span>
         </button>
@@ -250,62 +250,62 @@
       <!-- partial:partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
+          <p class="sidebar-title text-center">Student Registration Sections</p>
           <li class="nav-item">
             <a class="nav-link" href="#">
               <i class="icon-grid menu-icon"></i>
-              <span class="menu-title">Dashboard</span>
+              <span class="menu-title">Personal Details</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
               <i class="icon-paper menu-icon"></i>
-              <span class="menu-title">Documentation</span>
+              <span class="menu-title">Family Details</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <i class="icon-layout menu-icon"></i>
-              <span class="menu-title">Campus Drives </span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{% static 'pages/samples/error.html' %}">All Drives</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{% static 'pages/samples/error.html' %}">Eligible Drives</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{% static 'pages/samples/error.html' %}">Opted Drives</a></li>
-              </ul>
-            </div>
-          </li>
+          <p class="sidebar-title text-center">Academic Section</p>
           <li class="nav-item">
             <a class="nav-link" href="#">
               <i class="icon-grid menu-icon"></i>
-              <span class="menu-title active">Attendance</span>
+              <span class="menu-title active">Schooling Section</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
               <i class="icon-grid menu-icon"></i>
-              <span class="menu-title">Certificate Vault</span>
+              <span class="menu-title active">Under Graduate</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <i class="icon-layout menu-icon"></i>
-              <span class="menu-title">Profile Settings</span>
-              <i class="menu-arrow"></i>
+            <a class="nav-link" href="#">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title active">Post Graduate</span>
             </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{% static 'pages/samples/error.html' %}">Personal Details</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{% static 'pages/samples/error.html' %}">Academic Details</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{% static 'pages/samples/error.html' %}">Change Password</a></li>
-              </ul>
-            </div>
+          </li>
+          <p class="sidebar-title text-center">Agreements & Others</p>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Agreements</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Others</span>
+            </a>
+          </li>
+          <p class="sidebar-title text-center">Review Details</p>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Acknowledgement</span>
+            </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% static 'pages/documentation/documentation.html' %}">
               <i class="icon-paper menu-icon"></i>
-              <span class="menu-title">Documentation</span>
+              <span class="menu-title">Application Status</span>
             </a>
           </li>
         </ul>
