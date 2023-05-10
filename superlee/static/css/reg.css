@@ -299,8 +299,8 @@ form .gender-details .gender-title{
   justify-content: center;
 }
 .side img{
-  width: auto;
-  max-height: 45rem;
+  width: 40vw;
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
