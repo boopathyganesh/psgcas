@@ -481,10 +481,8 @@ def ack(request):
 def test(request):
     if request.method == 'POST':
         # Retrieve form data from the request
-        uploaded_file = request.FILES['aadhar']
-        id='21mca007'
-        fs=FileSystemStorage(location=MEDIA_ROOT+'/'+id)
-        fs.save(name=uploaded_file.name,content=uploaded_file)
+        data = request.POST
+        print(data)
         # Return a JSON response indicating success
         return JsonResponse({'success': True}, content_type='application/json')
 
