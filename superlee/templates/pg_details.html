@@ -311,7 +311,7 @@
         </ul>
       </nav>
       <!-- partial -->
-      <div class="container-fluid main-panel scroll" style="width: 100%;">
+      <div class="container-fluid main-panel" style="width: 100%;">
         <div class="row">
           <div class="col-md-12">
             <div class="d-flex justify-content-center mt-4">
@@ -327,7 +327,7 @@
             <div class="row d-flex justify-content-center">
               <div class="col-md-7">
                 <div class="contents">
-                  <div class="container">
+                  <div class="container scroll-forms" id="form-area">
                       <div class="col-md-12 py-5">
                       <form method="post" class="forms" id="pg_forms">
                         <div class="row">
@@ -739,8 +739,24 @@
         });
     });
 });
-
 </script>
+<script>
+  // Get the alert element
+  var alertEl = document.getElementById("alert1");
+  var area = document.getElementById("form-area");
+  // Add an event listener to the window object for the scroll event
+  area.addEventListener("scroll", function() {
+    // Check if the user has scrolled to the top of the page
+    if (window.pageYOffset === 0) {
+      // Show the alert
+      alertEl.style.display = "block";
+    } else {
+      // Hide the alert
+      alertEl.style.display = "none";
+    }
+  });
+</script>
+
   <!-- plugins:js -->
   <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
   <script src="{% static 'js/sortable.js' %}"></script>
