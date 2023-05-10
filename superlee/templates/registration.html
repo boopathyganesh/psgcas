@@ -250,8 +250,8 @@
       <!-- partial:partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
-          <p class="sidebar-title text-center">Student Registration Sections</p>
-          <li class="nav-item">
+          <p class="sidebar-title text-center">Basic Information</p>
+          <li class="nav-item active">
             <a class="nav-link" href="#">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title">Personal Details</span>
@@ -317,15 +317,15 @@
             <!-- <div class="d-flex justify-content-center mt-4">
               <img src="{% static 'images/CDC Logo.png' %}" alt="" style="height: 30vh; width: auto;">
             </div> -->
-            <div class="row d-flex align-items-center justify-content-center mt-4">
-              <h3>Student Registration for Placements</h3>
-            </div>
             <!-- <div class="d-flex align-items-center justify-content-center mt-1">
               <h6 class="mb-4">Update your details here !.</h6>
             </div> -->
             <div class="row d-flex justify-content-center">
               <div class="col-md-7">
                 <div class="contents">
+                  <div class="row d-flex align-items-center justify-content-center">
+                    <h3 class="mt-5 title">Personal Details</h3>
+                  </div>
                   <div class="container form-container scroll-forms">
                       <div class="col-md-12 py-5">
                           <form method="post" class="forms" id="reg-form">
@@ -348,7 +348,7 @@
                                   <div class="form-group first">
                                     <label for="sslc_schooling">Present Graduation Status</label>
                                     <div class="category">
-                                      <div class="col-sm-5">
+                                      <div class="col-sm-6">
                                         <div class="form-check">
                                           <label class="form-check-label">
                                             <input type="radio" class="form-check-input" name="current_pursuing" value="Under Graduation">
@@ -356,7 +356,7 @@
                                           </label>
                                         </div>
                                       </div>
-                                      <div class="col-sm-5">
+                                      <div class="col-sm-6">
                                         <div class="form-check">
                                           <label class="form-check-label">
                                             <input type="radio" class="form-check-input" name="current_pursuing" value="Post Graduation">
@@ -367,7 +367,7 @@
                                     </div>
                                   </div>    
                                 </div>
-                              </div>                              
+                              </div>
                               <div class="row">
                                   <div class="col-md-12">
                                   <div class="form-group first">
@@ -426,7 +426,7 @@
                                           <div class="col-sm-4">
                                             <div class="form-check">
                                               <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="gender" id="male" value="Male" checked>
+                                                <input type="radio" class="form-check-input" name="gender" id="male" value="Male">
                                                 Male
                                               </label>
                                             </div>
@@ -453,7 +453,7 @@
                                         <div class="col-sm-4">
                                           <div class="form-check">
                                             <label class="form-check-label">
-                                              <input type="radio" class="form-check-input" name="marital-sts" id="married" value="Married" checked>
+                                              <input type="radio" class="form-check-input" name="marital-sts" id="married" value="Married">
                                               Married
                                             </label>
                                           </div>
