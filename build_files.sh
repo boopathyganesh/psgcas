@@ -1,11 +1,3 @@
-#linux update and install
-
-apt-get update
-apt-get upgrade
-apt install mysql-server libmysqlclient-dev build-essential python3-dev
-
-export PATH="/usr/local/bin:$PATH"
-
 # build_files.sh
 pip install -r requirements.txt
 
