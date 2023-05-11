@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 MEDIA_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,7 +30,7 @@ SECRET_KEY = 'django-insecure-!mb-*5kb2r_vm6h_d@d=!_jjl^@t!x(1kz^+knre20+mj+=8dd
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app','127.0.0.1']
+ALLOWED_HOSTS = ['.vercel.app','.now.sh','127.0.0.1']
 
 
 # Application definition
@@ -83,7 +86,7 @@ WSGI_APPLICATION = 'irogen.wsgi.application'
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }'''
-DATABASES = {
+'''DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.mysql',
 		'NAME': 'psgcas',
@@ -92,8 +95,28 @@ DATABASES = {
 		'HOST':'localhost',
 		'PORT':'3306',
 	}
+}'''
+'''DATABASES = {
+  'default': {
+    'ENGINE': 'django.db.backends.mysql',
+    'NAME': os.environ.get('PLANETSCALE_DB'),
+    'HOST': os.environ.get('PLANETSCALE_DB_HOST'),
+    'PORT': os.environ.get('PLANETSCALE_DB_PORT'),
+    'USER': os.environ.get('PLANETSCALE_DB_USERNAME'),
+    'PASSWORD': os.environ.get('PLANETSCALE_DB_PASSWORD'),
+    'OPTIONS': {'ssl': {'ca': os.environ.get('PLANETSCALE_SSL_CERT_PATH')}}
+  }
+}'''
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get('SB_DB_NAME'),
+        'HOST': os.environ.get('SB_DB_HOST'),
+        'PORT': os.environ.get('SB_DB_PORT'),
+        'USER': os.environ.get('SB_DB_USER'),
+        'PASSWORD': os.environ.get('SB_DB_PASSWORD'),
+    }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
