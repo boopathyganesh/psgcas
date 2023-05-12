@@ -32,12 +32,12 @@
 <body>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row custom-nav">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="{% static 'images/psgcas.png' %}" class="mr-4" alt="logo"/></a>
-        <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{% static 'images/PSG Logo 97 Years (1).png' %}" alt="logo"/></a>
+        <a class="navbar-brand brand-logo ml-3 mt-2" href="index.html"><img src="{% static 'images/psg/psgcas.png' %}" class="mr-4" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini ml-3" href="index.html"><img src="{% static 'images/psg/psg-75.png' %}" alt="logo"/></a>
       </div>
-      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+      <div class="col navbar-menu-wrapper d-flex align-items-center justify-content-start">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
           <span class="icon-menu"></span>
         </button>
@@ -250,62 +250,62 @@
       <!-- partial:partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
+          <p class="sidebar-title text-center">Basic Information</p>
           <li class="nav-item">
             <a class="nav-link" href="#">
               <i class="icon-grid menu-icon"></i>
-              <span class="menu-title">Dashboard</span>
+              <span class="menu-title">Personal Details</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
               <i class="icon-paper menu-icon"></i>
-              <span class="menu-title">Documentation</span>
+              <span class="menu-title">Family Details</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <i class="icon-layout menu-icon"></i>
-              <span class="menu-title">Campus Drives </span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{% static 'pages/samples/error.html' %}">All Drives</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{% static 'pages/samples/error.html' %}">Eligible Drives</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{% static 'pages/samples/error.html' %}">Opted Drives</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
+          <p class="sidebar-title text-center">Academic Section</p>
+          <li class="nav-item active">
             <a class="nav-link" href="#">
               <i class="icon-grid menu-icon"></i>
-              <span class="menu-title active">Attendance</span>
+              <span class="menu-title active">Schooling Section</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
               <i class="icon-grid menu-icon"></i>
-              <span class="menu-title">Certificate Vault</span>
+              <span class="menu-title active">Under Graduate</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <i class="icon-layout menu-icon"></i>
-              <span class="menu-title">Profile Settings</span>
-              <i class="menu-arrow"></i>
+            <a class="nav-link" href="#">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title active">Post Graduate</span>
             </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{% static 'pages/samples/error.html' %}">Personal Details</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{% static 'pages/samples/error.html' %}">Academic Details</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{% static 'pages/samples/error.html' %}">Change Password</a></li>
-              </ul>
-            </div>
+          </li>
+          <p class="sidebar-title text-center">Agreements & Others</p>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Agreements</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Others</span>
+            </a>
+          </li>
+          <p class="sidebar-title text-center">Review Details</p>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Acknowledgement</span>
+            </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% static 'pages/documentation/documentation.html' %}">
               <i class="icon-paper menu-icon"></i>
-              <span class="menu-title">Documentation</span>
+              <span class="menu-title">Application Status</span>
             </a>
           </li>
         </ul>
@@ -314,7 +314,7 @@
       <div class="container-fluid main-panel scroll" style="width: 100%;">
         <div class="row">
           <div class="col-md-12">
-            <div class="d-flex justify-content-center mt-4">
+            <!-- <div class="d-flex justify-content-center mt-4">
               <img src="{% static 'images/CDC Logo.png' %}" alt="" style="height: 30vh; width: auto;">
             </div>
             <div class="row d-flex align-items-center justify-content-center mt-4">
@@ -323,11 +323,14 @@
             </div>
             <div class="d-flex align-items-center justify-content-center mt-1">
               <h6 class="mb-4">Update your details here !.</h6>
-            </div>
+            </div> -->
             <div class="row d-flex justify-content-center">
               <div class="col-md-7">
                 <div class="contents">
-                  <div class="container">
+                  <div class="row d-flex align-items-center justify-content-center">
+                    <h3 class="mt-5 title">Schooling Details</h3>
+                  </div>
+                  <div class="container form-container scroll-forms">
                       <div class="col-md-12 py-5">
                         <form method="post" class="forms" id="schoolings">
                             <div class="row">
@@ -340,7 +343,7 @@
                                             <div class="form-check">
                                               <label class="form-check-label">
                                                 <input type="radio" class="form-check-input" name="sslc_schooling" id="sslc_schooling" value="Government School">
-                                                Government School
+                                                Government School / Government-Aided School
                                               </label>
                                             </div>
                                           </div>
@@ -374,9 +377,15 @@
                                     </div>    
                                 </div>
                                 <div class="col-md-6">
+                                  <div class="form-group first">
+                                      <label for="sslc_school_address">10th School Address</label>
+                                      <input type="text" class="form-control" placeholder=" " id="sslc_school_address" name="sslc_school_address"> 
+                                  </div>
+                              </div>
+                                <div class="col-md-12">
                                     <div class="form-group first">
-                                        <label for="sslc_school_address">10th School Address with PINCODE</label>
-                                        <input type="text" class="form-control" placeholder=" " id="sslc_school_address" name="sslc_school_address"> 
+                                        <label for="sslc_school_pincode">Pincode</label>
+                                        <input type="text" class="form-control" placeholder="School Address Pincode" id="sslc_school_pincode" name="sslc_school_pincode"> 
                                     </div>
                                 </div>
                             </div>
@@ -402,14 +411,14 @@
                                               </label>
                                             </div>
                                           </div>
-                                          <div class="row ml-3">
+                                          <!-- <div class="row ml-3">
                                             <div class="form-check">
                                               <label class="form-check-label">
                                                 <input type="radio" class="form-check-input" name="board" id="board" value="ICSC">
                                                 ICSC
                                               </label>
                                             </div>
-                                          </div>
+                                          </div> -->
                                           <div class="row ml-3">
                                             <div class="form-check">
                                               <label class="form-check-label">
@@ -441,19 +450,13 @@
                               </div>
                             </div>
                             <div class="row">
-                              <div class="col-md-4">
-                                  <div class="form-group first">
-                                      <label for="sslc_mark">10th Overall Mark</label>
-                                      <input type="text" class="form-control" placeholder="Eg:495 " id="sslc_mark" name="sslc_mark">
-                                  </div>    
-                              </div>
-                              <div class="col-md-4">
+                              <div class="col-md-6">
                                 <div class="form-group first">
                                     <label for="sslc_percentage">10th Percentage</label>
                                     <input type="text" class="form-control" placeholder="Eg: 92" id="sslc_percentage" name="sslc_percentage">
                                 </div>    
                               </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                               <div class="form-group first">
                                   <label for="sslc_year">10th Year of Passing</label>
                                   <input type="text" class="form-control" placeholder="Eg: 2017" id="sslc_year" name="sslc_year">
@@ -514,7 +517,7 @@
                                                 <div class="form-check">
                                                   <label class="form-check-label">
                                                     <input type="radio" class="form-check-input" name="hsc_schooling" id="hsc_schooling" value="Government School">
-                                                    Government School
+                                                    Government School / Government-Aided School
                                                   </label>
                                                 </div>
                                               </div>
@@ -548,9 +551,15 @@
                                         </div>    
                                     </div>
                                     <div class="col-md-6">
+                                      <div class="form-group first">
+                                          <label for="hsc_school_address">12th School Address</label>
+                                          <input type="text" class="form-control" placeholder=" " id="hsc_school_address" name="hsc_school_address"> 
+                                      </div>
+                                  </div>
+                                    <div class="col-md-6">
                                         <div class="form-group first">
-                                            <label for="hsc_school_address">12th School Address with PINCODE</label>
-                                            <input type="text" class="form-control" placeholder=" " id="hsc_school_address" name="hsc_school_address"> 
+                                            <label for="hsc_school_pincode">Pincode</label>
+                                            <input type="text" class="form-control" placeholder="School Address Pincode" id="hsc_school_pincode" name="hsc_school_pincode"> 
                                         </div>
                                     </div>
                                 </div>
@@ -580,7 +589,7 @@
                                                 <div class="form-check">
                                                   <label class="form-check-label">
                                                     <input type="radio" class="form-check-input" name="hsc_board" id="hsc_board" value="ICSC">
-                                                    ICS
+                                                    ICSC
                                                   </label>
                                                 </div>
                                               </div>
@@ -592,14 +601,14 @@
                                                   </label>
                                                 </div>
                                               </div>
-                                              <div class="row ml-3">
+                                              <!-- <div class="row ml-3">
                                                 <div class="form-check">
                                                   <label class="form-check-label">
                                                     <input type="radio" class="form-check-input" name="hsc_board" id="hsc_board" value="IGCSE">
                                                     IGCSE
                                                   </label>
                                                 </div>
-                                              </div>
+                                              </div> -->
                                               <div class="row ml-3">
                                                 <div class="form-check">
                                                   <label class="form-check-label">
@@ -615,19 +624,13 @@
                                   </div>
                                 </div>
                                 <div class="row">
-                                  <div class="col-md-4">
-                                      <div class="form-group first">
-                                          <label for="hsc_mark">12th Overall Mark</label>
-                                          <input type="text" class="form-control" placeholder="Eg:595 " id="hsc_mark" name="hsc_mark">
-                                      </div>    
-                                  </div>
-                                  <div class="col-md-4">
+                                  <div class="col-md-6">
                                     <div class="form-group first">
                                         <label for="hsc_percentage">12th Percentage</label>
                                         <input type="text" class="form-control" placeholder="Eg: 92" id="hsc_percentage" name="hsc_percentage">
                                     </div>    
                                   </div>
-                                <div class="col-md-4">
+                                <div class="col-md-6">
                                   <div class="form-group first">
                                       <label for="hsc_year">12th Year of Passing</label>
                                       <input type="text" class="form-control" placeholder="Eg: 2019" id="hsc_year" name="hsc_year">
@@ -653,7 +656,7 @@
                             <!-- Diploma section -->
                             <section id="diploma_section" style="display: none;">
                                 <div class="row">
-                                  <div class="col-md-6">
+                                  <div class="col-md-12">
                                       <div class="form-group first">
                                           <label for="diploma_clg">Diploma College Name</label>
                                           <input type="text" class="form-control" placeholder="Eg: PSG Public School" id="diploma_clg" name="diploma_clg">
@@ -661,10 +664,16 @@
                                   </div>
                                   <div class="col-md-6">
                                       <div class="form-group first">
-                                          <label for="diploma_clg_address">Diploma College Address with PINCODE</label>
+                                          <label for="diploma_clg_address">Diploma College Address</label>
                                           <input type="text" class="form-control" placeholder=" " id="diploma_clg_address" name="diploma_clg_address"> 
                                       </div>
                                   </div>
+                                  <div class="col-md-6">
+                                    <div class="form-group first">
+                                        <label for="diploma_clg_pincode">Pincode</label>
+                                        <input type="text" class="form-control" placeholder=" " id="diploma_clg_pincode" name="diploma_clg_pincode"> 
+                                    </div>
+                                </div>
                               </div>
                               <div class="row">
                                 <div class="col-md-6">
@@ -706,7 +715,7 @@
               </div>
               </div>
               <div class="col-md-5 side">
-                <img src="{% static 'images/Personal goals-pana.png' %}" alt=""></div>
+                <img src="{% static 'images/Form_Pictures/Schoolings.jpg' %}" alt=""></div>
             </div>
           </div>
         </div>

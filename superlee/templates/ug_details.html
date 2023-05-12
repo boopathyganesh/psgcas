@@ -32,12 +32,12 @@
 <body>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row custom-nav">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="{% static 'images/psgcas.png' %}" class="mr-4" alt="logo"/></a>
-        <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{% static 'images/PSG Logo 97 Years (1).png' %}" alt="logo"/></a>
+        <a class="navbar-brand brand-logo ml-3 mt-2" href="index.html"><img src="{% static 'images/psg/psgcas.png' %}" class="mr-4" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini ml-3" href="index.html"><img src="{% static 'images/psg/psg-75.png' %}" alt="logo"/></a>
       </div>
-      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+      <div class="col navbar-menu-wrapper d-flex align-items-center justify-content-start">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
           <span class="icon-menu"></span>
         </button>
@@ -250,62 +250,62 @@
       <!-- partial:partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
+          <p class="sidebar-title text-center">Basic Information</p>
           <li class="nav-item">
             <a class="nav-link" href="#">
               <i class="icon-grid menu-icon"></i>
-              <span class="menu-title">Dashboard</span>
+              <span class="menu-title">Personal Details</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
               <i class="icon-paper menu-icon"></i>
-              <span class="menu-title">Documentation</span>
+              <span class="menu-title">Family Details</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <i class="icon-layout menu-icon"></i>
-              <span class="menu-title">Campus Drives </span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{% static 'pages/samples/error.html' %}">All Drives</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{% static 'pages/samples/error.html' %}">Eligible Drives</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{% static 'pages/samples/error.html' %}">Opted Drives</a></li>
-              </ul>
-            </div>
-          </li>
+          <p class="sidebar-title text-center">Academic Section</p>
           <li class="nav-item">
             <a class="nav-link" href="#">
               <i class="icon-grid menu-icon"></i>
-              <span class="menu-title active">Attendance</span>
+              <span class="menu-title active">Schooling Section</span>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title active">Under Graduate</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
               <i class="icon-grid menu-icon"></i>
-              <span class="menu-title">Certificate Vault</span>
+              <span class="menu-title active">Post Graduate</span>
+            </a>
+          </li>
+          <p class="sidebar-title text-center">Agreements & Others</p>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Agreements</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <i class="icon-layout menu-icon"></i>
-              <span class="menu-title">Profile Settings</span>
-              <i class="menu-arrow"></i>
+            <a class="nav-link" href="#">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Others</span>
             </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{% static 'pages/samples/error.html' %}">Personal Details</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{% static 'pages/samples/error.html' %}">Academic Details</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{% static 'pages/samples/error.html' %}">Change Password</a></li>
-              </ul>
-            </div>
+          </li>
+          <p class="sidebar-title text-center">Review Details</p>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Acknowledgement</span>
+            </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% static 'pages/documentation/documentation.html' %}">
               <i class="icon-paper menu-icon"></i>
-              <span class="menu-title">Documentation</span>
+              <span class="menu-title">Application Status</span>
             </a>
           </li>
         </ul>
@@ -314,7 +314,7 @@
       <div class="container-fluid main-panel scroll" style="width: 100%;">
         <div class="row">
           <div class="col-md-12">
-            <div class="d-flex justify-content-center mt-4">
+            <!-- <div class="d-flex justify-content-center mt-4">
               <img src="{% static 'images/CDC Logo.png' %}" alt="" style="height: 25vh; width: auto;">
             </div>
             <div class="row d-flex align-items-center justify-content-center mt-4">
@@ -322,17 +322,20 @@
             </div>
             <div class="d-flex align-items-center justify-content-center mt-1">
               <h6 class="mb-4">Update your details here !.</h6>
-            </div>
+            </div> -->
             <div class="row d-flex justify-content-center">
               <div class="col-md-7">
                 <div class="contents">
-                  <div class="container">
+                  <div class="row d-flex align-items-center justify-content-center">
+                    <h3 class="mt-5 title">Under-Graduate Information</h3>
+                  </div>
+                  <div class="container form-container scroll-forms">
                       <div class="col-md-12 py-5">
                         <form method="post" class="forms" id="ug_forms">
                           <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group first">
-                                    <label for="gap_ug">Any gap in UG education</label>
+                                    <label for="gap_ug">Any gap between Schooling and UG?</label>
                                     <div class="row ml-3">
                                         <div class="form-check mr-5">
                                           <label class="form-check-label">
@@ -349,14 +352,14 @@
                                       </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                               <div class="form-group first">
-                                  <label for="gap_year">Year of Gap in UG Education (in Number)</label>
-                                  <input type="text" class="form-control" placeholder="Eg: 1, 2, 3" id="gap_year" name="gap_year">
+                                  <label for="gap_year">Year of Gap (if YES)</label>
+                                  <input type="text" class="form-control" placeholder="Eg: 1, 2, 3 (must be in number)" id="gap_year" name="gap_year">
                               </div>    
                             </div>
                           </div>
-                          <div class="row">
+                          <!-- <div class="row">
                             <div class="col-md-12">
                               <div class="form-group row">
                                 <label class="col-sm-3 col-form-label" for="ug_department">UG Department</label>
@@ -384,36 +387,127 @@
                                   <input type="text" class="form-control" placeholder="HOD's Contact Number" id="ug_hod_no" name="ug_hod_no">
                               </div>    
                             </div>
-                          </div>
+                          </div> -->
                           <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group first">
-                                    <label for="ug_seed">Department SEED Coordinator's Name</label>
-                                    <input type="text" class="form-control" placeholder="SEED Coordinator's Name" id="ug_seed" name="ug_seed">
+                                    <label for="ug_seed">SEED Coordinator's Name</label>
+                                    <input type="text" class="form-control" placeholder=" Department SEED Coordinator Name" id="ug_seed" name="ug_seed">
                                 </div>    
                             </div>
                             <div class="col-md-6">
                               <div class="form-group first">
-                                  <label for="ug_seed_no">Department SEED Coordinator Number</label>
-                                  <input type="text" class="form-control" placeholder="SEED Coordinator's contact" id="ug_seed_no" name="ug_seed_no">
+                                  <label for="ug_seed_no">SEED Coordinator Number</label>
+                                  <input type="text" class="form-control" placeholder="Department SEED Coordinator contact" id="ug_seed_no" name="ug_seed_no">
                               </div>    
                             </div>
                           </div>
                           <div class="row">
                             <div class="col-md-12">
                               <div class="form-group first">
-                                  <label for="ug_seed_mail">Department SEED Coordinator's E-Mail ID (Official)</label>
-                                  <input type="text" class="form-control" placeholder="SEED Coordinator's E-Mail" id="ug_seed_mail" name="ug_seed_mail">
+                                  <label for="ug_seed_mail">SEED Coordinator's E-Mail ID (Official)</label>
+                                  <input type="text" class="form-control" placeholder="Department SEED Coordinator E-Mail" id="ug_seed_mail" name="ug_seed_mail">
                               </div>    
                             </div>
                           </div>
                           <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                               <div class="form-group first">
-                                  <label for="ug_percentage">Current Percentage(as per Marksheet)</label>
+                                  <label for="ug_sem1">First Semester Percentage</label>
+                                  <input type="text" class="form-control" placeholder="Eg: 95" id="ug_sem1" name="ug_mark1">
+                              </div>    
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group first">
+                                <label for="diploma_certi">First Semester Marksheet</label>
+                                <input type="file" name="ug_sem1" id="ug_sem1" class="file-upload-default">
+                                <div class="input-group col-xs-12">
+                                  <input type="text" class="form-control file-upload-info" disabled placeholder="First Semester as clear PDF">
+                                  <span class="input-group-append">
+                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                  </span>
+                                </div>
+                              </div>
+                          </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group first">
+                                  <label for="ug_percentage">Second Semester Percentage</label>
                                   <input type="text" class="form-control" placeholder="Eg: 95" id="ug_percentage" name="ug_percentage">
                               </div>    
                             </div>
+                            <div class="col-md-6">
+                              <div class="form-group first">
+                                <label for="diploma_certi">Second Semester Marksheet</label>
+                                <input type="file" name="ug_marksheet" id="ug_marksheet" class="file-upload-default">
+                                <div class="input-group col-xs-12">
+                                  <input type="text" class="form-control file-upload-info" disabled placeholder="First Semester as clear PDF">
+                                  <span class="input-group-append">
+                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                  </span>
+                                </div>
+                              </div>
+                          </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group first">
+                                  <label for="ug_percentage">Third Semester Percentage</label>
+                                  <input type="text" class="form-control" placeholder="Eg: 95" id="ug_percentage" name="ug_percentage">
+                              </div>    
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group first">
+                                <label for="diploma_certi">Third Semester Marksheet</label>
+                                <input type="file" name="ug_marksheet" id="ug_marksheet" class="file-upload-default">
+                                <div class="input-group col-xs-12">
+                                  <input type="text" class="form-control file-upload-info" disabled placeholder="First Semester as clear PDF">
+                                  <span class="input-group-append">
+                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                  </span>
+                                </div>
+                              </div>
+                          </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group first">Fourth Semester Percentage</label>
+                                  <input type="text" class="form-control" placeholder="Eg: 95" id="ug_percentage" name="ug_percentage">
+                              </div>    
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group first">
+                                <label for="diploma_certi">Fourth Semester Marksheet</label>
+                                <input type="file" name="ug_marksheet" id="ug_marksheet" class="file-upload-default">
+                                <div class="input-group col-xs-12">
+                                  <input type="text" class="form-control file-upload-info" disabled placeholder="First Semester as clear PDF">
+                                  <span class="input-group-append">
+                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                  </span>
+                                </div>
+                              </div>
+                          </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group first">
+                                  <label for="ug_percentage">Fifth Semester Percentage</label>
+                                  <input type="text" class="form-control" placeholder="Eg: 95" id="ug_percentage" name="ug_percentage">
+                              </div>    
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group first">
+                                <label for="diploma_certi">Fifth Semester Marksheet</label>
+                                <input type="file" name="ug_marksheet" id="ug_marksheet" class="file-upload-default">
+                                <div class="input-group col-xs-12">
+                                  <input type="text" class="form-control file-upload-info" disabled placeholder="First Semester as clear PDF">
+                                  <span class="input-group-append">
+                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                  </span>
+                                </div>
+                              </div>
+                          </div>
                           </div>
                           <div class="row">
                             <div class="col-md-6">
@@ -525,7 +619,7 @@
               </div>
               </div>
               <div class="col-md-5 side">
-                <img src="{% static 'images/Personal goals-pana.png' %}" alt=""></div>
+                <img src="{% static 'images/Form_Pictures/ugdet.jpg' %}" alt=""></div>
             </div>
           </div>
         </div>

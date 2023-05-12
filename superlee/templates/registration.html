@@ -252,52 +252,58 @@
         <ul class="nav">
           <p class="sidebar-title text-center">Basic Information</p>
           <li class="nav-item active">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'registration'%}">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title">Personal Details</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'family_details'%}">
               <i class="icon-paper menu-icon"></i>
               <span class="menu-title">Family Details</span>
             </a>
           </li>
           <p class="sidebar-title text-center">Academic Section</p>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'schoolings'%}">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title active">Schooling Section</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'ug_details'%}">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title active">Under Graduate</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'pg_details'%}">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title active">Post Graduate</span>
             </a>
           </li>
           <p class="sidebar-title text-center">Agreements & Others</p>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'workloc_agreement'%}">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title">Agreements</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'mand_docs'%}">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Upload Documents</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'other_details'%}">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title">Others</span>
             </a>
           </li>
           <p class="sidebar-title text-center">Review Details</p>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'schoolings'%}">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title">Acknowledgement</span>
             </a>
@@ -338,7 +344,7 @@
                                   </div>
                                   <div class="col-md-6">
                                       <div class="form-group first">
-                                          <label for="fname">Full Name</label>
+                                          <label for="fname">Full Name (as per given in admission)</label>
                                           <input type="text" class="form-control" placeholder="Name with Initial" id="fname" name="full_name">
                                       </div>
                                   </div>
@@ -369,14 +375,6 @@
                                 </div>
                               </div>
                               <div class="row">
-                                  <div class="col-md-12">
-                                  <div class="form-group first">
-                                      <label for="dept">Department</label>
-                                      <input type="text" class="form-control" placeholder="Eg. Master of Computer Applications" id="dept" name="dept">
-                                  </div>    
-                                  </div>
-                              </div>
-                              <div class="row">
                               <div class="col-md-6">
                               <div class="form-group first">
                                   <label for="con">Contact No </label>
@@ -394,12 +392,14 @@
                                   <div class="col-md-6">
                                   <div class="form-group first">
                                       <label for="email">Email</label>
+                                      <P> Officially used for placement communication</P>
                                       <input type="text" class="form-control" placeholder="Official Mail" id="email" name="email">
                                   </div>    
                                   </div>
                                   <div class="col-md-6">
                                   <div class="form-group first">
                                       <label for="aemail">Alternative Email</label>
+                                      <P> Will be used for secondary communication</P>
                                       <input type="text" class="form-control" placeholder="Secondary Mail" id="location" name="aemail">
                                   </div>    
                                   </div>
@@ -481,7 +481,7 @@
               </div>
               </div>
               <div class="col-md-5 side">
-                <img src="{% static 'images/Form_Pictures/Schoolings.jpg' %}" alt=""></div>
+                <img src="{% static 'images/Form_Pictures/personal.png' %}" alt=""></div>
             </div>
           </div>
         </div>
