@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="{% static 'vendors/datatables.net-bs4/dataTables.bootstrap4.css' %}">
   <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'js/select.dataTables.min.css' %}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="{% static 'css/vertical-layout-light/style.css' %}">
@@ -340,7 +341,7 @@
                                   <div class="col-md-6">
                                       <div class="form-group first">
                                           <label for="rollno">Reg.No</label>
-                                          <input type="text" class="form-control" placeholder="College Reg-No" id="rollno" name="rollno">
+                                          <input type="text" class="form-control" placeholder="College Reg-No (Block Letters)" id="rollno" name="rollno">
                                       </div>    
                                   </div>
                                   <div class="col-md-6">
@@ -351,9 +352,17 @@
                                   </div>
                               </div>
                               <div class="row">
+                                <div class="col-md-6">
+                                  <div class="form-group first">
+                                      <label for="current_pursuing">Department</label>
+                                      <input type="text" class="form-control" id="current_pursuing" name="current_pursuing" readonly>
+                                  </div>
+                              </div>
+                              </div>
+                              <div class="row">
                                 <div class="col-md-12">
                                   <div class="form-group first">
-                                    <label for="sslc_schooling">Present Graduation Status</label>
+                                    <label for="current_pursuing">Present Graduation Status</label>
                                     <div class="category">
                                       <div class="col-sm-6">
                                         <div class="form-check">
@@ -522,17 +531,15 @@
             }
         });
     });
-});l
+});
 </script>
 <script> 
   // get the date of birth field
   var dobField = document.getElementById("dob");
-  
   // add an event listener for when the date of birth field changes
   dobField.addEventListener("change", function() {
     // get the date of birth value and convert it to a Date object
     var dob = new Date(this.value);
-  
     // check if the date of birth is in the future
     if (dob.getTime() > Date.now()) {
       // if it is, clear the age field and return
@@ -546,18 +553,39 @@
           })
       return;
     }
-  
     // calculate the age based on the current date and the date of birth
     var ageDiffMs = Date.now() - dob.getTime();
     var ageDate = new Date(ageDiffMs);
     var age = Math.abs(ageDate.getUTCFullYear() - 1970);
-  
     // set the value of the age field
     document.getElementById("age").value = age;
   });
   </script>
-  
 
+  <script>
+    var rollno = document.getElementById("rollno");
+    var current_pursuing = document.getElementById("current_pursuing")
+    rollno.addEventListener("change", function(){
+      // get the input value
+      var inputValue = this.value;
+      this.value = inputValue.toUpperCase()
+      // trim the first 2 characters and last 3 characters from the input value
+      var trimmedValue = inputValue.toUpperCase().substring(2, inputValue.length - 3);
+
+      // set the trimmed value as the new input value
+      console.log(trimmedValue)
+      current_pursuing.value = dept[trimmedValue];
+      console.log(dept[trimmedValue])
+    })
+
+  </script>
+  <script>
+    var dept={
+      "MCA":"Department of Master of Computer Applications",
+      "BIT":"Department of Information Technology",
+      "BCA":"Department of Computer Applications"
+    }
+  </script>
   <!-- plugins:js -->
   <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
   <script src="{% static 'js/sortable.js' %}"></script>
