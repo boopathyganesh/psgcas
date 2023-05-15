@@ -26,6 +26,7 @@
   <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" />
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/autofill/2.5.3/css/autoFill.dataTables.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 
 </head>
@@ -524,23 +525,38 @@
 });l
 </script>
 <script> 
-// get the date of birth field
-var dobField = document.getElementById("dob");
-
-// add an event listener for when the date of birth field changes
-dobField.addEventListener("change", function() {
-  // get the date of birth value and convert it to a Date object
-  var dob = new Date(this.value);
-
-  // calculate the age based on the current date and the date of birth
-  var ageDiffMs = Date.now() - dob.getTime();
-  var ageDate = new Date(ageDiffMs);
-  var age = Math.abs(ageDate.getUTCFullYear() - 1970);
-
-  // set the value of the age field
-  document.getElementById("age").value = age;
-});
-</script>
+  // get the date of birth field
+  var dobField = document.getElementById("dob");
+  
+  // add an event listener for when the date of birth field changes
+  dobField.addEventListener("change", function() {
+    // get the date of birth value and convert it to a Date object
+    var dob = new Date(this.value);
+  
+    // check if the date of birth is in the future
+    if (dob.getTime() > Date.now()) {
+      // if it is, clear the age field and return
+      document.getElementById("age").value = "";
+      Swal.fire({
+            icon: 'error',
+            title: 'Error in Date of Birth',
+            text: "I Think you are not born Yet!",
+            showConfirmButton: false,
+            timer: 3500
+          })
+      return;
+    }
+  
+    // calculate the age based on the current date and the date of birth
+    var ageDiffMs = Date.now() - dob.getTime();
+    var ageDate = new Date(ageDiffMs);
+    var age = Math.abs(ageDate.getUTCFullYear() - 1970);
+  
+    // set the value of the age field
+    document.getElementById("age").value = age;
+  });
+  </script>
+  
 
   <!-- plugins:js -->
   <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
@@ -572,6 +588,7 @@ dobField.addEventListener("change", function() {
 <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script> -->
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/autofill/2.5.3/js/dataTables.autoFill.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
 </body>
 
 </html>
