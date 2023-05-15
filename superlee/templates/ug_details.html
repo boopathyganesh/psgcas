@@ -252,52 +252,58 @@
         <ul class="nav">
           <p class="sidebar-title text-center">Basic Information</p>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'registration'%}">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title">Personal Details</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'family_details'%}">
               <i class="icon-paper menu-icon"></i>
               <span class="menu-title">Family Details</span>
             </a>
           </li>
           <p class="sidebar-title text-center">Academic Section</p>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'schoolings'%}">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title active">Schooling Section</span>
             </a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'ug_details'%}">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title active">Under Graduate</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'pg_details'%}">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title active">Post Graduate</span>
             </a>
           </li>
           <p class="sidebar-title text-center">Agreements & Others</p>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'workloc_agreement'%}">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title">Agreements</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'mand_docs'%}">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Upload Documents</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'other_details'%}">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title">Others</span>
             </a>
           </li>
           <p class="sidebar-title text-center">Review Details</p>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'schoolings'%}">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title">Acknowledgement</span>
             </a>
@@ -442,7 +448,7 @@
                                 <label for="diploma_certi">Second Semester Marksheet</label>
                                 <input type="file" name="ug_marksheet" id="ug_marksheet" class="file-upload-default">
                                 <div class="input-group col-xs-12">
-                                  <input type="text" class="form-control file-upload-info" disabled placeholder="First Semester as clear PDF">
+                                  <input type="text" class="form-control file-upload-info" disabled placeholder="Second Semester as clear PDF">
                                   <span class="input-group-append">
                                     <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                                   </span>
@@ -462,7 +468,7 @@
                                 <label for="diploma_certi">Third Semester Marksheet</label>
                                 <input type="file" name="ug_marksheet" id="ug_marksheet" class="file-upload-default">
                                 <div class="input-group col-xs-12">
-                                  <input type="text" class="form-control file-upload-info" disabled placeholder="First Semester as clear PDF">
+                                  <input type="text" class="form-control file-upload-info" disabled placeholder="Third Semester as clear PDF">
                                   <span class="input-group-append">
                                     <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                                   </span>
@@ -481,7 +487,7 @@
                                 <label for="diploma_certi">Fourth Semester Marksheet</label>
                                 <input type="file" name="ug_marksheet" id="ug_marksheet" class="file-upload-default">
                                 <div class="input-group col-xs-12">
-                                  <input type="text" class="form-control file-upload-info" disabled placeholder="First Semester as clear PDF">
+                                  <input type="text" class="form-control file-upload-info" disabled placeholder="Fourth Semester as clear PDF">
                                   <span class="input-group-append">
                                     <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                                   </span>
@@ -501,7 +507,7 @@
                                 <label for="diploma_certi">Fifth Semester Marksheet</label>
                                 <input type="file" name="ug_marksheet" id="ug_marksheet" class="file-upload-default">
                                 <div class="input-group col-xs-12">
-                                  <input type="text" class="form-control file-upload-info" disabled placeholder="First Semester as clear PDF">
+                                  <input type="text" class="form-control file-upload-info" disabled placeholder="Fifth Semester as clear PDF">
                                   <span class="input-group-append">
                                     <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                                   </span>
@@ -563,21 +569,7 @@
                               </div>
                             </div>
                           </div>
-                          <div class="row">
-                            <div class="col-md-12">
-                              <div class="form-group first">
-                                <label for="diploma_certi">UG Marksheets</label>
-                                <p>Upload a clear scanned copy of all Semester Marksheet as Single PDF</p>
-                                <input type="file" name="ug_marksheet" id="ug_marksheet" class="file-upload-default">
-                                <div class="input-group col-xs-12">
-                                  <input type="text" class="form-control file-upload-info" disabled placeholder="Upload UG Marksheet as PDF">
-                                  <span class="input-group-append">
-                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                  </span>
-                                </div>
-                              </div>
-                          </div>
-                          </div>
+                          
                           <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group first">
@@ -605,7 +597,7 @@
                                   <label for="ug_intern_period">What is the duration of the internship period(in months)?</label>
                                   <p>1. Kindly discuss with the department staffs and fill the answer. <br>
                                     2.If No,Type as NA</p>
-                                  <input type="text" class="form-control" placeholder="Eg. 4 months" id="ug_intern_period" name="ug_intern_period">
+                                  <input type="text" class="form-control" placeholder="Eg. 4" id="ug_intern_period" name="ug_intern_period">
                               </div>
                             </div>
                           </div>

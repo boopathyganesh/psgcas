@@ -414,7 +414,7 @@
                             <div class="col-md-6">
                               <div class="form-group first">
                                 <label for="age">Age </label>
-                                <input type="text" class="form-control" placeholder="Eg.21" id="age">
+                                <input type="text" class="form-control" placeholder="Eg.21" name="age" id="age">
                               </div>    
                             </div>
                               </div>
@@ -521,9 +521,27 @@
             }
         });
     });
-});
-
+});l
 </script>
+<script> 
+// get the date of birth field
+var dobField = document.getElementById("dob");
+
+// add an event listener for when the date of birth field changes
+dobField.addEventListener("change", function() {
+  // get the date of birth value and convert it to a Date object
+  var dob = new Date(this.value);
+
+  // calculate the age based on the current date and the date of birth
+  var ageDiffMs = Date.now() - dob.getTime();
+  var ageDate = new Date(ageDiffMs);
+  var age = Math.abs(ageDate.getUTCFullYear() - 1970);
+
+  // set the value of the age field
+  document.getElementById("age").value = age;
+});
+</script>
+
   <!-- plugins:js -->
   <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
   <script src="{% static 'js/sortable.js' %}"></script>
@@ -541,13 +559,15 @@
   <script src="{% static 'js/template.js' %}"></script>
   <script src="{% static 'js/settings.js' %}"></script>
   <script src="{% static 'js/todolist.js' %}"></script>
+  <script src="{% static 'js/script.js' %}"></script>
+
   <!-- endinject -->
   <!-- Custom js for this page-->
   <script src="{% static 'js/dashboard.js' %}"></script>
   <script src="{% static 'js/Chart.roundedBarCharts.js' %}"></script>
   <!-- End custom js for this page-->
   <!-- CSS -->
-
+ 
 <!-- JavaScript -->
 <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script> -->
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
