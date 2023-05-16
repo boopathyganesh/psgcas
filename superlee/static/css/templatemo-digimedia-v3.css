@@ -894,14 +894,14 @@ Banner Style
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  padding: 30vh 0px 30vh 0px;
+  padding: 20vh 0px 20vh 0px;
   position: relative;
   overflow: hidden;
 }
 
 .main-banner:after {
   content: '';
-  background-image: url('/static/images/blog-left-dec.jpg');
+  background-image: url('/static/images/');
   opacity: 50%;
   background-repeat: no-repeat;
   position: absolute;
@@ -914,7 +914,7 @@ Banner Style
 
 .main-banner:before {
   content: '';
-  background-image: url('/static/images/blog-left-dec.jpg');
+  background-image: url('/static/images/home13.jpg');
   opacity: 80%;
   background-repeat: no-repeat;
   position: absolute;
