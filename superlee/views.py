@@ -467,30 +467,30 @@ def ack(request):
         # Retrieve form data from the request
         form_data = request.POST
         print(form_data)
-        roll_number = request.session['Roll_Number']
+        '''roll_number = request.session['Roll_Number']
         user_data=User_reg.objects.filter(Roll_Number=roll_number).values()
-        print(user_data)
+        print(user_data)'''
         return JsonResponse({'success': True}, content_type='application/json')
     else:
-        roll_number = request.session['Roll_Number']
+        '''roll_number = request.session['Roll_Number']
         user_data = User_reg.objects.filter(Roll_Number=roll_number).values()
-        user_data=dict(user_data[0])
-        return render(request,'ack_page.html',{'data':user_data})
+        user_data=dict(user_data[0])'''
+        return render(request,'ack_page.html',{'data':'user_data'})
 @csrf_exempt
 def application_sts(request):
     if request.method == 'POST':
         # Retrieve form data from the request
         form_data = request.POST
         print(form_data)
-        roll_number = request.session['Roll_Number']
+        '''roll_number = request.session['Roll_Number']
         user_data=User_reg.objects.filter(Roll_Number=roll_number).values()
-        print(user_data)
+        print(user_data)'''
         return JsonResponse({'success': True}, content_type='application/json')
     else:
-        roll_number = request.session['Roll_Number']
+        '''roll_number = request.session['Roll_Number']
         user_data = User_reg.objects.filter(Roll_Number=roll_number).values()
-        user_data=dict(user_data[0])
-        return render(request,'ack_page.html',{'data':user_data})
+        user_data=dict(user_data[0])'''
+        return render(request,'application_sts.html',{'data':'user_data'})
 @csrf_exempt
 def test(request):
     if request.method == 'POST':

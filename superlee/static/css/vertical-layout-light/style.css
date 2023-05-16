@@ -30891,3 +30891,28 @@ div.tagsinput span.tag a {
   font-weight: 450;
   margin: 10px;
 }
+
+.ack-section p{
+  font-size: 1rem;
+  color: #000;
+}
+.ack-section h4{
+  font-weight: 600;
+  color: #4b49ac;
+}
+.ack-section .profile-img{
+  display: block;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.ack-section .profile-img img{
+  width: 150px;
+  height: auto;
+  border-radius: 100px;
+  border: 3px solid green;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  -ms-border-radius: 100px;
+  -o-border-radius: 100px;
+}

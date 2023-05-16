@@ -32,12 +32,12 @@
 <body>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row custom-nav">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="{% static 'images/psgcas.png' %}" class="mr-4" alt="logo"/></a>
-        <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{% static 'images/PSG Logo 97 Years (1).png' %}" alt="logo"/></a>
+        <a class="navbar-brand brand-logo ml-3 mt-2" href="index.html"><img src="{% static 'images/psg/psgcas.png' %}" class="mr-4" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini ml-3" href="index.html"><img src="{% static 'images/psg/psg-75.png' %}" alt="logo"/></a>
       </div>
-      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+      <div class="col navbar-menu-wrapper d-flex align-items-center justify-content-start">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
           <span class="icon-menu"></span>
         </button>
@@ -308,7 +308,7 @@
               <span class="menu-title">Acknowledgement</span>
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item ">
             <a class="nav-link" href="{% url 'application_sts'%}">
               <i class="icon-paper menu-icon"></i>
               <span class="menu-title">Application Status</span>
@@ -320,54 +320,76 @@
       <div class="container-fluid main-panel scroll" style="width: 100%;">
         <div class="row">
           <div class="col-md-12">
-            <div class="d-flex justify-content-center mt-4">
+            <!-- <div class="d-flex justify-content-center mt-4">
               <img src="{% static 'images/CDC Logo.png' %}" alt="" style="height: 30vh; width: auto;">
             </div>
             <div class="row d-flex align-items-center justify-content-center mt-4">
-              <h3>Student Placement Registration</h3>
+              <h3>Student Registration for Placements</h3>
             </div>
             <div class="d-flex align-items-center justify-content-center mt-1">
-              <h6 class="mb-4">Verify your details here !.</h6>
-            </div>
+              <h6 class="mb-4">Update your details here !.</h6>
+            </div> -->
             <div class="row d-flex justify-content-center">
-              <div class="col-md-7">
+              <div class="col-md-12">
                 <div class="contents">
-                  <div class="row d-flex justify-content-center text-center">
-                    <h3>Acknowledgement</h3>
-                    <h4 class="w-100 text-danger mt-2"><em>Verify all your data before Submitting! <br> Once you submit the data, You can't edit your data any longer</em></h4>
+                  <div class="row d-flex align-items-center justify-content-center">
+                    <h3 class="mt-5 title">Drop here about You</h3>
+                  </div>
+                  <div class="container-fluid form-container scroll-forms">
+                      <div class="col-md-12 py-5">
+                        <div class="row d-flex justify-content-center">
+                          <div class="col-md-7">
+                            <div class="contents">
+                              <div class="row d-flex justify-content-center text-center">
+                                <h3>Acknowledgement</h3>
+                                <h4 class="w-100 text-danger mt-2"><em>Verify all your data before Submitting! <br> Once you submit the data, You can't edit your data any longer</em></h4>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <section>
+                            <div class="row mt-2 ack-section">
+                                <div class="col-md-10">
+                                    <h4 class="mb-5 mt-4">Personal Details:</h4>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <p>Full Name : {{data.Full_Name}}</p>
+                                            <p>Pursuing Graduation : {{current_pursuing}}</p>
+                                            <p>Date of Birth : {{dob}}</p>
+                                            <p>Gender : {{gender}}</p>
+                                            <p>Age : {{age}}</p>
+                                            <p>Email ID : {{reg_no}}</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p>Reg.No : {{data.Roll_Number}}</p>
+                                            <p>Department : {{department}}</p>
+                                            <p>Alternative Email :{{alter_email}}</p>
+                                            <p>Contact No : {{contact}}</p>
+                                            <p>Alternative Contact : {{alter_contact}}</p>
+                                            <p>Marital Status : {{marital_status}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2 d-flex align-items-center">
+                                  <div class="profile-img">
+                                    <img src="{% static 'images/faces/2606572_5907.jpg' %}" alt="">
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="row mt-2 ack-section">
+                              <div class="col-md-6">
+                                <h4 class="mb-5 mt-4">Family Details</h4>
+                              </div>
+                              <div class="col-md-6">
+
+                              </div>
+                            </div>
+                        </section>
+                      </div>
                   </div>
                 </div>
               </div>
             </div>
-            <section>
-                <div class="row mt-2">
-                    <div class="col-md-12">
-                        <h5>Personal Details:</h5>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <br>
-                                <p>Reg.No : {{data.Roll_Number}}</p>
-                                <p>Full Name : {{data.Full_Name}}</p>
-                                <p>Pursuing Graduation : {{current_pursuing}}</p>
-                                <p>Department : {{department}}</p>
-                                <p>Date of Birth : {{dob}}</p>
-                                <p>Gender : {{gender}}</p>
-                                <p>Age : {{age}}</p>
-                                <p>Email ID : {{reg_no}}</p>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="ack-img">
-                                    <img src="{% static 'images/faces/user.jpg' %}" alt="">
-                                </div>
-                                <p>Alternative Email :{{alter_email}}</p>
-                                <p>Contact No : {{contact}}</p>
-                                <p>Alternative Contact : {{alter_contact}}</p>
-                                <p>Marital Status : {{marital_status}}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
           </div>
         </div>
       </div>
