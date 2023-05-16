@@ -361,19 +361,19 @@
                                     <div class="row pl-5 pr-5">
                                         <div class="col-md-6">
                                             <p>Full Name : {{data.Full_Name}}</p>
-                                            <p>Pursuing Graduation : {{current_pursuing}}</p>
-                                            <p>Date of Birth : {{dob}}</p>
-                                            <p>Gender : {{gender}}</p>
-                                            <p>Age : {{age}}</p>
-                                            <p>Email ID : {{reg_no}}</p>
+                                            <p>Pursuing Graduation : {{data.Pursuing_Degree}}</p>
+                                            <p>Date of Birth : {{data.DOB}}</p>
+                                            <p>Gender : {{data.Gender}}</p>
+                                            <p>Age : {{data.Age}}</p>
+                                            <p>Email ID : {{data.Email}}</p>
                                         </div>
                                         <div class="col-md-6">
                                             <p>Reg.No : {{data.Roll_Number}}</p>
-                                            <p>Department : {{department}}</p>
-                                            <p>Alternative Email :{{alter_email}}</p>
-                                            <p>Contact No : {{contact}}</p>
-                                            <p>Alternative Contact : {{alter_contact}}</p>
-                                            <p>Marital Status : {{marital_status}}</p>
+                                            <p>Department : {{data.Department}}</p>
+                                            <p>Contact No : {{data.Contact}}</p>
+                                            <p>Alternative Contact : {{data.Alternate_Contact}}</p>
+                                            <p>Alternative Email :{{data.Alternate_Email}}</p>
+                                            <p>Marital Status : {{data.Marital_Status}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -383,20 +383,20 @@
                                 <h4 class="mb-5 mt-4">Family Details:</h4>
                                 <div class="row pl-5 pr-5">
                                     <div class="col-md-6">
-                                        <p>Family Strength : {{data.Full_Name}}</p>
-                                        <p>Mother Name : {{current_pursuing}}</p>
-                                        <p>Mother Contact : {{dob}}</p>
-                                        <p>Mother Occupation : {{gender}}</p>
-                                        <p>Sibling Name : {{age}}</p>
-                                        <p>Sibling Occupation  : {{reg_no}}</p>
+                                        <p>Family Strength : {{data.fstrength}}</p>
+                                        <p>Mother Name : {{data.mname}}</p>
+                                        <p>Mother Contact : {{data.mcontact}}</p>
+                                        <p>Mother Occupation : {{data.moccupation}}</p>
+                                        <p>Sibling Name : {{data.sname}}</p>
+                                        <p>Sibling Occupation  : {{data.soccupation}}</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <p>Father Name : {{data.Roll_Number}}</p>
-                                        <p>Father Contact : {{department}}</p>
-                                        <p>Father Occupation :{{alter_email}}</p>
-                                        <p>Sibling Contact : {{contact}}</p>
-                                        <p>Permanent Address : {{alter_contact}}</p>
-                                        <p>Current Address : {{marital_status}}</p>
+                                        <p>Father Name : {{data.fname}}</p>
+                                        <p>Father Contact : {{data.fcon}}</p>
+                                        <p>Father Occupation :{{data.foccupation}}</p>
+                                        <p>Sibling Contact : {{data.scontact}}</p>
+                                        <p>Permanent Address : {{data.permanent_address}}</p>
+                                        <p>Current Address : {{data.current_address}}</p>
                                     </div>
                                 </div>
                               </div>
@@ -407,31 +407,31 @@
                                 <div class="row pl-5 pr-5">
                                     <div class="col-md-6">
                                         <h6>SSLC</h6>
-                                        <p>Type of School : {{data.Full_Name}}</p>
-                                        <p>Board of Study : {{current_pursuing}}</p>
-                                        <p>Overall Percentage : {{gender}}</p>
-                                        <p>Overall Mark : {{age}}</p>
-                                        <p>Year of Passing : {{reg_no}}</p>
-                                        <p>School Name : {{current_pursuing}}</p>
-                                        <p>School Address with Pincode : {{dob}}</p>
+                                        <p>Type of School : {{data.sslc_school}}</p>
+                                        <p>Board of Study : {{data.}}</p>
+                                        <p>Overall Percentage : {{data.sslc_percentage}}</p>
+                                        <p>Overall Mark : {{data.sslc_mark}}</p>
+                                        <p>Year of Passing : {{data.sslc_year}}</p>
+                                        <p>School Name : {{data.sslc_school}}</p>
+                                        <p>School Address with Pincode : {{data.sslc_school_address}}</p>
                                     </div>
                                     <div class="col-md-6">
                                         <h6>HSC</h6>
                                         <p>Type of School : {{data.Full_Name}}</p>
-                                        <p>Board of Study : {{current_pursuing}}</p>
-                                        <p>Overall Percentage : {{gender}}</p>
-                                        <p>Overall Mark : {{age}}</p>
-                                        <p>Year of Passing : {{reg_no}}</p>
-                                        <p>School Name : {{current_pursuing}}</p>
-                                        <p>School Address with Pincode : {{dob}}</p>
+                                        <p>Board of Study : {{data.}}</p>
+                                        <p>Overall Percentage : {{data.hsc_percentage}}</p>
+                                        <p>Overall Mark : {{data.hsc_mark}}</p>
+                                        <p>Year of Passing : {{data.hsc_year}}</p>
+                                        <p>School Name : {{data.hsc_school}}</p>
+                                        <p>School Address with Pincode : {{data.hsc_school_address}}</p>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6" style="display: none;">
                                       <h6>Diploma</h6>
-                                      <p>College Name : {{data.Full_Name}}</p>
-                                      <p>College Address : {{current_pursuing}}</p>
-                                      <p>Overall Percentage : {{gender}}</p>
-                                      <p>History of Arrears : {{gender}}</p>
-                                      <p>Year of Passing : {{reg_no}}</p>
+                                      <p>College Name : {{data.diploma_clg}}</p>
+                                      <p>College Address : {{data.diploma_clg_address}}</p>
+                                      <p>Overall Percentage : {{data.diploma_percentage}}</p>
+                                      <p>History of Arrears : {{data.}}</p>
+                                      <p>Year of Passing : {{data.diploma_year}}</p>
                                     </div>
                                 </div>
                               </div>
@@ -441,20 +441,22 @@
                                 <h4 class="mb-5 mt-4">Under Graduation Details:</h4>
                                 <div class="row pl-5 pr-5">
                                     <div class="col-md-6">
-                                        <p>Full Name : {{data.Full_Name}}</p>
-                                        <p>Pursuing Graduation : {{current_pursuing}}</p>
-                                        <p>Date of Birth : {{dob}}</p>
-                                        <p>Gender : {{gender}}</p>
-                                        <p>Age : {{age}}</p>
-                                        <p>Email ID : {{reg_no}}</p>
+                                        <p>Department : {{data.ug_department}}</p>
+                                        <p>Current Percentage : {{data.ug_percentage}}</p>
+                                        <p>History of Arrears : {{data.ug_arrears_count}}</p>
+                                        <p>Head Of Department  : {{data.ug_hod}}</p>
+                                        <p>SEED Coordinator : {{data.ug_seed}}</p>
+                                        <p>SEED Coordinator Email ID : {{data.ug_seed_mail}}</p>
+                                        <p>Internship Company : {{data.}}</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <p>Reg.No : {{data.Roll_Number}}</p>
-                                        <p>Department : {{department}}</p>
-                                        <p>Alternative Email :{{alter_email}}</p>
-                                        <p>Contact No : {{contact}}</p>
-                                        <p>Alternative Contact : {{alter_contact}}</p>
-                                        <p>Marital Status : {{marital_status}}</p>
+                                        <p>Gap in Education  : {{data.}}</p>
+                                        <p>Year of Gap in UG : {{data.gap_year}}</p>
+                                        <p>Active Arrears : {{data.active_ug_arrears_count}}</p>
+                                        <p>HOD Number :{{data.ug_hod_no}}</p>
+                                        <p>SEED Coordinator Number : {{data.ug_seed_no}}</p>
+                                        <p>Internship : {{data.}}</p>
+                                        <p>Period of Internship : {{data.ug_intern_period}}</p>
                                     </div>
                                 </div>
                               </div>
@@ -464,45 +466,42 @@
                                 <h4 class="mb-5 mt-4">Post Graduation Details:</h4>
                                 <div class="row pl-5 pr-5">
                                     <div class="col-md-6">
-                                        <p>Full Name : {{data.Full_Name}}</p>
-                                        <p>Pursuing Graduation : {{current_pursuing}}</p>
-                                        <p>Date of Birth : {{dob}}</p>
-                                        <p>Gender : {{gender}}</p>
-                                        <p>Age : {{age}}</p>
-                                        <p>Email ID : {{reg_no}}</p>
+                                        <p>Department : {{data.pg_department}}</p>
+                                        <p>History of Arrears : {{data.}}</p>
+                                        <p>Head Of Department : {{data.pg_hod}}</p>
+                                        <p>SEED Coordinator : {{data.}}</p>
+                                        <p>SEED Coordinator Email ID : {{data.}}</p>
+                                        <p>Period of Internship : {{data.}}</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <p>Reg.No : {{data.Roll_Number}}</p>
-                                        <p>Department : {{department}}</p>
-                                        <p>Alternative Email :{{alter_email}}</p>
-                                        <p>Contact No : {{contact}}</p>
-                                        <p>Alternative Contact : {{alter_contact}}</p>
-                                        <p>Marital Status : {{marital_status}}</p>
+                                        <p>Current Percentage : {{data.}}</p>
+                                        <p>Active Arrears : {{data.}}</p>
+                                        <p>HOD Number : {{data.pg_hod_no}}</p>
+                                        <p>SEED Coordinator No :{{data.}}</p>
+                                        <p>Internship Company : {{data.}}</p>
                                     </div>
                                 </div>
-                              </div>
-                            </div>
-                            <div class="row mt-2 ack-section">
-                              <div class="col-md-12">
-                                <h4 class="mb-5 mt-4">Under Graduation Details:</h4>
                                 <div class="row pl-5 pr-5">
-                                    <div class="col-md-6">
-                                        <p>Full Name : {{data.Full_Name}}</p>
-                                        <p>Pursuing Graduation : {{current_pursuing}}</p>
-                                        <p>Date of Birth : {{dob}}</p>
-                                        <p>Gender : {{gender}}</p>
-                                        <p>Age : {{age}}</p>
-                                        <p>Email ID : {{reg_no}}</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>Reg.No : {{data.Roll_Number}}</p>
-                                        <p>Department : {{department}}</p>
-                                        <p>Alternative Email :{{alter_email}}</p>
-                                        <p>Contact No : {{contact}}</p>
-                                        <p>Alternative Contact : {{alter_contact}}</p>
-                                        <p>Marital Status : {{marital_status}}</p>
-                                    </div>
-                                </div>
+                                  <h6 class="col-md-12 mt-3 mb-3">Under Graduate Details</h6>
+                                  <div class="col-md-6">
+                                      <p>Department : {{data.Full_Name}}</p>
+                                      <p>History of Arrears : {{data.}}</p>
+                                      <p>Head Of Department : {{data.}}</p>
+                                      <p>SEED Coordinator : {{data.}}</p>
+                                      <p>SEED Coordinator Email ID : {{data.}}</p>
+                                      <p>Period of Internship : {{data.}}</p>
+                                      <p>Company Name : {{data.}}</p>
+                                  </div>
+                                  <div class="col-md-6">
+                                      <p>Current Percentage : {{data.}}</p>
+                                      <p>Active Arrears : {{data.Roll_Number}}</p>
+                                      <p>HOD Number : {{data.}}</p>
+                                      <p>SEED Coordinator No :{{data.}}</p>
+                                      <p>Internship Company : {{data.}}</p>
+                                      <p>Full Time Job : {{data.}}</p>
+                                      <p>UAN Number : {{data.}}</p>
+                                  </div>
+                              </div>
                               </div>
                             </div>
                         </section>
