@@ -60,7 +60,7 @@
               <li class="scroll-to-section"><a href="{% url 'p_process' %}">Process</a></li>
               <li class="scroll-to-section"><a href="{% url 'infrastructure' %}">Infrastructure</a></li>
               <li class="scroll-to-section"><a href="{% url 'contact' %}">Contact</a></li> 
-              <li id="sign-btn" class="scroll-to-section"><div class="border-first-button"><a href="#">Sign Up Here <i class='bx bxs-plane-take-off bx-sm'></i> </a></div></li> 
+              <li id="sign-btn" class="scroll-to-section"><div class="border-first-button"><a href="{% url 'registration' %}">Sign Up Here <i class='bx bxs-plane-take-off bx-sm'></i> </a></div></li> 
             </ul>
             <a class='menu-trigger'>
                 <span>Menu</span>
@@ -325,7 +325,7 @@
         </div>
       </div>
       <div class="d-flex justify-content-end me-4 mt-4">
-      <a href="companies.html" class="btn btn-primary">View More</a>
+      <a href="{% url 'companies' %}" class="btn btn-primary">View More</a>
     </div>
   </div>
 <!--Commerce Top companies-->
