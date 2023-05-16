@@ -30900,6 +30900,12 @@ div.tagsinput span.tag a {
   font-weight: 600;
   color: #4b49ac;
 }
+.ack-section h6{
+  font-size: 1rem;
+  font-weight: 600;
+  color: #605eba;
+  text-decoration:underline ;
+}
 .ack-section .profile-img{
   display: block;
   align-items: center;
