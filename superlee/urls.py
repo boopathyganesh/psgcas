@@ -13,6 +13,7 @@ urlpatterns = [
     path('superlee/registration/pg-details/', views.pg_details, name='pg_details'),
     path('superlee/registration/others/', views.other_details, name='other_details'),
     path('superlee/registration/acknowledgement/', views.ack, name='ack'),
+    path('superlee/registration/application-status/', views.application_sts, name='application_sts'),
     path('superlee/test', views.test, name='test'),
     path('superlee/intern-punch/', views.intern_attendance_login, name='intern_attendance_login'),
     path('superlee/intern-punch/signin', views.intern_attendance, name='intern_attendance'),

@@ -252,52 +252,58 @@
         <ul class="nav">
           <p class="sidebar-title text-center">Basic Information</p>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'registration'%}">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title">Personal Details</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'family_details'%}">
               <i class="icon-paper menu-icon"></i>
               <span class="menu-title">Family Details</span>
             </a>
           </li>
           <p class="sidebar-title text-center">Academic Section</p>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'schoolings'%}">
               <i class="icon-grid menu-icon"></i>
-              <span class="menu-title active">Schooling Section</span>
+              <span class="menu-title">Schooling Section</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'ug_details'%}">
               <i class="icon-grid menu-icon"></i>
-              <span class="menu-title active">Under Graduate</span>
+              <span class="menu-title">Under Graduate</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
+          <li class="nav-item ">
+            <a class="nav-link" href="{% url 'pg_details'%}">
               <i class="icon-grid menu-icon"></i>
-              <span class="menu-title active">Post Graduate</span>
+              <span class="menu-title">Post Graduate</span>
             </a>
           </li>
           <p class="sidebar-title text-center">Agreements & Others</p>
           <li class="nav-item active">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'workloc_agreement'%}">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title">Agreements</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'mand_docs'%}">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Upload Documents</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'other_details'%}">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title">Others</span>
             </a>
           </li>
           <p class="sidebar-title text-center">Review Details</p>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'schoolings'%}">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title">Acknowledgement</span>
             </a>
