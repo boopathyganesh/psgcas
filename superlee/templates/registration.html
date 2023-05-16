@@ -354,8 +354,8 @@
                               <div class="row">
                                 <div class="col-md-6">
                                   <div class="form-group first">
-                                      <label for="current_pursuing">Department</label>
-                                      <input type="text" class="form-control" id="current_pursuing" name="current_pursuing" readonly>
+                                      <label for="department">Department</label>
+                                      <input type="text" class="form-control" id="department" name="department" readonly>
                                   </div>
                               </div>
                               </div>
@@ -564,7 +564,7 @@
 
   <script>
     var rollno = document.getElementById("rollno");
-    var current_pursuing = document.getElementById("current_pursuing")
+    var current_pursuing = document.getElementById("department")
     rollno.addEventListener("change", function(){
       // get the input value
       var inputValue = this.value;

@@ -222,7 +222,7 @@ def registration(request):
             Roll_Number=form_data['rollno'],
             Full_Name=form_data['full_name'],
             Pursuing_Degree=form_data['current_pursuing'],
-            Department=form_data['dept'],
+            Department=form_data['department'],
             Contact=form_data['con'],
             Alternate_Contact=form_data['altcon'],
             Email=form_data['email'],
@@ -463,19 +463,11 @@ def other_details(request):
 
 @csrf_exempt
 def ack(request):
-    if request.method == 'POST':
-        # Retrieve form data from the request
-        form_data = request.POST
-        print(form_data)
-        '''roll_number = request.session['Roll_Number']
-        user_data=User_reg.objects.filter(Roll_Number=roll_number).values()
-        print(user_data)'''
-        return JsonResponse({'success': True}, content_type='application/json')
-    else:
-        '''roll_number = request.session['Roll_Number']
+        roll_number = request.session['Roll_Number']
         user_data = User_reg.objects.filter(Roll_Number=roll_number).values()
-        user_data=dict(user_data[0])'''
-        return render(request,'ack_page.html',{'data':'user_data'})
+        user_data=dict(user_data[0])
+        return render(request,'ack_page.html',{'data':user_data})
+
 @csrf_exempt
 def application_sts(request):
     if request.method == 'POST':
