@@ -333,7 +333,7 @@
               <div class="col-md-12">
                 <div class="contents">
                   <div class="row d-flex align-items-center justify-content-center">
-                    <h3 class="mt-5 title">Drop here about You</h3>
+                    <h3 class="mt-5 title">Verify your details</h3>
                   </div>
                   <div class="container-fluid form-container scroll-forms">
                       <div class="col-md-12 py-5">
@@ -348,11 +348,18 @@
                           </div>
                         </div>
                         <section>
+                          <div class="row mt-2 ack-section">
+                            <div class="col-md-12 d-flex align-items-center justify-content-center">
+                              <div class="profile-img">
+                                <img src="{% static 'images/faces/2606572_5907.jpg' %}" alt="">
+                              </div>
+                            </div>
+                          </div>
                             <div class="row mt-2 ack-section">
-                                <div class="col-md-10">
+                                <div class="col-md-12">
                                     <h4 class="mb-5 mt-4">Personal Details:</h4>
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
+                                    <div class="row pl-5 pr-5">
+                                        <div class="col-md-6">
                                             <p>Full Name : {{data.Full_Name}}</p>
                                             <p>Pursuing Graduation : {{current_pursuing}}</p>
                                             <p>Date of Birth : {{dob}}</p>
@@ -370,18 +377,132 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-2 d-flex align-items-center">
-                                  <div class="profile-img">
-                                    <img src="{% static 'images/faces/2606572_5907.jpg' %}" alt="">
-                                  </div>
-                                </div>
                             </div>
                             <div class="row mt-2 ack-section">
-                              <div class="col-md-6">
-                                <h4 class="mb-5 mt-4">Family Details</h4>
+                              <div class="col-md-12">
+                                <h4 class="mb-5 mt-4">Family Details:</h4>
+                                <div class="row pl-5 pr-5">
+                                    <div class="col-md-6">
+                                        <p>Family Strength : {{data.Full_Name}}</p>
+                                        <p>Mother Name : {{current_pursuing}}</p>
+                                        <p>Mother Contact : {{dob}}</p>
+                                        <p>Mother Occupation : {{gender}}</p>
+                                        <p>Sibling Name : {{age}}</p>
+                                        <p>Sibling Occupation  : {{reg_no}}</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>Father Name : {{data.Roll_Number}}</p>
+                                        <p>Father Contact : {{department}}</p>
+                                        <p>Father Occupation :{{alter_email}}</p>
+                                        <p>Sibling Contact : {{contact}}</p>
+                                        <p>Permanent Address : {{alter_contact}}</p>
+                                        <p>Current Address : {{marital_status}}</p>
+                                    </div>
+                                </div>
                               </div>
-                              <div class="col-md-6">
-
+                            </div>
+                            <div class="row mt-2 ack-section">
+                              <div class="col-md-12">
+                                <h4 class="mb-5 mt-4">Schooling Details:</h4>
+                                <div class="row pl-5 pr-5">
+                                    <div class="col-md-6">
+                                        <h6>SSLC</h6>
+                                        <p>Type of School : {{data.Full_Name}}</p>
+                                        <p>Board of Study : {{current_pursuing}}</p>
+                                        <p>Overall Percentage : {{gender}}</p>
+                                        <p>Overall Mark : {{age}}</p>
+                                        <p>Year of Passing : {{reg_no}}</p>
+                                        <p>School Name : {{current_pursuing}}</p>
+                                        <p>School Address with Pincode : {{dob}}</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h6>HSC</h6>
+                                        <p>Type of School : {{data.Full_Name}}</p>
+                                        <p>Board of Study : {{current_pursuing}}</p>
+                                        <p>Overall Percentage : {{gender}}</p>
+                                        <p>Overall Mark : {{age}}</p>
+                                        <p>Year of Passing : {{reg_no}}</p>
+                                        <p>School Name : {{current_pursuing}}</p>
+                                        <p>School Address with Pincode : {{dob}}</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <h6>Diploma</h6>
+                                      <p>College Name : {{data.Full_Name}}</p>
+                                      <p>College Address : {{current_pursuing}}</p>
+                                      <p>Overall Percentage : {{gender}}</p>
+                                      <p>History of Arrears : {{gender}}</p>
+                                      <p>Year of Passing : {{reg_no}}</p>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row mt-2 ack-section">
+                              <div class="col-md-12">
+                                <h4 class="mb-5 mt-4">Under Graduation Details:</h4>
+                                <div class="row pl-5 pr-5">
+                                    <div class="col-md-6">
+                                        <p>Full Name : {{data.Full_Name}}</p>
+                                        <p>Pursuing Graduation : {{current_pursuing}}</p>
+                                        <p>Date of Birth : {{dob}}</p>
+                                        <p>Gender : {{gender}}</p>
+                                        <p>Age : {{age}}</p>
+                                        <p>Email ID : {{reg_no}}</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>Reg.No : {{data.Roll_Number}}</p>
+                                        <p>Department : {{department}}</p>
+                                        <p>Alternative Email :{{alter_email}}</p>
+                                        <p>Contact No : {{contact}}</p>
+                                        <p>Alternative Contact : {{alter_contact}}</p>
+                                        <p>Marital Status : {{marital_status}}</p>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row mt-2 ack-section">
+                              <div class="col-md-12">
+                                <h4 class="mb-5 mt-4">Post Graduation Details:</h4>
+                                <div class="row pl-5 pr-5">
+                                    <div class="col-md-6">
+                                        <p>Full Name : {{data.Full_Name}}</p>
+                                        <p>Pursuing Graduation : {{current_pursuing}}</p>
+                                        <p>Date of Birth : {{dob}}</p>
+                                        <p>Gender : {{gender}}</p>
+                                        <p>Age : {{age}}</p>
+                                        <p>Email ID : {{reg_no}}</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>Reg.No : {{data.Roll_Number}}</p>
+                                        <p>Department : {{department}}</p>
+                                        <p>Alternative Email :{{alter_email}}</p>
+                                        <p>Contact No : {{contact}}</p>
+                                        <p>Alternative Contact : {{alter_contact}}</p>
+                                        <p>Marital Status : {{marital_status}}</p>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row mt-2 ack-section">
+                              <div class="col-md-12">
+                                <h4 class="mb-5 mt-4">Under Graduation Details:</h4>
+                                <div class="row pl-5 pr-5">
+                                    <div class="col-md-6">
+                                        <p>Full Name : {{data.Full_Name}}</p>
+                                        <p>Pursuing Graduation : {{current_pursuing}}</p>
+                                        <p>Date of Birth : {{dob}}</p>
+                                        <p>Gender : {{gender}}</p>
+                                        <p>Age : {{age}}</p>
+                                        <p>Email ID : {{reg_no}}</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>Reg.No : {{data.Roll_Number}}</p>
+                                        <p>Department : {{department}}</p>
+                                        <p>Alternative Email :{{alter_email}}</p>
+                                        <p>Contact No : {{contact}}</p>
+                                        <p>Alternative Contact : {{alter_contact}}</p>
+                                        <p>Marital Status : {{marital_status}}</p>
+                                    </div>
+                                </div>
                               </div>
                             </div>
                         </section>
