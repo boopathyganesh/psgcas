@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*','13.233.233.34','ec2-13-233-247-38.ap-south-1.compute.amazonaws.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -53,7 +53,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'irogen.wsgi.application'
 
-'''DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': os.environ.get('SB_DB_NAME'),
@@ -62,8 +62,8 @@ WSGI_APPLICATION = 'irogen.wsgi.application'
         'USER': os.environ.get('SB_DB_USER'),
         'PASSWORD': os.environ.get('SB_DB_PASSWORD'),
     },
-}'''
-DATABASES = {
+}
+'''DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.mysql',
 		'NAME': 'psgcas',
@@ -72,7 +72,7 @@ DATABASES = {
 		'HOST':'localhost',
 		'PORT':'3306',
 	}
-}
+}'''
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
