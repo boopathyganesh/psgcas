@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="{% static 'vendors/feather/feather.css' %}">
   <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
   <link rel="stylesheet" href="{% static 'vendors/css/vendor.bundle.base.css' %}">
-  <link href="{% static 'css/sortable.css' %}" rel="stylesheet" />
   <!-- endinject -->
   <!-- Plugin css for this page -->
   <link rel="stylesheet" href="{% static 'vendors/datatables.net-bs4/dataTables.bootstrap4.css' %}">
@@ -20,8 +19,6 @@
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="{% static 'css/vertical-layout-light/style.css' %}">
-  <link rel="stylesheet" href="{% static 'css/reg.css' %}">
-  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
   <!-- endinject -->
   <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" />
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
@@ -32,12 +29,12 @@
 <body>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row custom-nav">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="{% static 'images/psgcas.png' %}" class="mr-4" alt="logo"/></a>
-        <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{% static 'images/PSG Logo 97 Years (1).png' %}" alt="logo"/></a>
+        <a class="navbar-brand brand-logo ml-3 mt-2" href="index.html"><img src="{% static 'images/psg/psgcas.png' %}" class="mr-4" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini ml-3" href="index.html"><img src="{% static 'images/psg/psg-75.png' %}" alt="logo"/></a>
       </div>
-      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+      <div class="col navbar-menu-wrapper d-flex align-items-center justify-content-start">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
           <span class="icon-menu"></span>
         </button>
@@ -320,54 +317,80 @@
       <div class="container-fluid main-panel scroll" style="width: 100%;">
         <div class="row">
           <div class="col-md-12">
-            <div class="d-flex justify-content-center mt-4">
+            <!-- <div class="d-flex justify-content-center mt-4">
               <img src="{% static 'images/CDC Logo.png' %}" alt="" style="height: 30vh; width: auto;">
             </div>
             <div class="row d-flex align-items-center justify-content-center mt-4">
-              <h3>Student Placement Registration</h3>
+              <h3>Student Registration for Placements</h3>
             </div>
             <div class="d-flex align-items-center justify-content-center mt-1">
-              <h6 class="mb-4">Verify your details here !.</h6>
-            </div>
+              <h6 class="mb-4">Update your details here !.</h6>
+            </div> -->
             <div class="row d-flex justify-content-center">
-              <div class="col-md-7">
+              <div class="col-md-12">
                 <div class="contents">
-                  <div class="row d-flex justify-content-center text-center">
-                    <h3>Acknowledgement</h3>
-                    <h4 class="w-100 text-danger mt-2"><em>Verify all your data before Submitting! <br> Once you submit the data, You can't edit your data any longer</em></h4>
+                  <div class="row d-flex align-items-center justify-content-center">
+                    <h3 class="mt-5 title">Application Status</h3>
+                  </div>
+                  <div class="container-fluid form-container scroll-forms">
+                      <div class="col-md-12 p-5 text-center">
+                        <h3>Hi {Name}</h3>
+                        <h5>Your Application Status <span class="badge badge-danger">Incomplete</span></h5>
+                      </div>
+                      <div class="row d-flex align-items-center justify-content-center">
+                        <h3>Sections</h3>
+                        <div class="col-md-12 p-5">
+                          <div class="row d-flex align-items-center justify-content-center">
+                            <div class="col-md-3 mb-4 stretch-card transparent">
+                              <div class="card card-dark-blue">
+                                <div class="card-body">
+                                  <p class="fs-30 mb-4">Profile Picture</p>
+                                  <p class="mb-2">Status: <span class=" badge badge-danger font-weight-medium">Not Available</span></p>
+                                </div>
+                              </div>
+                            </div>
+                              <div class="col-md-3 mb-4 stretch-card transparent">
+                                <div class="card card-tale">
+                                  <div class="card-body">
+                                    <p class="fs-30 mb-4">Personal Data</p>
+                                    <p class="mb-2">Status: <span class=" badge badge-success font-weight-medium">Submitted</span></p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-md-3 mb-4 stretch-card transparent">
+                                <div class="card card-dark-blue">
+                                  <div class="card-body">
+                                    <p class="fs-30 mb-4">Schooling Data</p>
+                                    <p class="mb-2">Status: <span class=" badge badge-success font-weight-medium">Submitted</span></p>
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+                          <div class="row d-flex align-items-center justify-content-center">
+                            <div class="col-md-3 mb-4 stretch-card transparent">
+                              <div class="card card-tale">
+                                <div class="card-body">
+                                  <p class="fs-30 mb-4">UG/PG Data</p>
+                                  <p class="mb-2">Status: <span class=" badge badge-success font-weight-medium">Submitted</span></p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-3 mb-4 stretch-card transparent">
+                              <div class="card card-dark-blue">
+                                <div class="card-body">
+                                  <p class="fs-30 mb-4">Uploaded Certificates</p>
+                                  <p class="mb-2">Status: <span class=" badge badge-danger font-weight-medium">Not Uploaded</span></p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          </dir>
+                        </div>
+                      </div>
                   </div>
                 </div>
               </div>
             </div>
-            <section>
-                <div class="row mt-2">
-                    <div class="col-md-12">
-                        <h5>Personal Details:</h5>
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <br>
-                                <p>Reg.No : {{data.Roll_Number}}</p>
-                                <p>Full Name : {{data.Full_Name}}</p>
-                                <p>Pursuing Graduation : {{current_pursuing}}</p>
-                                <p>Department : {{department}}</p>
-                                <p>Date of Birth : {{dob}}</p>
-                                <p>Gender : {{gender}}</p>
-                                <p>Age : {{age}}</p>
-                                <p>Email ID : {{reg_no}}</p>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="ack-img">
-                                    <img src="{% static 'images/faces/user.jpg' %}" alt="">
-                                </div>
-                                <p>Alternative Email :{{alter_email}}</p>
-                                <p>Contact No : {{contact}}</p>
-                                <p>Alternative Contact : {{alter_contact}}</p>
-                                <p>Marital Status : {{marital_status}}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
           </div>
         </div>
       </div>

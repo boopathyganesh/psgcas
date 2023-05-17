@@ -417,7 +417,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <h6>HSC</h6>
-                                        <p>Type of School : {{data.Full_Name}}</p>
+                                        <p>Type of School : {{data.}}</p>
                                         <p>Board of Study : {{data.}}</p>
                                         <p>Overall Percentage : {{data.hsc_percentage}}</p>
                                         <p>Overall Mark : {{data.hsc_mark}}</p>
@@ -467,42 +467,60 @@
                                 <div class="row pl-5 pr-5">
                                     <div class="col-md-6">
                                         <p>Department : {{data.pg_department}}</p>
-                                        <p>History of Arrears : {{data.}}</p>
+                                        <p>History of Arrears : {{data.pg_arrears_count}}</p>
                                         <p>Head Of Department : {{data.pg_hod}}</p>
-                                        <p>SEED Coordinator : {{data.}}</p>
-                                        <p>SEED Coordinator Email ID : {{data.}}</p>
-                                        <p>Period of Internship : {{data.}}</p>
+                                        <p>SEED Coordinator : {{data.pg_seed}}</p>
+                                        <p>SEED Coordinator Email ID : {{data.pg_seed_mail}}</p>
+                                        <p>Period of Internship : {{data.pg_intern_period}}</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <p>Current Percentage : {{data.}}</p>
-                                        <p>Active Arrears : {{data.}}</p>
+                                        <p>Current Percentage : {{data.pg_percentage}}</p>
+                                        <p>Active Arrears : {{data.active_pg_arrears_count}}</p>
                                         <p>HOD Number : {{data.pg_hod_no}}</p>
-                                        <p>SEED Coordinator No :{{data.}}</p>
+                                        <p>SEED Coordinator No :{{data.pg_seed_no}}</p>
                                         <p>Internship Company : {{data.}}</p>
                                     </div>
                                 </div>
                                 <div class="row pl-5 pr-5">
                                   <h6 class="col-md-12 mt-3 mb-3">Under Graduate Details</h6>
                                   <div class="col-md-6">
-                                      <p>Department : {{data.Full_Name}}</p>
+                                      <p>University : {{data.ex_ug_university}}</p>
+                                      <p>Department : {{data.ex_ug_department}}</p>
                                       <p>History of Arrears : {{data.}}</p>
                                       <p>Head Of Department : {{data.}}</p>
                                       <p>SEED Coordinator : {{data.}}</p>
                                       <p>SEED Coordinator Email ID : {{data.}}</p>
-                                      <p>Period of Internship : {{data.}}</p>
-                                      <p>Company Name : {{data.}}</p>
+                                      <p>Period of Internship : {{data.ex_ug_internship_period}}</p>
+                                      <p>Company Name : {{data.ex_ug_work_company}}</p>
                                   </div>
                                   <div class="col-md-6">
-                                      <p>Current Percentage : {{data.}}</p>
-                                      <p>Active Arrears : {{data.Roll_Number}}</p>
+                                      <p>College Name : {{data.ex_ug_college}}</p>
+                                      <p>Current Percentage : {{data.ex_ug_percentage}}</p>
                                       <p>HOD Number : {{data.}}</p>
                                       <p>SEED Coordinator No :{{data.}}</p>
-                                      <p>Internship Company : {{data.}}</p>
-                                      <p>Full Time Job : {{data.}}</p>
-                                      <p>UAN Number : {{data.}}</p>
+                                      <p>Internship Company : {{data.ex_ug_internship_company}}</p>
+                                      <p>Job Role: {{data.}}</p>
+                                      <p>UAN Number : {{data.ex_ug_work_uan}}</p>
                                   </div>
                               </div>
                               </div>
+                            </div>
+                            <div class="row mt-2 ack-section d-flex align-items-center justify-content-center">
+                              <div class="col-md-12 d-flex align-items-center justify-content-center">
+                                <div class="form-group first">
+                                  <div class="gender-details">
+                                     <div class="row ml-1 mt-4">
+                                      <div class="form-check col">
+                                        <label class="form-check-label">
+                                          <input type="checkbox" class="form-check-input" value="I Agree" name="ack_verify" id="ack_verify">
+                                          I personally verified all my details and all the I have entered here are true
+                                        </label>
+                                      </div>
+                                    </div>
+                                    </div>
+                                </div>
+                              </div>
+                              <button class="btn btn-success" type="submit">Submit</button>
                             </div>
                         </section>
                       </div>
