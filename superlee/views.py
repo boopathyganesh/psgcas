@@ -59,10 +59,13 @@ def dashboard(request):
     template=loader.get_template('dashboard.html')
     return HttpResponse(template.render())
 
+
 def vision(request):
     template=loader.get_template('vision.html')
     return HttpResponse(template.render())
-
+def cdc_function(request):
+    template=loader.get_template('function.html')
+    return HttpResponse(template.render())
 def mission(request):
     template=loader.get_template('mission.html')
     return HttpResponse(template.render())

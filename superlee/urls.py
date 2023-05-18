@@ -26,4 +26,5 @@ urlpatterns = [
     path('our-top-recruiters', views.companies, name='companies'),
     path('Placement-Process', views.p_process, name='p_process'),
     path('our-infrastructure', views.infrastructure, name='infrastructure'),
+    path('cdcfunction', views.cdc_function, name='cdc_function'),
 ]
