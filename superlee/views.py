@@ -200,6 +200,7 @@ def registration(request):
     if request.method == 'POST':
         # Retrieve form data from the request
         form_data = request.POST
+        
         print(form_data)
         # Assume qd is the QueryDict object
         '''data = {

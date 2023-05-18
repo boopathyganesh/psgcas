@@ -52,7 +52,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'irogen.wsgi.application'
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -62,8 +62,8 @@ DATABASES = {
         'USER': os.environ.get('SB_DB_USER'),
         'PASSWORD': os.environ.get('SB_DB_PASSWORD'),
     },
-}
-'''DATABASES = {
+}'''
+DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.mysql',
 		'NAME': 'psgcas',
@@ -72,7 +72,7 @@ DATABASES = {
 		'HOST':'localhost',
 		'PORT':'3306',
 	}
-}'''
+}
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
