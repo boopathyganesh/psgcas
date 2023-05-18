@@ -329,7 +329,7 @@
               <h6 class="mb-4">Update your details here !.</h6>
             </div> -->
             <div class="row d-flex justify-content-center">
-              <div class="col-md-7">
+              <div class="col-md-7 ">
                 <div class="contents">
                   <div class="row d-flex align-items-center justify-content-center">
                     <h3 class="mt-5 title">Personal Details</h3>
@@ -562,7 +562,7 @@
   });
   </script>
 
-  <script>
+  <!-- <script>
     var rollno = document.getElementById("rollno");
     var current_pursuing = document.getElementById("department")
     rollno.addEventListener("change", function(){
@@ -585,7 +585,56 @@
       "BIT":"Department of Information Technology",
       "BCA":"Department of Computer Applications"
     }
+  </script> -->
+  <script>
+    // Load the JSON data
+    jsonFile = "{% static 'js/data.json' %}"
+    fetch(jsonFile)
+      .then(response => response.json())
+      .then(data => {
+        var dept = data; // Assign the loaded data to the "dept" variable
+  
+        var rollno = document.getElementById("rollno");
+        var department = document.getElementById("department");
+  
+        rollno.addEventListener("change", function(){
+          // Get the input value
+          var inputValue = this.value;
+          this.value = inputValue.toUpperCase();
+  
+          // Trim the first 2 characters and last 3 characters from the input value
+          var trimmedValue = inputValue.toUpperCase().substring(2, inputValue.length - 2);
+          if (trimmedValue in dept) {
+          // Set the corresponding department value
+          department.value = dept[trimmedValue];
+        } else {
+          department.value = "";
+          // Show a success message using SweetAlert
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 5000,
+            timerProgressBar: true,
+            showCloseButton: true,
+          });
+
+          Toast.fire({
+            icon: 'error',
+            title: 'Invalid Register number'
+          });
+        }
+          // Set the trimmed value as the new input value
+          console.log(trimmedValue);
+          //department.value = dept[trimmedValue];
+          //console.log(dept[trimmedValue]);
+        });
+      })
+      .catch(error => {
+        console.error('Error loading JSON data:', error);
+      });
   </script>
+  
   <!-- plugins:js -->
   <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
   <script src="{% static 'js/sortable.js' %}"></script>

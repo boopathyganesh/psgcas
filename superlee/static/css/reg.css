@@ -298,6 +298,7 @@ form .gender-details .gender-title{
   display: grid;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 .side img{
   width: 40vw;
