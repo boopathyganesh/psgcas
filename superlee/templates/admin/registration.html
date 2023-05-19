@@ -78,7 +78,7 @@
       </div>
     </nav>
     <!-- partial -->
-    <div class="container-fluid page-body-wrapper pt-5">
+    <div class="container-fluid page-body-wrapper">
       <!-- partial:partials/_settings-panel.html -->
       <div class="theme-setting-wrapper">
         <div id="settings-trigger"><i class="ti-settings"></i></div>
@@ -249,216 +249,256 @@
         </div>
       </div>
       <!-- partial -->
-          <nav class="sidebar sidebar-offcanvas mt-4" id="sidebar">
-            <ul class="nav">
-              <p class="sidebar-title text-center">Basic Information</p>
-              <li class="nav-item active">
-                <a class="nav-link" href="{% url 'registration'%}">
-                  <i class="icon-grid menu-icon"></i>
-                  <span class="menu-title">Personal Details</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'family_details'%}">
-                  <i class="icon-paper menu-icon"></i>
-                  <span class="menu-title">Family Details</span>
-                </a>
-              </li>
-              <p class="sidebar-title text-center">Academic Section</p>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'schoolings'%}">
-                  <i class="icon-grid menu-icon"></i>
-                  <span class="menu-title active">Schooling Section</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'ug_details'%}">
-                  <i class="icon-grid menu-icon"></i>
-                  <span class="menu-title active">Under Graduate</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'pg_details'%}">
-                  <i class="icon-grid menu-icon"></i>
-                  <span class="menu-title active">Post Graduate</span>
-                </a>
-              </li>
-              <p class="sidebar-title text-center">Agreements & Others</p>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'workloc_agreement'%}">
-                  <i class="icon-grid menu-icon"></i>
-                  <span class="menu-title">Agreements</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'mand_docs'%}">
-                  <i class="icon-grid menu-icon"></i>
-                  <span class="menu-title">Upload Documents</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'other_details'%}">
-                  <i class="icon-grid menu-icon"></i>
-                  <span class="menu-title">Others</span>
-                </a>
-              </li>
-              <p class="sidebar-title text-center">Review Details</p>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'ack'%}">
-                  <i class="icon-grid menu-icon"></i>
-                  <span class="menu-title">Acknowledgement</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'application_sts'%}">
-                  <i class="icon-paper menu-icon"></i>
-                  <span class="menu-title">Application Status</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <!-- partial -->
-          <div class="container-fluid main-panel scroll" style="width: 100%;">
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <p class="sidebar-title text-center">Basic Information</p>
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'registration'%}">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Personal Details</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'family_details'%}">
+              <i class="icon-paper menu-icon"></i>
+              <span class="menu-title">Family Details</span>
+            </a>
+          </li>
+          <p class="sidebar-title text-center">Academic Section</p>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'schoolings'%}">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title active">Schooling Section</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'ug_details'%}">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title active">Under Graduate</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'pg_details'%}">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title active">Post Graduate</span>
+            </a>
+          </li>
+          <p class="sidebar-title text-center">Agreements & Others</p>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'workloc_agreement'%}">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Agreements</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'mand_docs'%}">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Upload Documents</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'other_details'%}">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Others</span>
+            </a>
+          </li>
+          <p class="sidebar-title text-center">Review Details</p>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'ack'%}">
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Acknowledgement</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'application_sts'%}">
+              <i class="icon-paper menu-icon"></i>
+              <span class="menu-title">Application Status</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- partial -->
+      <div class="container-fluid main-panel scroll" style="width: 100%;">
+        <div class="row">
+          <div class="col-md-12">
+            <!-- <div class="d-flex justify-content-center mt-4">
+              <img src="{% static 'images/CDC Logo.png' %}" alt="" style="height: 30vh; width: auto;">
+            </div> -->
+            <!-- <div class="d-flex align-items-center justify-content-center mt-1">
+              <h6 class="mb-4">Update your details here !.</h6>
+            </div> -->
             <div class="row d-flex justify-content-center">
-              <div class="col-md-12">
-                    <div class="contents">
-                      <div class="container-fluid form-container scroll-forms">
-                        <div class="row">
-                          <div class="col-md-12">
-                            <div class="row">
-                              <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                                <h3 class="font-weight-bold">Welcome <span style="color: gold;">Boopathy Ganesh K</span></h3>
-                                <h6 class="font-weight-normal mb-0">Here You can see your Placement Data</h6>
+              <div class="col-md-7 ">
+                <div class="contents">
+                  <div class="row d-flex align-items-center justify-content-center">
+                    <h3 class="mt-5 title">Personal Details</h3>
+                  </div>
+                  <div class="container form-container scroll-forms">
+                      <div class="col-md-12 py-5">
+                          <form method="post" class="forms" id="reg-form">
+                              <div class="row">
+                                  <div class="col-md-6">
+                                      <div class="form-group first">
+                                          <label for="rollno">Reg.No</label>
+                                          <input type="text" class="form-control" placeholder="College Reg-No (Block Letters)" id="rollno" name="rollno" >
+                                          <small>Error Message</small>
+                                        </div>    
+                                  </div>
+                                  <div class="col-md-6">
+                                      <div class="form-group first">
+                                          <label for="fname">Full Name (as per given in admission)</label>
+                                          <input type="text" class="form-control" placeholder="Name with Initial" id="fname" name="full_name" >
+                                        </div>
+                                  </div>
                               </div>
+                              <div class="row">
+                                <div class="col-md-8">
+                                  <div class="form-group first">
+                                      <label for="department">Department</label>
+                                      <input type="text" class="form-control" id="department" name="department" readonly>
+                                  </div>
+                              </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-12">
+                                  <div class="form-group first">
+                                    <label for="current_pursuing">Present Graduation Status</label>
+                                    <div class="category">
+                                      <div class="col-sm-4">
+                                        <div class="form-check">
+                                          <label class="form-check-label">
+                                            <input type="radio" class="form-check-input" name="current_pursuing" value="Under Graduation">
+                                            Under Graduation
+                                          </label>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-5">
+                                        <div class="form-check">
+                                          <label class="form-check-label">
+                                            <input type="radio" class="form-check-input" name="current_pursuing" value="Post Graduation">
+                                            Post Graduation
+                                          </label>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>    
+                                </div>
+                              </div>
+                              <div class="row">
+                              <div class="col-md-6">
+                              <div class="form-group first">
+                                  <label for="con">Contact No </label>
+                                  <input type="number" class="form-control" placeholder="Eg. Only whatsapp number" id="con" name="con">
+                                  <small>Error Message</small>
+                                </div>    
+                              </div>
+                              <div class="col-md-6">
+                              <div class="form-group first">
+                                  <label for="altcon">Alternative Contact No </label>
+                                  <input type="text" class="form-control" placeholder="Eg. Only whatsapp number" id="altcon" name="altcon" >
+                                  <small>Error Message</small>
+                                </div>    
+                              </div>
+                              </div>
+                              <div class="row">
+                                  <div class="col-md-6">
+                                  <div class="form-group first">
+                                      <label for="email">Email</label>
+                                      <P> Officially used for placement communication</P>
+                                      <input type="email" class="form-control" placeholder="Official Mail" id="email" name="email">
+                                      <small>Error Message</small>
+                                    </div>    
+                                  </div>
+                                  <div class="col-md-6">
+                                  <div class="form-group first">
+                                      <label for="aemail">Alternative Email</label>
+                                      <P> Will be used for secondary communication</P>
+                                      <input type="email" class="form-control" placeholder="Secondary Mail" id="aemail" name="aemail">
+                                      <small>Error Message</small>
+                                    </div>    
+                                  </div>
+                              </div>
+                              <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group first">
+                                <label for="dob">Date of Birth </label>
+                                <input type="date" class="form-control" name="dob" id="dob" >
+                              </div>    
                             </div>
+                            <div class="col-md-6">
+                              <div class="form-group first">
+                                <label for="age">Age </label>
+                                <input type="text" class="form-control" name="age" id="age" readonly>
+                              </div>    
+                            </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group first">
+                                      <label for="gender">Gender</label>
+                                        <div class="category">
+                                          <div class="col-sm-4">
+                                            <div class="form-check">
+                                              <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="gender" id="male" value="Male" >
+                                                Male
+                                              </label>
+                                            </div>
+                                          </div>
+                                          <div class="col-sm-5">
+                                            <div class="form-check">
+                                              <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="gender" id="female" value="Female">
+                                                Female
+                                              </label>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        
+                                    </div>    
+                                </div>
+                              </div>
+                            <div class="row">
+                              <div class="col-md-12">
+                                  <div class="form-group first">
+                                      <div class="gender-details">
+                                        <label for="marital-sts">Marital Status</label>
+                                        <div class="category">
+                                        <div class="col-sm-4">
+                                          <div class="form-check">
+                                            <label class="form-check-label">
+                                              <input type="radio" class="form-check-input" name="marital-sts" id="married" value="Married">
+                                              Married
+                                            </label>
+                                          </div>
+                                        </div>
+                                        <div class="col-sm-5">
+                                          <div class="form-check">
+                                            <label class="form-check-label">
+                                              <input type="radio" class="form-check-input" name="marital-sts" id="unmarried" value="Unmarried">
+                                              Unmarried
+                                            </label>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      </div>
+                                  </div>    
+                              </div>
                           </div>
-                        </div>
-                        <div class="row mt-3">
-                          <div class="col-md-6 grid-margin stretch-card  d-grid align-items-center justify-content-center">
-                            <div class="card shadow card-profile-outline" style="width: max-content;">
-                              <div class="card-body">
-                                <div class="card-text">
-                                  <div class="row d-flex align-items-center justify-content-center">
-                                    <img src="{% static 'images/faces/face17.jpg' %}" alt="" style="border-radius: 50%;">
-                                  </div>
-                                  <div class="row-cols-1 text-center">
-                                    <h2>{Admin Name}</h2>
-                                    <h3>{Admin ID}</h3>
-                                    <p>Profile: <span class="badge badge-gold font-weight-medium">Authorized</span></p>
-                                    <p>Status: <span class="badge badge-success font-weight-medium">Active</span></h>
-                                  </div>
-                                </div>
-                                <div class="d-flex justify-content-center mt-4 admin-down">
-                                  <img src="{% static 'images/admin.png' %}" alt="people">
-                                </div>
+                              <div class="row mt-4 d-flex justify-content-center">
+                                  <!-- <button id="proceed" type="submit" class="btn btn-success col-md-2">Continue</button> -->
+                                  <button id="proceed" type="button" class="btn btn-success">Continue <i class="icon-arrow-right"></i></button>
                               </div>
-                            </div>
-                          </div>
-                          <div class="col-md-6 grid-margin transparent">
-                            <div class="row">
-                              <div class="col-md-6 mb-4 stretch-card transparent">
-                                <div class="card">
-                                  <div class="card-text text-center">
-                                    <h3 class="m-2">Placement Statistics  <box-icon name='stats' color='#000000' size='md'></box-icon></h3>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-md-6 mb-4 stretch-card transparent">
-                                <div class="card card-tale">
-                                  <div class="card-body text-center">
-                                    <p class="fs-30 mb-4">Placement Opt-Ins</p>
-                                    <!-- <span><box-icon name='bar-chart-alt-2' type='solid' color='#ffffff' size='md'></box-icon></span> -->
-                                    <div class="custom-icon m-2">
-                                      <img src="{% static 'images/icons/checked.svg' %}" alt="star-custom">
-                                    </div>
-                                    <h2 id="counter1">100</h2>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-md-6 mb-4 stretch-card transparent">
-                                <div class="card card-light-danger">
-                                  <div class="card-body text-center">
-                                    <p class="fs-30 mb-4">Registrations</p>
-                                    <!-- <span><box-icon name='chevrons-up' color='#ffffff' size='lg'></box-icon></span> -->
-                                    <div class="custom-icon m-2">
-                                      <img src="{% static 'images/icons/man-voting.svg' %}" alt="star-custom">
-                                    </div>
-                                    <h2 id="counter2" data-count="100">0</h2>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-md-6 mb-4 stretch-card transparent">
-                                <div class="card card-light-blue">
-                                  <div class="card-body text-center">
-                                    <p class="fs-30 mb-4">Pending Profiles</p>
-                                    <!-- <span><box-icon name='time-five' size='md' type='solid' color='#ffffff' ></box-icon></span> -->
-                                    <div class="custom-icon m-2">
-                                      <img src="{% static 'images/icons/hourglass.svg' %}" alt="star-custom">
-                                    </div>
-                                    <h2 id="counter3">100</h2>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-md-6 mb-4 stretch-card transparent">
-                                <div class="card card-light-blue">
-                                  <div class="card-body text-center">
-                                    <p class="fs-30 mb-4">Drive held</p>
-                                    <!-- <span><box-icon name='award' color='#ffffff' size='lg'></box-icon></span> -->
-                                    <div class="custom-icon m-2">
-                                      <img src="{% static 'images/icons/medal2.svg' %}" alt="star-custom">
-                                    </div>
-                                    <h2 id="counter4">100</h2>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-md-6 mb-4 stretch-card transparent">
-                                <div class="card">
-                                  <div class="card-text text-center">
-                                    <h3 class="m-2">Placement Performance</h>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col-md-6 mb-4 stretch-card transparent">
-                                <div class="card card-light-danger">
-                                  <div class="card-body text-center">
-                                    <p class="fs-30 mb-4">Cracked Offers</p>
-                                    <!-- <span><box-icon name='award' color='#ffffff' size='lg'></box-icon></span> -->
-                                    <div class="custom-icon m-2">
-                                      <img src="{% static 'images/icons/certificate.svg' %}" alt="star-custom">
-                                    </div>
-                                    <h2 id="counter5">100</h2>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-md-6 mb-4 stretch-card transparent top">
-                                <div class="card card-tale">
-                                  <div class="card-body text-center">
-                                    <p class="fs-30 mb-4">Dream Packages</p>
-                                    <!-- <span><box-icon name='star' type='solid' color='#fabb04' size='lg'></box-icon></span> -->
-                                    <div class="custom-icon m-2">
-                                      <img src="{% static 'images/icons/dreamcatcher.svg' %}" alt="star-custom">
-                                    </div>
-                                    <h3><span class="typed-text"></span><span class="cursor">&nbsp;</span></h3>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                          </form>
                       </div>
                   </div>
-                  </div>
-                </div>
+              </div>
+              </div>
+              <div class="col-md-5 side">
+                <img src="{% static 'images/Form_Pictures/personal.png' %}" alt=""></div>
+            </div>
           </div>
-      <!-- partial:partials/_sidebar.html -->
         </div>
       </div>
         <!-- content-wrapper ends -->
@@ -473,7 +513,9 @@
           </div>
         </footer>  -->
         <!-- partial -->
+      </div>
       <!-- main-panel ends -->
+    </div>
     <!-- page-body-wrapper ends -->
   <!-- container-scroller -->
   <script>
