@@ -894,7 +894,7 @@ Banner Style
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  padding: 20vh 0px 20vh 0px;
+  padding: 10vh 0px 50vh 0px;
   position: relative;
   overflow: hidden;
 }
@@ -919,14 +919,16 @@ Banner Style
   background-repeat: no-repeat;
   position: absolute;
   right: 0;
-  top: 60px;
+  top: 100px;
   width: 100%;
   height: 100%;
   z-index: 0;
 }
 
 .main-banner .left-content {
-  margin-right: 15px;
+  /* margin-right: 15px; */
+  display: inline;
+  align-items: start;
 }
 
 .main-banner .left-content h6 {
@@ -953,13 +955,17 @@ Banner Style
 }
 
 .main-banner .right-image {
-  text-align: right;
+  display: flex;
+  justify-content: center;
+  text-align: center;
   position: relative;
   z-index: 20;
 }
 
 .main-banner .right-image img {
   max-width: 800px;
+  width: 30em;
+  height: auto;
 }
 
 

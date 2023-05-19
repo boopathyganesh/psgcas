@@ -341,14 +341,14 @@
                                   <div class="col-md-6">
                                       <div class="form-group first">
                                           <label for="rollno">Reg.No</label>
-                                          <input type="text" class="form-control" placeholder="College Reg-No (Block Letters)" id="rollno" name="rollno" required="required">
+                                          <input type="text" class="form-control" placeholder="College Reg-No (Block Letters)" id="rollno" name="rollno" >
                                           <small>Error Message</small>
                                         </div>    
                                   </div>
                                   <div class="col-md-6">
                                       <div class="form-group first">
                                           <label for="fname">Full Name (as per given in admission)</label>
-                                          <input type="text" class="form-control" placeholder="Name with Initial" id="fname" name="full_name" required>
+                                          <input type="text" class="form-control" placeholder="Name with Initial" id="fname" name="full_name" >
                                         </div>
                                   </div>
                               </div>
@@ -356,7 +356,7 @@
                                 <div class="col-md-8">
                                   <div class="form-group first">
                                       <label for="department">Department</label>
-                                      <input type="text" class="form-control" id="department" name="department" disabled>
+                                      <input type="text" class="form-control" id="department" name="department" readonly>
                                   </div>
                               </div>
                               </div>
@@ -389,14 +389,14 @@
                               <div class="col-md-6">
                               <div class="form-group first">
                                   <label for="con">Contact No </label>
-                                  <input type="number" class="form-control" placeholder="Eg. Only whatsapp number" id="con" name="con" data-toggle="tooltip" data-placement="top" title="Hooray!" required>
+                                  <input type="number" class="form-control" placeholder="Eg. Only whatsapp number" id="con" name="con">
                                   <small>Error Message</small>
                                 </div>    
                               </div>
                               <div class="col-md-6">
                               <div class="form-group first">
                                   <label for="altcon">Alternative Contact No </label>
-                                  <input type="text" class="form-control" placeholder="Eg. Only whatsapp number" id="altcon" name="altcon" required>
+                                  <input type="text" class="form-control" placeholder="Eg. Only whatsapp number" id="altcon" name="altcon" >
                                   <small>Error Message</small>
                                 </div>    
                               </div>
@@ -406,7 +406,7 @@
                                   <div class="form-group first">
                                       <label for="email">Email</label>
                                       <P> Officially used for placement communication</P>
-                                      <input type="email" class="form-control" placeholder="Official Mail" id="email" name="email" required>
+                                      <input type="email" class="form-control" placeholder="Official Mail" id="email" name="email">
                                       <small>Error Message</small>
                                     </div>    
                                   </div>
@@ -414,7 +414,7 @@
                                   <div class="form-group first">
                                       <label for="aemail">Alternative Email</label>
                                       <P> Will be used for secondary communication</P>
-                                      <input type="email" class="form-control" placeholder="Secondary Mail" id="location" name="aemail" required>
+                                      <input type="email" class="form-control" placeholder="Secondary Mail" id="aemail" name="aemail">
                                       <small>Error Message</small>
                                     </div>    
                                   </div>
@@ -423,7 +423,7 @@
                             <div class="col-md-6">
                               <div class="form-group first">
                                 <label for="dob">Date of Birth </label>
-                                <input type="date" class="form-control" name="dob" id="dob" required>
+                                <input type="date" class="form-control" name="dob" id="dob" >
                               </div>    
                             </div>
                             <div class="col-md-6">
@@ -488,7 +488,7 @@
                           </div>
                               <div class="row mt-4 d-flex justify-content-center">
                                   <!-- <button id="proceed" type="submit" class="btn btn-success col-md-2">Continue</button> -->
-                                  <button id="proceed" type="submit" class="btn btn-success">Continue <i class="icon-arrow-right"></i></button>
+                                  <button id="proceed" type="button" class="btn btn-success">Continue <i class="icon-arrow-right"></i></button>
                               </div>
                           </form>
                       </div>
@@ -532,7 +532,13 @@
               window.location.href = "/superlee/registration/family-details/";
             },
             error: function(response) {
-              alert("Response Failure");
+              Swal.fire({
+            icon: 'error',
+            title: response.responseJSON.error,
+            text: "There is a field which mustn't be empty!",
+            showConfirmButton: false,
+            timer: 1500
+          })
             }
         });
     });
@@ -639,22 +645,6 @@
         console.error('Error loading JSON data:', error);
       });
   </script>
-  <script>
-    // Dom elements
-    let form = document.querySelector("reg-form");
-    let regNo = document.querySelector("#rollno");
-    let contact = document.querySelector("#con");
-    let alternateContact = document.querySelector("#altcon");
-    let email = document.querySelector("#email");
-    let alternateEmail = document.querySelector("#email");
-
-    // Event listener to submit form
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      //handleInput();
-    });
-    
-  </script>
   <!-- plugins:js -->
   <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
   <script src="{% static 'js/sortable.js' %}"></script>
@@ -673,7 +663,7 @@
   <script src="{% static 'js/settings.js' %}"></script>
   <script src="{% static 'js/todolist.js' %}"></script>
   <script src="{% static 'js/script.js' %}"></script>
-  <script src="{% static 'js/custom-validator.js' %}"></script>
+  <!-- <script src="{% static 'js/custom-validator.js' %}"></script> -->
 
   <!-- endinject -->
   <!-- Custom js for this page-->

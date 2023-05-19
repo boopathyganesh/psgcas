@@ -13832,7 +13832,10 @@ input[type="button"].btn-block {
 .card-text:last-child {
   margin-bottom: 0;
 }
-
+.card-text p{
+  font-size: 1rem;
+  font-weight: 500;
+}
 .card-link:hover {
   text-decoration: none;
 }
@@ -14154,7 +14157,7 @@ input[type="button"].btn-block {
 .badge {
   display: inline-block;
   padding: 0.25em 0.4em;
-  font-size: 75%;
+  font-size: 1rem;
   font-weight: 700;
   line-height: 1;
   text-align: center;
@@ -14233,7 +14236,20 @@ a.badge-success:focus, .preview-list .preview-item .preview-thumbnail a.badge.ba
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba(87, 182, 87, 0.5);
 }
+.badge-gold, .preview-list .preview-item .preview-thumbnail .badge.badge-superuser {
+  color: #fff;
+  background-color: #FFD700;
+}
 
+a.badge-gold:hover, .preview-list .preview-item .preview-thumbnail a.badge.badge-superuser:hover, a.badge-gold:focus, .preview-list .preview-item .preview-thumbnail a.badge.badge-online:focus {
+  color: #fff;
+  background-color: #FFD700;
+}
+
+a.badge-gold:focus, .preview-list .preview-item .preview-thumbnail a.badge.badge-superuser:focus, a.badge-gold.focus, .preview-list .preview-item .preview-thumbnail a.focus.badge.badge-online {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.5);
+}
 .badge-info, .preview-list .preview-item .preview-thumbnail .badge.badge-offline {
   color: #fff;
   background-color: #248AFD;
@@ -30921,4 +30937,28 @@ div.tagsinput span.tag a {
   -moz-border-radius: 100px;
   -ms-border-radius: 100px;
   -o-border-radius: 100px;
+}
+
+.card .admin-down{
+  display: block;
+  align-items: center;
+  justify-content: center;
+}
+
+.card .admin-down img{
+  max-width: 25em;
+  height: auto;
+}
+
+.typed-cursor{
+  opacity: 1;
+  -webkit-animation: blink 0.7s infinite;
+  -moz-animation: blink 0.7s infinite;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink{
+  0% { opacity:1; }
+  50% { opacity:0; }
+  100% { opacity:1; }
 }

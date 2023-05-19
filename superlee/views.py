@@ -10,6 +10,7 @@ from django.core.serializers import serialize
 import pandas as pd
 from django.core.files.storage import FileSystemStorage
 from .models import User_reg,intern_db,Intern_atn
+from django.utils.datastructures import MultiValueDict
 from django.template.loader import render_to_string
 from .functions import handle_uploaded_file
 #import openpyxl
@@ -58,10 +59,15 @@ def index(request):
 def dashboard(request):
     template=loader.get_template('dashboard.html')
     return HttpResponse(template.render())
-
+def admin_dashboard(request):
+    template=loader.get_template('admin/dashboard.html')
+    return HttpResponse(template.render())
 
 def vision(request):
     template=loader.get_template('vision.html')
+    return HttpResponse(template.render())
+def cdc_function(request):
+    template=loader.get_template('function.html')
     return HttpResponse(template.render())
 def cdc_function(request):
     template=loader.get_template('function.html')
@@ -203,60 +209,43 @@ def registration(request):
     if request.method == 'POST':
         # Retrieve form data from the request
         form_data = request.POST
-        
-        print(form_data)
-        # Assume qd is the QueryDict object
-        '''data = {
-            key: [value] if not isinstance(value, list) else value for key, value in form_data.items()
-        }
-        df = pd.DataFrame(data)
-
-        # Write the DataFrame to an Excel file, appending to the existing sheet named 'Sheet1'
-        with pd.ExcelWriter('test.xlsx', mode='w') as writer:
-            try:
-                # If the sheet exists, load it into a DataFrame and append the new data
-                existing_df = pd.read_excel(writer, sheet_name='Sheet1')
-                combined_df = pd.concat([existing_df, df], ignore_index=True)
-                combined_df.to_excel(writer, sheet_name='Sheet1', index=False)
-            except KeyError:
-                # If the sheet doesn't exist, create it and write the data to it
-                df.to_excel(writer, sheet_name='Sheet1', index=False)'''
-# Create a new user object using the form data
-        user = User_reg(
-            Roll_Number=form_data['rollno'],
-            Full_Name=form_data['full_name'],
-            Pursuing_Degree=form_data['current_pursuing'],
-            Department=form_data['department'],
-            Contact=form_data['con'],
-            Alternate_Contact=form_data['altcon'],
-            Email=form_data['email'],
-            Alternate_Email=form_data['aemail'],
-            DOB=form_data['dob'],
-            Gender=form_data['gender'],
-            Marital_Status=form_data['marital-sts']
-        )
-
-        # Save the user object to the database
-        user.save()
-        request.session['Roll_Number'] = user.Roll_Number
-        request.session['current_pursuing'] = user.Pursuing_Degree
-        print(request.session['current_pursuing'])
-        '''data['roll_no']=form_data['rollno']
-        data['full_name'] = form_data['full_name']
-        data['current_pursuing'] = form_data['current_pursuing']
-        data['current_department'] = form_data['dept']
-        data['contact'] = form_data['con']
-        data['alternate_contact'] = form_data['altcon']
-        data['email'] = form_data['email']
-        data['alternate_email'] = form_data['aemail']
-        data['DOB'] = form_data['dob']
-        data['gender'] = form_data['gender']
-        data['marital_status'] = form_data['marital-sts']'''
-
-        #print(data)
-        # Return a JSON response indicating success
-        return JsonResponse({'success': True}, content_type='application/json')
-
+        d = MultiValueDict(form_data)
+        '''if form_data.values != '':
+            print(form_data)
+            request.session['rollno']=form_data['rollno']
+            request.session['full_name'] = form_data['full_name']
+            request.session['current_pursuing'] = form_data['current_pursuing']
+            request.session['department'] = form_data['department']
+            request.session['con'] = form_data['con']
+            request.session['email'] = form_data['email']
+            request.session['altcon'] = form_data['altcon']
+            request.session['aemail'] = form_data['aemail']
+            request.session['gender'] = form_data['gender']
+            request.session['marital-sts'] = form_data['marital-sts']
+            # Return a JSON response indicating success
+            return JsonResponse({'success': True}, content_type='application/json')
+        else:
+            print('error')
+            return JsonResponse({'error': "Form Can't be Empty"}, status=401)'''
+        try:
+            if form_data.values != '':
+                request.session['rollno'] = form_data['rollno']
+                request.session['full_name'] = form_data['full_name']
+                request.session['current_pursuing'] = form_data['current_pursuing']
+                request.session['department'] = form_data['department']
+                request.session['con'] = form_data['con']
+                request.session['email'] = form_data['email']
+                request.session['altcon'] = form_data['altcon']
+                request.session['aemail'] = form_data['aemail']
+                request.session['gender'] = form_data['gender']
+                request.session['marital-sts'] = form_data['marital-sts']
+                # Return a JSON response indicating success
+                return JsonResponse({'success': True}, content_type='application/json')
+            else:
+                raise None
+        except KeyError:
+            print('error')
+            return JsonResponse({'error': "Form Can't be Empty"}, status=401)
     else:
         template = loader.get_template('registration.html')
         return HttpResponse(template.render())
