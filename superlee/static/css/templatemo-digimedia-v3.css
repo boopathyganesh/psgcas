@@ -914,7 +914,7 @@ Banner Style
 
 .main-banner:before {
   content: '';
-  background-image: url('../images/bg2.jpg');
+  background-image: url('../images/background.jpg');
   opacity: 80%;
   background-repeat: no-repeat;
   position: absolute;

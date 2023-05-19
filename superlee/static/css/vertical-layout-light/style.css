@@ -19802,6 +19802,9 @@ code {
   width: 100%;
   min-width: 100%;
 }
+.top > .card{
+  width: max-content;
+}
 
 @media (min-width: 576px) {
   .border-right-sm {
