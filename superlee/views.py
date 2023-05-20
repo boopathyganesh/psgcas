@@ -596,3 +596,19 @@ def mark_extract(request):
     else:
         template = loader.get_template('mark_ext.html')
         return HttpResponse(template.render())'''
+
+def student_data(request):
+    template = loader.get_template('admin/student-data.html')
+    return HttpResponse(template.render())
+def admin_attendance(request):
+    template = loader.get_template('admin/student-data.html')
+    return HttpResponse(template.render())
+def msg_center(request):
+    template = loader.get_template('admin/student-data.html')
+    return HttpResponse(template.render())
+def acc_settings(request):
+    template = loader.get_template('admin/student-data.html')
+    return HttpResponse(template.render())
+def logout(request):
+    template = loader.get_template('admin/student-data.html')
+    return HttpResponse(template.render())
