@@ -209,8 +209,7 @@ def registration(request):
     if request.method == 'POST':
         # Retrieve form data from the request
         form_data = request.POST
-        d = MultiValueDict(form_data)
-        '''if form_data.values != '':
+        if form_data.values != '':
             print(form_data)
             request.session['rollno']=form_data['rollno']
             request.session['full_name'] = form_data['full_name']
@@ -225,25 +224,6 @@ def registration(request):
             # Return a JSON response indicating success
             return JsonResponse({'success': True}, content_type='application/json')
         else:
-            print('error')
-            return JsonResponse({'error': "Form Can't be Empty"}, status=401)'''
-        try:
-            if form_data.values != '':
-                request.session['rollno'] = form_data['rollno']
-                request.session['full_name'] = form_data['full_name']
-                request.session['current_pursuing'] = form_data['current_pursuing']
-                request.session['department'] = form_data['department']
-                request.session['con'] = form_data['con']
-                request.session['email'] = form_data['email']
-                request.session['altcon'] = form_data['altcon']
-                request.session['aemail'] = form_data['aemail']
-                request.session['gender'] = form_data['gender']
-                request.session['marital-sts'] = form_data['marital-sts']
-                # Return a JSON response indicating success
-                return JsonResponse({'success': True}, content_type='application/json')
-            else:
-                raise None
-        except KeyError:
             print('error')
             return JsonResponse({'error': "Form Can't be Empty"}, status=401)
     else:

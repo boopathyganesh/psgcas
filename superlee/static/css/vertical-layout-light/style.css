@@ -30972,3 +30972,26 @@ div.tagsinput span.tag a {
   width: 3rem;
   height: auto;
 }
+
+/* validation */
+
+.form-group.success input {
+  border-color: var(--green)
+}
+
+.form-group.error input {
+  border-color: var(--danger)
+}
+
+.form-group small{
+  color: var(--danger);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  visibility: hidden;
+  padding: 30px 0px 0px 20px;
+}
+
+.form-group.error small{
+  visibility: visible;
+}

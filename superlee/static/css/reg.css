@@ -303,9 +303,6 @@ form .gender-details .gender-title{
 .side img{
   width: 40vw;
   height: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .ack-img{
@@ -319,21 +316,4 @@ form .gender-details .gender-title{
   display: flex;
   align-items: center;
   justify-content: center;
-}
-/* Form Validation */
-small {
-  color: #e75c3c;
-  margin-top: 5px;
-  visibility: hidden;
-}
-.form-control.error small {
-  visibility: visible;
-}
-
-.form-control.error input {
-  border-color: #e75c3c;
-}
-
-.form-control.success input {
-  border-color: #2ecc71;
 }

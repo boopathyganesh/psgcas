@@ -250,7 +250,7 @@
       </div>
       <!-- partial -->
       <!-- partial:partials/_sidebar.html -->
-      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+      <nav class="sidebar sidebar-offcanvas pt-5" id="sidebar">
         <ul class="nav">
           <p class="sidebar-title text-center">Basic Information</p>
           <li class="nav-item active">
@@ -319,7 +319,7 @@
         </ul>
       </nav>
       <!-- partial -->
-      <div class="container-fluid main-panel scroll" style="width: 100%;">
+      <div class="container-fluid main-panel" style="width: 100%;">
         <div class="row">
           <div class="col-md-12">
             <!-- <div class="d-flex justify-content-center mt-4">
@@ -331,7 +331,7 @@
             <div class="row d-flex justify-content-center">
               <div class="col-md-7 ">
                 <div class="contents">
-                  <div class="row d-flex align-items-center justify-content-center">
+                  <div class="row d-flex justify-content-center pt-4">
                     <h3 class="mt-5 title">Personal Details</h3>
                   </div>
                   <div class="container form-container scroll-forms">
@@ -342,13 +342,14 @@
                                       <div class="form-group first">
                                           <label for="rollno">Reg.No</label>
                                           <input type="text" class="form-control" placeholder="College Reg-No (Block Letters)" id="rollno" name="rollno" >
-                                          <small>Error Message</small>
+                                          <small></small>
                                         </div>    
                                   </div>
                                   <div class="col-md-6">
                                       <div class="form-group first">
                                           <label for="fname">Full Name (as per given in admission)</label>
                                           <input type="text" class="form-control" placeholder="Name with Initial" id="fname" name="full_name" >
+                                          <small></small>
                                         </div>
                                   </div>
                               </div>
@@ -382,6 +383,7 @@
                                         </div>
                                       </div>
                                     </div>
+                                    <small></small>
                                   </div>    
                                 </div>
                               </div>
@@ -424,12 +426,14 @@
                               <div class="form-group first">
                                 <label for="dob">Date of Birth </label>
                                 <input type="date" class="form-control" name="dob" id="dob" >
+                                <small></small>
                               </div>    
                             </div>
                             <div class="col-md-6">
                               <div class="form-group first">
                                 <label for="age">Age </label>
                                 <input type="text" class="form-control" name="age" id="age" readonly>
+                                <small></small>
                               </div>    
                             </div>
                               </div>
@@ -455,7 +459,7 @@
                                             </div>
                                           </div>
                                         </div>
-                                        
+                                        <small></small>
                                     </div>    
                                 </div>
                               </div>
@@ -483,6 +487,7 @@
                                         </div>
                                       </div>
                                       </div>
+                                      <small></small>
                                   </div>    
                               </div>
                           </div>
@@ -518,7 +523,7 @@
     </div>
     <!-- page-body-wrapper ends -->
   <!-- container-scroller -->
-  <script>
+  <!-- <script>
     $(document).ready(function() {
     $('#proceed').click(function(event) {
         console.log("Click event triggered"); // Add this line
@@ -543,7 +548,7 @@
         });
     });
 });
-</script>
+</script> -->
 <script> 
   // get the date of birth field
   var dobField = document.getElementById("dob");
@@ -645,6 +650,99 @@
         console.error('Error loading JSON data:', error);
       });
   </script>
+  <script>
+    const form = document.getElementById('reg-form');
+    const rollno = document.getElementById('rollno');
+    const email = document.getElementById('email');
+    const current_pursuing = document.getElementById('current_pursuing');
+    const fname = document.getElementById('fname');
+    const con = document.getElementById('con');
+    const proceedButton = document.getElementById('proceed');
+
+    //Show input error messages
+    function showError(input, message) {
+        const formControl = input.parentElement;
+        formControl.className = 'form-group error';
+        const small = formControl.querySelector('small');
+        small.innerText = message;
+    }
+
+    //show success colour
+    function showSucces(input) {
+        const formControl = input.parentElement;
+        formControl.className = 'form-group success';
+    }
+
+    //check email is valid
+    function checkEmail(input) {
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if(re.test(input.value.trim())) {
+            showSucces(input)
+        }else {
+            showError(input,'Email is not invalid');
+        }
+    }
+
+
+    //checkRequired fields
+    function checkRequired(inputArr) {
+        inputArr.forEach(function(input){
+            if(input.value.trim() === ''){
+                showError(input,`${getFieldName(input)} is required`)
+            }else {
+                showSucces(input);
+            }
+        });
+    }
+
+    //checkradio
+    function radioCheck(inputArr){
+      inputArr.forEach(function(input){
+        if(input.checked){
+          showSucces(input);
+        }
+        else{
+          showError(input,`${getFieldName(input)} is required`);
+        }
+      })
+    }
+    //check input Length
+    function checkLength(input, min ,max) {
+        if(input.value.length < min) {
+            showError(input, `${getFieldName(input)} must be at least ${min} characters`);
+        }else if(input.value.length > max) {
+            showError(input, `${getFieldName(input)} must be les than ${max} characters`);
+        }else {
+            showSucces(input);
+        }
+    }
+
+    //get FieldName
+    function getFieldName(input) {
+        return input.id.charAt(0).toUpperCase() + input.id.slice(1);
+    }
+
+    // check passwords match
+    function checkPasswordMatch(input1, input2) {
+        if(input1.value !== input2.value) {
+            showError(input2, 'Passwords do not match');
+        }
+    }
+
+    proceedButton.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default button click behavior
+        console.log("clicked")
+        checkRequired([rollno, email, fname, con,current_pursuing]);
+        checkEmail(email);
+        radioCheck(current_pursuing)
+        // Perform form validation
+    });
+  </script>
+
+
+
+
+
   <!-- plugins:js -->
   <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
   <script src="{% static 'js/sortable.js' %}"></script>
