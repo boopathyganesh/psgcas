@@ -337,6 +337,7 @@
                   <div class="container form-container scroll-forms">
                       <div class="col-md-12 py-5">
                           <form method="post" class="forms" id="reg-form">
+                            {% csrf_token %}
                               <div class="row">
                                   <div class="col-md-6">
                                       <div class="form-group first">
@@ -523,16 +524,21 @@
     </div>
     <!-- page-body-wrapper ends -->
   <!-- container-scroller -->
-  <!-- <script>
+  <script>
     $(document).ready(function() {
     $('#proceed').click(function(event) {
         console.log("Click event triggered"); // Add this line
         event.preventDefault(); // Prevent form submission
+        var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
         var form_data = $('#reg-form').serialize(); // Serialize form data
+        form_data += '&csrfmiddlewaretoken=' + csrfToken;
         $.ajax({
             type: 'POST',
             url: '/superlee/registration/',
             data: form_data,
+            headers: {
+          'X-CSRFToken': csrfToken // Include the CSRF token in the request headers
+        },
             success: function(response) {
               window.location.href = "/superlee/registration/family-details/";
             },
@@ -548,7 +554,7 @@
         });
     });
 });
-</script> -->
+</script>
 <script> 
   // get the date of birth field
   var dobField = document.getElementById("dob");
@@ -650,7 +656,7 @@
         console.error('Error loading JSON data:', error);
       });
   </script>
-  <script>
+  <!-- <script>
     const form = document.getElementById('reg-form');
     const rollno = document.getElementById('rollno');
     const email = document.getElementById('email');
@@ -737,7 +743,7 @@
         radioCheck(current_pursuing)
         // Perform form validation
     });
-  </script>
+  </script> -->
 
 
 

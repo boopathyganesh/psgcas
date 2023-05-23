@@ -6,7 +6,10 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 #STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
+CSRF_USE_SESSIONS = True  # Use sessions for CSRF protection (recommended)
+CSRF_COOKIE_SECURE = False  # Set to False if not using HTTPS
+CSRF_COOKIE_HTTPONLY = True
+CSRF_COOKIE_PATH = '/'
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
@@ -25,8 +28,8 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',

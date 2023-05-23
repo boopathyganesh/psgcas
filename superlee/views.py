@@ -2,7 +2,9 @@ from django.shortcuts import render
 from django.conf import settings
 from pathlib import Path
 import os
-from django.views.decorators.csrf import csrf_exempt,csrf_protect
+from django.views.decorators.csrf import csrf_exempt,csrf_protect,ensure_csrf_cookie
+from django.middleware.csrf import get_token
+
 from django.http import HttpResponse, JsonResponse, HttpResponseBadRequest,HttpResponseRedirect
 from django.template import loader
 import json,re
@@ -203,8 +205,7 @@ def input(request):
             return JsonResponse({'data': data,'tsg':tsg})  # send back the updated data as a JSON response
     else:
         return render(request, 'atn-input.html', {'data': data,'tsg':tsg})
-
-@csrf_exempt
+@ensure_csrf_cookie
 def registration(request):
     if request.method == 'POST':
         # Retrieve form data from the request
@@ -228,9 +229,12 @@ def registration(request):
             return JsonResponse({'error': "Form Can't be Empty"}, status=401)
     else:
         template = loader.get_template('registration.html')
-        return HttpResponse(template.render())
+        context = {}
+        # Add CSRF token to the context
+        context['csrf_token'] = get_token(request)
+        return HttpResponse(template.render(context, request))
 
-@csrf_exempt
+@ensure_csrf_cookie
 def family_details(request):
     if request.method == 'POST':
         # Retrieve form data from the request
@@ -259,8 +263,11 @@ def family_details(request):
 
     else:
         template = loader.get_template('family_details.html')
-        return HttpResponse(template.render())
-@csrf_exempt
+        context = {}
+        # Add CSRF token to the context
+        context['csrf_token'] = get_token(request)
+        return HttpResponse(template.render(context, request))
+@ensure_csrf_cookie
 def workloc_agreement(request):
     if request.method == 'POST':
         # Retrieve form data from the request
@@ -278,8 +285,11 @@ def workloc_agreement(request):
 
     else:
         template=loader.get_template('workloc_agreement.html')
-        return HttpResponse(template.render())
-@csrf_exempt
+        context = {}
+        # Add CSRF token to the context
+        context['csrf_token'] = get_token(request)
+        return HttpResponse(template.render(context, request))
+@ensure_csrf_cookie
 def mand_docs(request):
     if request.method == 'POST':
         # Retrieve form data from the request
@@ -310,8 +320,11 @@ def mand_docs(request):
 
     else:
         template=loader.get_template('mand_docs.html')
-        return HttpResponse(template.render())
-@csrf_exempt
+        context = {}
+        # Add CSRF token to the context
+        context['csrf_token'] = get_token(request)
+        return HttpResponse(template.render(context, request))
+@ensure_csrf_cookie
 def schoolings(request):
     if request.method == 'POST':
         # Retrieve form data from the request
@@ -344,8 +357,11 @@ def schoolings(request):
         return JsonResponse({'success': True,'pursuing':current_pursuing}, content_type='application/json')
     else:
         template=loader.get_template('schoolings.html')
-        return HttpResponse(template.render())
-@csrf_exempt
+        context = {}
+        # Add CSRF token to the context
+        context['csrf_token'] = get_token(request)
+        return HttpResponse(template.render(context, request))
+@ensure_csrf_cookie
 def ug_details(request):
     if request.method == 'POST':
         # Retrieve form data from the request
@@ -373,8 +389,11 @@ def ug_details(request):
         return JsonResponse({'success': True}, content_type='application/json')
     else:
         template=loader.get_template('ug_details.html')
-        return HttpResponse(template.render())
-@csrf_exempt
+        context = {}
+        # Add CSRF token to the context
+        context['csrf_token'] = get_token(request)
+        return HttpResponse(template.render(context, request))
+@ensure_csrf_cookie
 def pg_details(request):
     if request.method == 'POST':
         # Retrieve form data from the request
@@ -413,8 +432,11 @@ def pg_details(request):
         return JsonResponse({'success': True}, content_type='application/json')
     else:
         template=loader.get_template('pg_details.html')
-        return HttpResponse(template.render())
-@csrf_exempt
+        context = {}
+        # Add CSRF token to the context
+        context['csrf_token'] = get_token(request)
+        return HttpResponse(template.render(context, request))
+@ensure_csrf_cookie
 def other_details(request):
     if request.method == 'POST':
         # Retrieve form data from the request
@@ -432,16 +454,19 @@ def other_details(request):
         return JsonResponse({'success': True}, content_type='application/json')
     else:
         template=loader.get_template('others.html')
-        return HttpResponse(template.render())
+        context = {}
+        # Add CSRF token to the context
+        context['csrf_token'] = get_token(request)
+        return HttpResponse(template.render(context, request))
 
-@csrf_exempt
+@ensure_csrf_cookie
 def ack(request):
         roll_number = request.session['Roll_Number']
         user_data = User_reg.objects.filter(Roll_Number=roll_number).values()
         user_data=dict(user_data[0])
         return render(request,'ack_page.html',{'data':user_data})
 
-@csrf_exempt
+@ensure_csrf_cookie
 def application_sts(request):
     if request.method == 'POST':
         # Retrieve form data from the request
@@ -456,7 +481,7 @@ def application_sts(request):
         user_data = User_reg.objects.filter(Roll_Number=roll_number).values()
         user_data=dict(user_data[0])'''
         return render(request,'application_sts.html',{'data':'user_data'})
-@csrf_exempt
+@ensure_csrf_cookie
 def test(request):
     if request.method == 'POST':
         # Retrieve form data from the request
@@ -470,7 +495,7 @@ def test(request):
         return HttpResponse(template.render())
 
 
-@csrf_exempt
+@ensure_csrf_cookie
 def intern_attendance_login(request):
     if request.method == 'POST':
         form_data=request.POST
@@ -498,7 +523,7 @@ def intern_attendance_login(request):
         template = loader.get_template('intern_atn_login.html')
         return HttpResponse(template.render())
 
-@csrf_exempt
+@ensure_csrf_cookie
 def intern_attendance(request):
     if request.method == 'POST':
         form_data = request.POST
@@ -525,7 +550,7 @@ def intern_attendance(request):
         return render(request,'intern_atn.html',{'data':data,'intern':studata})
 
 
-@csrf_exempt
+@ensure_csrf_cookie
 def intern_attendance_out(request):
     if request.method == 'POST':
         form_data = request.POST
