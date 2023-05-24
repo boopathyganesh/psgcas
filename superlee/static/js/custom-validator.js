@@ -1,73 +1,116 @@
+    // Show input error messages
+    function showError(input, message) {
+        const formControl = input.parentElement;
+        formControl.className = 'form-group error';
+        const small = formControl.querySelector('small');
+        small.innerText = message;
+    }
+    function showErrorRadio(message) {
+        const small = document.getElementById('radioerror');
+        small.parentElement.className = 'form-group error';
+        small.innerText = message;
+    }
+    // Show success color
+    function showSuccess(input) {
+        const formControl = input.parentElement;
+        formControl.className = 'form-group success';
+    }
 
-// What to do with inputs ?
-function emailValidator(){
-    let emailValue = email.value.trim();
-    if (emailValue === "") {
-        setErrorFor(email, "Email cannot be blank");
-      } else if (!isEmail(emailValue)) {
-        setErrorFor(email, "Email is not valid");
-      } else {
-        setSuccessFor(email);
-      }
-}
-function handleInput() {
-  // Values from dom elements ( input )
-  let userNameValue = userName.value.trim();
-  let emailValue = email.value.trim();
-  let passwordValue = password.value.trim();
-  let confirmPasswordValue = confirmPassword.value.trim();
+    // Check if email is valid
+    function checkEmail(input) {
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (re.test(input.value.trim())) {
+            showSuccess(input);
+        } else {
+            showError(input, 'Email is invalid');
+        }
+    }
 
-  //  Checking for username
-  if (userNameValue === "") {
-    setErrorFor(userName, "Username cannot be blank");
-  } else {
-    setSuccessFor(userName);
+    // Check required fields
+    function checkRequired(inputArr) {
+        inputArr.forEach(function(input) {
+            if (input.value.trim() === '') {
+                showError(input, `${getFieldName(input)} is required`);
+            } else {
+                showSuccess(input);
+            }
+        });
+    }
+
+    // Check radio button
+    function validateRadio(radioGrp) {
+        let isValid = false;
+
+        // Check if at least one radio button is selected
+        for (let i = 0; i < radioGrp.length; i++) {
+            if (radioGrp[i].checked) {
+                isValid = true;
+                break;
+            }
+        }
+        if (isValid) {
+            showSuccess(radioGrp[0]); // Show success for any radio button in the group
+        } else {
+            showErrorRadio('Select any one of the options'); // Show error for any radio button in the group
+        }
+    }
+    //datepicker
+    function validateDate(input) {
+  //     var dobField = document.getElementById("dob");
+  // // add an event listener for when the date of birth field changes
+  // dobField.addEventListener("change", function() {
+  //   // get the date of birth value and convert it to a Date object
+  //   var dob = new Date(this.value);
+  //   // check if the date of birth is in the future
+  //   if (dob.getTime() > Date.now()) {
+  //     // if it is, clear the age field and return
+  //     document.getElementById("age").value = "";
+  //     Swal.fire({
+  //           icon: 'error',
+  //           title: 'Error in Date of Birth',
+  //           text: "I Think you are not born Yet!",
+  //           showConfirmButton: false,
+  //           timer: 3500
+  //         })
+  //     return;
+  //   }
+  //   // calculate the age based on the current date and the date of birth
+  //   var ageDiffMs = Date.now() - dob.getTime();
+  //   var ageDate = new Date(ageDiffMs);
+  //   var age = Math.abs(ageDate.getUTCFullYear() - 1970);
+  //   // set the value of the age field
+  //   document.getElementById("age").value = age;
+  // });
+    const selectedDate = new Date(dateInput.value);
+    const currentDate = new Date(); // Get current date
+    const errorElement = document.getElementById('datepicker-error');
+
+    // Check if the selected date is valid
+    if (isNaN(selectedDate)) {
+      errorElement.innerText = 'Please select a valid date';
+    }
+    // Check if the selected date is in the future
+    else if (selectedDate.getTime() > currentDate.getTime()) {
+      errorElement.innerText = 'Please select a date in the past or today';
+    }
+    // Validation passed
+    else {
+      errorElement.innerText = ''; // Clear the error message
+      alert('Date is valid');
+    }
   }
 
-  // Checking for email
-  if (emailValue === "") {
-    setErrorFor(email, "Email cannot be blank");
-  } else if (!isEmail(emailValue)) {
-    setErrorFor(email, "Email is not valid");
-  } else {
-    setSuccessFor(email);
-  }
+    // Get field name
+    function getFieldName(input) {
+        return input.id.charAt(0).toUpperCase() + input.id.slice(1);
+    }
 
-  // Checking for password
-  if (passwordValue === "") {
-    setErrorFor(password, "Password cannot be blank");
-  } else if (passwordValue.length < 6 || passwordValue.length > 30) {
-    setErrorFor(password, "Password length should be between 6 and 30");
-  } else {
-    setSuccessFor(password);
-  }
+    // proceedButton.addEventListener('click', function(event) {
+    //     event.preventDefault(); // Prevent the default button click behavior
 
-  // Checking for confirm password
-  if (confirmPasswordValue === "") {
-    setErrorFor(confirmPassword, "Confirm Password cannot be blank");
-  } else if (confirmPasswordValue !== passwordValue) {
-    setErrorFor(confirmPassword, "Confirm password not matched with password");
-  } else {
-    setSuccessFor(confirmPassword);
-  }
-}
+    //     checkRequired([rollno, email, fname, con]);
+    //     checkEmail(email);
+    //     validateRadio(current_pursuing);
 
-// If there is some error, than what we want to do with input ?
-function setErrorFor(input, message) {
-  let formControl = input.parentElement;
-  formControl.className = "form-control error";
-  let small = formControl.querySelector("small");
-  small.innerText = message;
-}
-
-// If there is no error, than what we want to do with input ?
-function setSuccessFor(input) {
-  let formControl = input.parentElement;
-  formControl.className = "form-control success";
-}
-
-// To check if email is valid or not ?
-function isEmail(email) {
-  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return re.test(String(email).toLowerCase());
-}
+    //     // Perform additional form validation or submission logic
+    // });
