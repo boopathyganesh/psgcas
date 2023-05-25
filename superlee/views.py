@@ -15,9 +15,9 @@ from .models import User_reg,intern_db,Intern_atn
 from django.utils.datastructures import MultiValueDict
 from django.template.loader import render_to_string
 from .functions import handle_uploaded_file
-#import openpyxl
-#from openpyxl.utils import get_column_letter
-#from openpyxl.writer.excel import save_workbook
+import openpyxl
+from openpyxl.utils import get_column_letter
+from openpyxl.writer.excel import save_workbook
 BASE_DIR = Path(__file__).resolve().parent.parent
 MEDIA_ROOT = os.path.join(BASE_DIR, 'superlee/media')
 id=[]

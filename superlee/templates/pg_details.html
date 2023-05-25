@@ -248,7 +248,7 @@
       </div>
       <!-- partial -->
       <!-- partial:partials/_sidebar.html -->
-      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+      <nav class="sidebar sidebar-offcanvas pt-5" id="sidebar">
         <ul class="nav">
           <p class="sidebar-title text-center">Basic Information</p>
           <li class="nav-item">
@@ -345,10 +345,10 @@
                               <label class="col-sm-3 col-form-label" for="pg_department">PG Department</label>
                               <div class="col-sm-12">
                                 <select class="form-control" name="pg_department" id="pg_department">
-                                  <option value="BCA">BCA</option>
+                                  <!-- <option value="BCA">BCA</option>
                                   <option value="MCA">MCA</option>
                                   <option value="Information Technology">Information Technology</option>
-                                  <option value="SS">SS</option>
+                                  <option value="SS">SS</option> -->
                                 </select>
                               </div>
                             </div>
@@ -748,6 +748,150 @@
         });
     });
 });
+</script>
+<script>
+  // Assuming you have a JSON object containing department names and codes
+var departments =
+[
+    {
+        "name": "MSC SOFTWARE SYSTEMS",
+        "code": "MSS0"
+    },
+    {
+        "name": "MSC COMPUTER SCIENCE",
+        "code": "MCM0"
+    },
+    {
+        "name": "MSC BIOCHEMISTRY",
+        "code": "MBC0"
+    },
+    {
+        "name": "MSC BOTANY",
+        "code": "MBO0"
+    },
+    {
+        "name": "MSC BIOTECHNOLOGY",
+        "code": "MBT0"
+    },
+    {
+        "name": "MCA COMPUTER APPLICATIONS(2 YR COURSE)",
+        "code": "MCA0"
+    },
+    {
+        "name": "MCOM COMMERCE WITH COMPUTER APPLICATIONS",
+        "code": "MCC0"
+    },
+    {
+        "name": "MSC COSTUME, DESIGN & FASHION",
+        "code": "MCD0"
+    },
+    {
+        "name": "MSC CHEMISTRY",
+        "code": "MCH0"
+    },
+    {
+        "name": "MSC CLINICAL NUTRITION AND DIETETICS",
+        "code": "MCN0"
+    },
+    {
+        "name": "MCOM COMMERCE",
+        "code": "MCO0"
+    },
+    {
+        "name": "MSC CLINICAL PSYCHOLOGY",
+        "code": "MCP0"
+    },
+    {
+        "name": "MCOM CORPORATE SECRETARYSHIP",
+        "code": "MCS0"
+    },
+    {
+        "name": "MA ECONOMICS",
+        "code": "MEC0"
+    },
+    {
+        "name": "MSC APPLIED ELECTRONICS",
+        "code": "MEL0"
+    },
+    {
+        "name": "MSC ELECTRONIC MEDIA",
+        "code": "MEM0"
+    },
+    {
+        "name": "MA ENGLISH",
+        "code": "MEN0"
+    },
+    {
+        "name": "MSC ENVIRONMENTAL SCIENCE",
+        "code": "MES0"
+    },
+    {
+        "name": "MSC HOSPITAL ADMINISTRATION",
+        "code": "MHA0"
+    },
+    {
+        "name": "MCOM INTERNATIONAL BUSINESS",
+        "code": "MIB0"
+    },
+    {
+        "name": "MSC MATHEMATICS",
+        "code": "MMA0"
+    },
+    {
+        "name": "MSC MATHEMATICS",
+        "code": "MMA1"
+    },
+    {
+        "name": "MSC APPLIED MICROBIOLOGY",
+        "code": "MMB0"
+    },
+    {
+        "name": "MA JOURNALISM & MASS COMMUNICATION",
+        "code": "MMC0"
+    },
+    {
+        "name": "MSC FOOD & NUTRITION",
+        "code": "MND0"
+    },
+    {
+        "name": "MSC PHYSICS",
+        "code": "MPH0"
+    },
+    {
+        "name": "MSC APPLIED PSYCHOLOGY",
+        "code": "MPS0"
+    },
+    {
+        "name": "MSC STATISTICS",
+        "code": "MST0"
+    },
+    {
+        "name": "MSW SOCIAL WORK",
+        "code": "MSW0"
+    },
+    {
+        "name": "MSC ZOOLOGY",
+        "code": "MZO0"
+    }
+  // Add more department objects as needed
+];
+
+// Get a reference to the select dropdown element
+var dropdown = document.getElementById("pg_department");
+
+// Iterate over the departments array and create an option for each department
+departments.forEach(function(department) {
+  // Create a new option element
+  var option = document.createElement("option");
+  
+  // Set the text and value of the option
+  option.text = department.name;
+  option.value = department.code;
+  
+  // Append the option to the dropdown
+  dropdown.add(option);
+});
+
 </script>
 <script>
   // Get the alert element

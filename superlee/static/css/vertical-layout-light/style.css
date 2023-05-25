@@ -30989,7 +30989,7 @@ div.tagsinput span.tag a {
   bottom: 0;
   left: 0;
   visibility: hidden;
-  padding: 50px 0px 0px 20px;
+  padding-left: 20px;
 }
 
 .form-group.error small{

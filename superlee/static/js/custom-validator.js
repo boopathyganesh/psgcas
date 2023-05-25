@@ -5,11 +5,14 @@
         const small = formControl.querySelector('small');
         small.innerText = message;
     }
-    function showErrorRadio(message) {
-        const small = document.getElementById('radioerror');
-        small.parentElement.className = 'form-group error';
-        small.innerText = message;
+    function showErrorRadio(radioGroup) {
+      console.log(radioGroup);
+      const formGroup = radioGroup[0].parentNode.parentNode.parentNode;
+      formGroup.classList.add('error');
+      const small = formGroup.querySelector('.radio-error');
+      small.innerText = 'Select any one of the options';
     }
+    
     // Show success color
     function showSuccess(input) {
         const formControl = input.parentElement;
@@ -17,88 +20,120 @@
     }
 
     // Check if email is valid
-    function checkEmail(input) {
-        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    function checkEmail(inputs) {
+      const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      let allValid = true;
+      inputs.forEach(input => {
         if (re.test(input.value.trim())) {
-            showSuccess(input);
+          showSuccess(input);
         } else {
-            showError(input, 'Email is invalid');
+          showError(input, 'Email is invalid');
+          allValid = false;
         }
+      });
+      return allValid;
     }
+    
 
     // Check required fields
     function checkRequired(inputArr) {
+        let sts = true
         inputArr.forEach(function(input) {
             if (input.value.trim() === '') {
                 showError(input, `${getFieldName(input)} is required`);
+                sts = false;
             } else {
                 showSuccess(input);
             }
         });
+        return sts;
     }
 
-    // Check radio button
-    function validateRadio(radioGrp) {
-        let isValid = false;
-
-        // Check if at least one radio button is selected
-        for (let i = 0; i < radioGrp.length; i++) {
-            if (radioGrp[i].checked) {
-                isValid = true;
-                break;
-            }
+    function validateRadio(radioGroups) {
+      //const radioGroups = document.querySelectorAll('.radiogrp');
+      let sts = true;
+      radioGroups.forEach(group => {
+        const radios = group.querySelectorAll('input[type="radio"]');
+        let isChecked = false;
+        radios.forEach(radio => {
+          if (radio.checked) {
+            isChecked = true;
+          }
+        });
+        const errorElement = group.querySelector('.radio-error');
+        errorElement.textContent = "";
+        if (!isChecked) {
+          sts = false;
+          errorElement.parentElement.classList.add('error');
+          errorElement.textContent = 'Please select an option.';
         }
-        if (isValid) {
-            showSuccess(radioGrp[0]); // Show success for any radio button in the group
-        } else {
-            showErrorRadio('Select any one of the options'); // Show error for any radio button in the group
-        }
+      });
+      return sts;
     }
     //datepicker
     function validateDate(input) {
-  //     var dobField = document.getElementById("dob");
-  // // add an event listener for when the date of birth field changes
-  // dobField.addEventListener("change", function() {
-  //   // get the date of birth value and convert it to a Date object
-  //   var dob = new Date(this.value);
-  //   // check if the date of birth is in the future
-  //   if (dob.getTime() > Date.now()) {
-  //     // if it is, clear the age field and return
-  //     document.getElementById("age").value = "";
-  //     Swal.fire({
-  //           icon: 'error',
-  //           title: 'Error in Date of Birth',
-  //           text: "I Think you are not born Yet!",
-  //           showConfirmButton: false,
-  //           timer: 3500
-  //         })
-  //     return;
-  //   }
-  //   // calculate the age based on the current date and the date of birth
-  //   var ageDiffMs = Date.now() - dob.getTime();
-  //   var ageDate = new Date(ageDiffMs);
-  //   var age = Math.abs(ageDate.getUTCFullYear() - 1970);
-  //   // set the value of the age field
-  //   document.getElementById("age").value = age;
-  // });
-    const selectedDate = new Date(dateInput.value);
-    const currentDate = new Date(); // Get current date
-    const errorElement = document.getElementById('datepicker-error');
-
-    // Check if the selected date is valid
-    if (isNaN(selectedDate)) {
-      errorElement.innerText = 'Please select a valid date';
+      var sts = false;
+      var old = new Date('1975-01-01');
+      input.addEventListener("blur", function() {    
+        // Get the date of birth value and convert it to a Date object
+        var dob = new Date(this.value);
+        var val = this.value
+        console.log("$", this.value);
+        // Check if the date of birth is in the future
+        var ageDiffMs = Date.now() - dob.getTime();
+        var ageDate = new Date(ageDiffMs);
+        var age = Math.abs(ageDate.getUTCFullYear() - 1970);
+    
+        if (dob.getTime() > Date.now()) {
+          // If it is, clear the age field and return
+          document.getElementById("age").value = "";
+          sts = false;
+          Swal.fire({
+            icon: 'error',
+            title: 'Error in Date of Birth',
+            text: "I Think you are not born Yet!",
+            showConfirmButton: false,
+            timer: 3500
+          })
+        }
+    
+        if (dob.getTime() < old.getTime()) {
+          // If it is, clear the age field and return
+          sts = false;
+          document.getElementById("age").value = "";
+          Swal.fire({
+            icon: 'error',
+            title: 'Error in Date of Birth',
+            text: "I Think you are aged for this registration",
+            showConfirmButton: false,
+            timer: 3500
+          })
+        }
+    
+        // Calculate the age based on the current date and the date of birth
+        var ageDiffMs = Date.now() - dob.getTime();
+        var ageDate = new Date(ageDiffMs);
+        var age = Math.abs(ageDate.getUTCFullYear() - 1970);
+        // Set the value of the age field
+        document.getElementById("age").value = age;
+    
+        // Check if the date of birth field is empty
+        if (input.value === "") {
+          // If the date of birth field is empty, set sts to false
+          sts = false;
+          Swal.fire({
+            icon: 'error',
+            title: 'Error in Date of Birth',
+            text: "Please enter your date of birth",
+            showConfirmButton: false,
+            timer: 3500
+          })
+        }
+      });
+    
+      return val;
     }
-    // Check if the selected date is in the future
-    else if (selectedDate.getTime() > currentDate.getTime()) {
-      errorElement.innerText = 'Please select a date in the past or today';
-    }
-    // Validation passed
-    else {
-      errorElement.innerText = ''; // Clear the error message
-      alert('Date is valid');
-    }
-  }
+    
 
     // Get field name
     function getFieldName(input) {
