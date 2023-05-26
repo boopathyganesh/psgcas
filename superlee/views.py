@@ -242,22 +242,17 @@ def family_details(request):
         print(form_data)
         roll_number=request.session['Roll_Number']
         print(roll_number)
-        User_reg.objects.filter(Roll_Number=roll_number).update(
-            fstrength=form_data['fstrength'],
-            famem=form_data['famem'],
-            mname=form_data['mname'],
-            mcontact=form_data['mcontact'],
-            moccupation=form_data['moccupation'],
-            fname=form_data['fname'],
-            fcon=form_data['fcon'],
-            foccupation=form_data['foccupation'],
-            sname=form_data['sname'],
-            scontact=form_data['scontact'],
-            soccupation=form_data['soccupation'],
-            permanent_address=form_data['permanent_address'],
-            current_address=form_data['current_address'],
-        )
-
+        request.session['mname']  = form_data['mname'],
+        request.session['mcontact'] = form_data['mcontact'],
+        request.session['moccupation'] = form_data['moccupation'],
+        request.session['fname'] = form_data['fname'],
+        request.session['fcon'] = form_data['fcon'],
+        request.session['foccupation'] = form_data['foccupation'],
+        request.session['scount'] = form_data['scount'],
+        request.session['permanent_address'] = form_data['permanent_address'],
+        request.session['p_pincode'] = form_data['p_pincode'],
+        request.session['current_address'] = form_data['current_address'],
+        request.session['c_pincode']= form_data['c_pincode']
         # Return a JSON response indicating success
         return JsonResponse({'success': True}, content_type='application/json')
 
@@ -495,7 +490,7 @@ def test(request):
         return HttpResponse(template.render())
 
 
-@ensure_csrf_cookie
+@csrf_exempt
 def intern_attendance_login(request):
     if request.method == 'POST':
         form_data=request.POST
@@ -523,7 +518,7 @@ def intern_attendance_login(request):
         template = loader.get_template('intern_atn_login.html')
         return HttpResponse(template.render())
 
-@ensure_csrf_cookie
+@csrf_exempt
 def intern_attendance(request):
     if request.method == 'POST':
         form_data = request.POST
@@ -550,7 +545,7 @@ def intern_attendance(request):
         return render(request,'intern_atn.html',{'data':data,'intern':studata})
 
 
-@ensure_csrf_cookie
+@csrf_exempt
 def intern_attendance_out(request):
     if request.method == 'POST':
         form_data = request.POST

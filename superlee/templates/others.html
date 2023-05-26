@@ -27,7 +27,9 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/autofill/2.5.3/css/autoFill.dataTables.min.css">
   <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-
+  <!-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> -->
+  <link rel="stylesheet" href="{% static 'vendors/select2/select2.min.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/select2-bootstrap-theme/select2-bootstrap.min.css' %}">
 </head>
 <body>
   <div class="container-scroller">
@@ -248,7 +250,7 @@
       </div>
       <!-- partial -->
       <!-- partial:partials/_sidebar.html -->
-      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+      <nav class="sidebar sidebar-offcanvas pt-5" id="sidebar">
         <ul class="nav">
           <p class="sidebar-title text-center">Basic Information</p>
           <li class="nav-item">
@@ -356,41 +358,34 @@
                         </div>
                         <div class="row">
                           <div class="col-md-12">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label" for="languages_known">Languages Know</label>
-                              <div class="col-sm-12">
-                                <select class="form-control" name="languages_known" id="languages_known">
-                                  <option value="Tamil">Tamil</option>
-                                  <option value="English">English</option>
-                                  <option value="Hindi">Hindi</option>
-                                  <option value="French">French</option>
-                                  <option value="Kannada">Kannada</option>
-                                  <option value="Malayalam">Malayalam</option>
-                                  <option value="Telugu">Telugu</option>
+                            <div class="form-group">
+                              <label for="languages_known">Languages Know</label>
+                                <select class="row form-control multipleselect w-100" name="states[]" multiple="multiple" id="states">
+                                  <option value="Python">Python</option>
+                                  <option value="C">C</option>
+                                  <option value="C++">C++</option>
+                                  <option value="JAVA">JAVA</option>
                                 </select>
                                 <input type="text" class="form-control" id="languages_known" name="languages_known" disabled hidden>
-                              </div>
                             </div>
                           </div>
                         </div>
                         <div class="row">
                           <div class="col-md-12">
-                            <div class="form-group row">
-                              <label class="col-sm-5 col-form-label" for="prog_languages">Programming Languages Known(if any)</label>
-                              <div class="col-sm-12">
-                                <select class="form-control" name="prog_languages" id="prog_languages">
+                            <div class="form-group">
+                              <label for="prog_languages">Programming Languages Known(if any)</label>
+                                <select class="row form-control multipleselect w-100" name="prog_languages[]" id="prog_languages" multiple="multiple">
                                   <option value="Python">Python</option>
                                   <option value="C">C</option>
                                   <option value="C++">C++</option>
                                   <option value="JAVA">JAVA</option>
                                 </select>
                                 <input type="text" class="form-control" id="prog_languages" name="prog_languages" disabled hidden>
-                              </div>
                             </div>
                           </div>
                         </div>
                         <div class="row mt-4 justify-content-center">
-                          <button id="proceed" type="button" class="btn btn-danger mr-4"><i class="icon-arrow-left"></i>Previous</button>
+                          <button  type="button" class="btn btn-danger mr-4"><i class="icon-arrow-left"></i>Previous</button>
                             <button id="proceed" type="button" class="btn btn-success">Finish <i class="icon-arrow-right"></i></button>
                         </div>
                   </form>
@@ -421,6 +416,11 @@
     </div>
     <!-- page-body-wrapper ends -->
   <!-- container-scroller -->
+  <script>
+    $(document).ready(function() {
+    $('.multipleselect').select2();
+});
+  </script>
   <script>
     $(document).ready(function() {
     $('#proceed').click(function(event) {
@@ -463,6 +463,8 @@
   <!-- Custom js for this page-->
   <script src="{% static 'js/dashboard.js' %}"></script>
   <script src="{% static 'js/Chart.roundedBarCharts.js' %}"></script>
+  <script src="{% static 'js/select2.js' %}"></script>
+  <script src="{% static 'vendors/select2/select2.min.js' %}"></script>
   <!-- End custom js for this page-->
   <!-- CSS -->
 
@@ -470,6 +472,7 @@
 <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script> -->
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/autofill/2.5.3/js/dataTables.autoFill.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
 </body>
 
 </html>

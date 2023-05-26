@@ -397,7 +397,7 @@
                             <div class="col-md-12">
                               <div class="form-group first">
                                 <div class="gender-details">
-                                    <span class="gender-title">Are you interested to Sign in a Service Agreement (Bond) with Companies</span>
+                                    <span class="gender-title">Are you interested to Sign in a Service Agreement (Bond) with Companies?</span>
                                     <div class="category">
                                       <div class="col-sm-4">
                                         <div class="form-check">
@@ -421,7 +421,7 @@
                             </div>
                         </div>
                         <div class="row mt-4 justify-content-center">
-                          <button id="proceed" type="button" class="btn btn-danger mr-4"> <i class="icon-arrow-left"></i> Previous</button>
+                          <button  type="button" class="btn btn-danger mr-4" onclick="goBack()"> <i class="icon-arrow-left"></i> Previous</button>
                             <button id="proceed" type="button" class="btn btn-success">Continue <i class="icon-arrow-right"></i></button>
                         </div>
                     </form>
@@ -471,7 +471,9 @@
         });
     });
 });
-
+function goBack() {
+    window.location.href = "/superlee/registration/family-details/";
+    }
 </script>
   <!-- plugins:js -->
   <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>

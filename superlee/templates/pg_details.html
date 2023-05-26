@@ -340,21 +340,6 @@
                       <div class="col-md-12 py-5">
                       <form method="post" class="forms" id="pg_forms">
                         <div class="row">
-                          <div class="col-md-12">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label" for="pg_department">PG Department</label>
-                              <div class="col-sm-12">
-                                <select class="form-control" name="pg_department" id="pg_department">
-                                  <!-- <option value="BCA">BCA</option>
-                                  <option value="MCA">MCA</option>
-                                  <option value="Information Technology">Information Technology</option>
-                                  <option value="SS">SS</option> -->
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
                           <div class="col-md-6">
                               <div class="form-group first">
                                   <label for="pg_hod">Department HOD's Name</label>
@@ -363,17 +348,15 @@
                           </div>
                           <div class="col-md-6">
                             <div class="form-group first">
+                                <label for="pg_seed">Department SEED Coordinator's Name</label>
+                                <input type="text" class="form-control" placeholder="SEED Coordinator's Name" id="pg_seed" name="pg_seed">
+                            </div>    
+                          </div>
+                          <div class="col-md-6">
+                            <div class="form-group first">
                                 <label for="pg_hod_no">Department HOD's Number</label>
                                 <input type="text" class="form-control" placeholder="HOD's Contact" id="pg_hod_no" name="pg_hod_no">
                             </div>    
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-md-6">
-                              <div class="form-group first">
-                                  <label for="pg_seed">Department SEED Coordinator's Name</label>
-                                  <input type="text" class="form-control" placeholder="SEED Coordinator's Name" id="pg_seed" name="pg_seed">
-                              </div>    
                           </div>
                           <div class="col-md-6">
                             <div class="form-group first">
@@ -383,10 +366,16 @@
                           </div>
                         </div>
                         <div class="row">
-                          <div class="col-md-12">
+                          <div class="col-md-6">
+                            <div class="form-group first">
+                                <label for="pg_hod_mail">Department HOD's Email ID (Official)</label>
+                                <input type="text" class="form-control" placeholder="HOD's Email (Official)" id="pg_hod_mail" name="pg_hod_mail">
+                            </div>    
+                          </div>
+                          <div class="col-md-6">
                             <div class="form-group first">
                                 <label for="pg_seed_mail">Department SEED Coordinator Email ID (Official)</label>
-                                <input type="text" class="form-control" placeholder="SEED Coordinator Email(Official)" id="pg_seed_mail" name="pg_seed_mail">
+                                <input type="text" class="form-control" placeholder="SEED Coordinator Email (Official)" id="pg_seed_mail" name="pg_seed_mail">
                             </div>    
                           </div>
                         </div>
@@ -526,16 +515,9 @@
                           </div>
                         <div class="row">
                           <div class="col-md-12">
-                            <div class="form-group row">
-                              <label class="col-sm-3 col-form-label" for="ex_ug_university">UG College University</label>
-                              <div class="col-sm-12">
-                                <select class="form-control" name="ex_ug_university" id="ex_ug_university">
-                                  <option value="Anna University">Anna University</option>
-                                  <option value="Bharathiar University">Bharathiar University</option>
-                                  <option value="Annamalai University">Annamalai University</option>
-                                  <option value="Bharathidasan University">Bharathidasan University</option>
-                                </select>
-                              </div>
+                            <div class="form-group">
+                              <label for="ex_ug_university">UG University</label>
+                              <input type="text" class="form-control" placeholder="UG University Name" id="ex_ug_university" name="ex_ug_university">
                             </div>
                           </div>
                         </div>

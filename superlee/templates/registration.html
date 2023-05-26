@@ -210,8 +210,9 @@
                                   <div class="form-group first">
                                       <label for="department">Department</label>
                                       <input type="text" class="form-control" id="department" name="department" readonly>
+                                      <div class="custom-target mt-2"></div>
                                   </div>
-                              </div>
+                                </div>
                               </div>
                               <div class="row">
                                 <div class="col-md-12">
@@ -229,7 +230,7 @@
                                       <div class="col-sm-6">
                                         <div class="form-check form-check-inline">
                                           <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" name="current_pursuing" value="option2">
+                                            <input class="form-check-input" type="radio" name="current_pursuing" value="Post Graduation">
                                             Post Graduation
                                           </label>
                                         </div>
@@ -285,7 +286,7 @@
                                   <div class="form-group first">
                                     <label for="age">Age </label>
                                     <input type="text" class="form-control" name="age" id="age" readonly>
-                                    <small></small>
+                                    <div class="custom-target mt-2"></div>
                                   </div>
                                 </div>
                               </div>
@@ -374,19 +375,37 @@
     <!-- page-body-wrapper ends -->
   <!-- container-scroller -->
   <script>
+    window.onload = function() {
+    var storedFormData = sessionStorage.getItem('regForm');
+    if (storedFormData) {
+      var form = document.getElementById('reg-form');
+      var parsedData = JSON.parse(storedFormData);
+      console.log(parsedData)
+      for (var key in parsedData) {
+        if (parsedData.hasOwnProperty(key)) {
+          var inputElement = form.elements[key];
+          if (inputElement) {
+            inputElement.value = parsedData[key];
+          }
+        }
+      }
+      sessionStorage.removeItem('regForm');
+    }
+  };
+  </script>
+  <script>
     const form = document.getElementById('reg-form');
     const rollno = document.getElementById('rollno');
     const email = document.getElementById('email');
     const aemail = document.getElementById('aemail');
-    var dob = document.getElementById("dob");
-    //const current_pursuing = document.getElementsByName('current_pursuing');
-    //const gender = document.getElementsByName('gender');
-    //const maritalSts = document.getElementsByName('marital-sts');
+    var dobField = document.getElementById("dob");
     const radiogrp = document.querySelectorAll('.radiogrp');
     const fname = document.getElementById('fname');
     const con = document.getElementById('con');
-    const altcon = document.getElementById('altcon')
-    //const proceedButton = document.getElementById('proceed');
+    const altcon = document.getElementById('altcon');
+    const dept = document.getElementById('department');
+    const age = document.getElementById('age');
+    const target = document.querySelector(".custom-target");
     $(document).ready(function() {
       $('#proceed').click(function(event) {
           console.log('clicked'); // Add this line
@@ -395,15 +414,31 @@
           var form_data = $('#reg-form').serialize(); // Serialize form data
           //let isValid = false
           form_data += '&csrfmiddlewaretoken=' + csrfToken;
+          var regForm = new FormData(form); //session data name
+          var storedData = {};
+
+          for (var [name, value] of regForm.entries()) {
+            storedData[name] = value;
+          }
+          sessionStorage.setItem('regForm', JSON.stringify(storedData));
           let status = false;
           status = checkRequired([rollno, email,aemail, fname, con, altcon]);
-          console.log('checkRequired',status)
+          //console.log('checkRequired',status)
           status = validateRadio(radiogrp);
-          console.log('validateRadio',status)
+          //console.log('validateRadio',status)
           status = checkEmail([email,aemail]);
-          console.log('checkEmail',status)
-          //validateDate(dob);
-          //console.log('validateDate',status)
+          //console.log('checkEmail',status)
+          if(dobField.value === ''){
+            status = false
+          }
+          if ( dept.value === "" ) {
+            status = false;
+            showAlert(dept);
+          }
+          if ( age.value === "" ) {
+            status = false;
+            showAlert(age);
+          }
           if(status){
             $.ajax({
               type: 'POST',
@@ -427,16 +462,62 @@
             });//
           }
           else{
-            Swal.fire({
-                  icon: 'error',
-                  title: "Sorry!",
-                  text: "Something went wrong!",
-                  showConfirmButton: true,
-                })
+             Swal.fire({
+                   icon: 'error',
+                   title: "Sorry!",
+                   text: "Something went wrong!",
+                   showConfirmButton: true,
+                 })
           }
       });
     });
 </script>
+
+<script>
+  // get the date of birth field
+  var dobField = document.getElementById("dob");
+  var old =new Date('1975-01-01')
+  console.log(dobField.value)
+  // add an event listener for when the date of birth field changes
+  dobField.addEventListener("blur", function() {
+    // get the date of birth value and convert it to a Date object
+    var dob = new Date(this.value);
+    // check if the date of birth is in the future
+    var ageDiffMs = Date.now() - dob.getTime();
+    var ageDate = new Date(ageDiffMs);
+    var age = Math.abs(ageDate.getUTCFullYear() - 1970);
+    if (dob.getTime() > Date.now()) {
+      // if it is, clear the age field and return
+      document.getElementById("age").value = "";
+      Swal.fire({
+            icon: 'error',
+            title: 'Error in Date of Birth',
+            text: "I Think you are not born Yet!",
+            showConfirmButton: false,
+            timer: 3500
+          })
+      return;
+    }
+    if (dob.getTime() < old.getTime()) {
+      // if it is, clear the age field and return
+      document.getElementById("age").value = "";
+      Swal.fire({
+            icon: 'error',
+            title: 'Error in Date of Birth',
+            text: "I Think you are aged for this registration",
+            showConfirmButton: false,
+            timer: 3500
+          })
+      return;
+    }
+    // calculate the age based on the current date and the date of birth
+    var ageDiffMs = Date.now() - dob.getTime();
+    var ageDate = new Date(ageDiffMs);
+    var age = Math.abs(ageDate.getUTCFullYear() - 1970);
+    // set the value of the age field
+    document.getElementById("age").value = age;
+  });
+  </script>
   <script>
     // Load the JSON data
     jsonFile = "{% static 'js/data.json' %}"
@@ -448,7 +529,7 @@
         var rollno = document.getElementById("rollno");
         var department = document.getElementById("department");
   
-        rollno.addEventListener("change", function(){
+        rollno.addEventListener("blur", function(){
           // Get the input value
           var inputValue = this.value;
           this.value = inputValue.toUpperCase();

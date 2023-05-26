@@ -6,7 +6,7 @@
         small.innerText = message;
     }
     function showErrorRadio(radioGroup) {
-      console.log(radioGroup);
+      //console.log(radioGroup);
       const formGroup = radioGroup[0].parentNode.parentNode.parentNode;
       formGroup.classList.add('error');
       const small = formGroup.querySelector('.radio-error');
@@ -70,71 +70,7 @@
       });
       return sts;
     }
-    //datepicker
-    function validateDate(input) {
-      var sts = false;
-      var old = new Date('1975-01-01');
-      input.addEventListener("blur", function() {    
-        // Get the date of birth value and convert it to a Date object
-        var dob = new Date(this.value);
-        var val = this.value
-        console.log("$", this.value);
-        // Check if the date of birth is in the future
-        var ageDiffMs = Date.now() - dob.getTime();
-        var ageDate = new Date(ageDiffMs);
-        var age = Math.abs(ageDate.getUTCFullYear() - 1970);
     
-        if (dob.getTime() > Date.now()) {
-          // If it is, clear the age field and return
-          document.getElementById("age").value = "";
-          sts = false;
-          Swal.fire({
-            icon: 'error',
-            title: 'Error in Date of Birth',
-            text: "I Think you are not born Yet!",
-            showConfirmButton: false,
-            timer: 3500
-          })
-        }
-    
-        if (dob.getTime() < old.getTime()) {
-          // If it is, clear the age field and return
-          sts = false;
-          document.getElementById("age").value = "";
-          Swal.fire({
-            icon: 'error',
-            title: 'Error in Date of Birth',
-            text: "I Think you are aged for this registration",
-            showConfirmButton: false,
-            timer: 3500
-          })
-        }
-    
-        // Calculate the age based on the current date and the date of birth
-        var ageDiffMs = Date.now() - dob.getTime();
-        var ageDate = new Date(ageDiffMs);
-        var age = Math.abs(ageDate.getUTCFullYear() - 1970);
-        // Set the value of the age field
-        document.getElementById("age").value = age;
-    
-        // Check if the date of birth field is empty
-        if (input.value === "") {
-          // If the date of birth field is empty, set sts to false
-          sts = false;
-          Swal.fire({
-            icon: 'error',
-            title: 'Error in Date of Birth',
-            text: "Please enter your date of birth",
-            showConfirmButton: false,
-            timer: 3500
-          })
-        }
-      });
-    
-      return val;
-    }
-    
-
     // Get field name
     function getFieldName(input) {
         return input.id.charAt(0).toUpperCase() + input.id.slice(1);
@@ -149,3 +85,28 @@
 
     //     // Perform additional form validation or submission logic
     // });
+
+    function showAlert(target) {
+      var alertMessage = document.createElement("div");
+      alertMessage.classList.add("alert", "alert-danger", "alert-dismissible", "fade", "show");
+      alertMessage.textContent = "This field can select values automatically. Please enter Reg.No & DOB again";
+    
+      // Create the close button
+      var closeButton = document.createElement("button");
+      closeButton.setAttribute("type", "button");
+      closeButton.classList.add("close");
+      closeButton.setAttribute("data-dismiss", "alert");
+      closeButton.setAttribute("aria-label", "Close");
+      closeButton.innerHTML = '<span aria-hidden="true">&times;</span>';
+    
+      // Append the close button to the alert message
+      alertMessage.appendChild(closeButton);
+      //console.log(target.nextElementSibling);
+      var targetSibling =target.nextElementSibling;
+      // Clear any existing content in the target element
+      targetSibling.innerHTML = "";
+    
+      // Append the alert message to the target element
+      targetSibling.appendChild(alertMessage);
+    }
+    

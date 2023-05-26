@@ -26,6 +26,7 @@
   <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" />
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/autofill/2.5.3/css/autoFill.dataTables.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 
 </head>
@@ -338,64 +339,27 @@
                   <div class="container form-container scroll-forms">
                       <div class="col-md-12 py-5">
                         <form method="post" class="forms" id="family-form">
+                          {% csrf_token %}
                           <div class="row">
-                            <div class="col-md-6">
-                              <div class="form-group first">
-                                <label for="fstrength">No.of.Family Members</label>
-                                <input type="text" class="form-control" placeholder="Eg:4" id="fstrength" name="fstrength">
-                              </div>    
-                            </div>
-                            <div class="col-md-6">
-                              <div class="form-group first">
-                                <label for="famem">Family Members</label>
-                                <div class="form-group">
-                                  <div class="row ml-1">
-                                    <div class="form-check col">
-                                      <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" value="Father" name="famem" id="famem">
-                                        Father
-                                      </label>
-                                    </div>
-                                    <div class="form-check col">
-                                      <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" value="Mother" name="famem" id="famem">
-                                        Mother
-                                      </label>
-                                    </div>
-                                  </div>
-                                  <div class="row ml-1">
-                                    <div class="form-check col">
-                                      <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" value="Brother" name="famem" id="famem">
-                                        Brother
-                                      </label>
-                                    </div>
-                                    <div class="form-check col">
-                                      <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" value="Sister" name="famem" id="famem">
-                                        Sister
-                                      </label>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
                             <div class="col-md-6">
                               <div class="form-group first">
                                 <label for="faname">Mother's Name</label>
                                 <input type="text" class="form-control" placeholder="Mother's Name" id="mname" name="mname">
+                                <small></small>
                               </div>
                             </div>
                             <div class="col-md-6">
                               <div class="form-group first">
                                 <label for="fcon">Mother's Contact</label>
                                 <input type="text" class="form-control" placeholder="Eg. 924xxxxx45" id="mcontact" name="mcontact">
+                                <small></small>
                               </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group first">
                                   <label for="focc">Mother's Occupation</label>
                                   <input type="text" class="form-control" placeholder="Eg.Doctor, Farmer" id="moccupation" name="moccupation">
+                                  <small></small>
                                 </div>    
                               </div>
                           </div>
@@ -404,69 +368,65 @@
                                 <div class="form-group first">
                                   <label for="mname">Father's Name</label>
                                   <input type="text" class="form-control" placeholder="Father's Name" id="fname" name="fname">
+                                  <small></small>
                                 </div>    
                               </div>
                             <div class="col-md-6">
                               <div class="form-group first">
                                 <label for="mcon">Father's Contact</label>
                                 <input type="text" class="form-control" placeholder="924xxxxx45" id="fcon" name="fcon">
+                                <small></small>
                               </div>    
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group first">
                                   <label for="mocc">Father's Occupation</label>
                                   <input type="text" class="form-control" placeholder="Eg: Entrepreneur, Engineer, Doctor" id="foccupation" name="foccupation">
+                                  <small></small>
                                 </div>    
                               </div>
                           </div>
                           <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group first">
-                                  <label for="mname">Sibling Name</label>
-                                  <input type="text" class="form-control" placeholder="Sibling's Name" id="sname" name="sname">
+                                  <label for="mname">Sibling Count</label>
+                                  <input type="text" class="form-control" placeholder="Sibling Count" id="scount" name="scount">
+                                  <small></small>
                                 </div>    
-                              </div>
-                            <div class="col-md-6">
-                              <div class="form-group first">
-                                <label for="mcon">Sibling Contact</label>
-                                <input type="text" class="form-control" placeholder="924xxxxx45" id="scontact" name="scontact">
-                              </div>    
                             </div>
-                            <div class="col-md-12">
-                                <div class="form-group first">
-                                  <label for="mocc">Sibling Occupation</label>
-                                  <input type="text" class="form-control" placeholder="Eg: Enterpreneur, Homemaker" id="soccupation" name="soccupation">
-                                </div>    
-                              </div>
                           </div>
                           <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group first">
                                   <label for="mname">Permanent Address</label>
                                   <input type="text" class="form-control" placeholder="Permanent Address" id="permanent_address" name="permanent_address">
+                                  <small></small>
                                 </div>    
                               </div>
                             <div class="col-md-6">
                                 <div class="form-group first">
                                   <label for="mname">Pincode</label>
                                   <input type="text" class="form-control" placeholder="Permanent Address Pincode" id="p_pincode" name="p_pincode">
+                                  <small></small>
                                 </div>
                               </div>
                             <div class="col-md-6">
                                 <div class="form-group first">
                                   <label for="mocc">Present Address</label>
                                   <input type="text" class="form-control" placeholder="Present Address" id="current_address" name="current_address">
+                                  <small></small>
                                 </div>    
                               </div>
                             <div class="col-md-6">
                                 <div class="form-group first">
                                   <label for="mname">Pincode</label>
                                   <input type="text" class="form-control" placeholder="Present Address Pincode" id="c_pincode" name="c_pincode">
+                                  <small></small>
                                 </div>
                               </div>
                           </div>
                           <div class="row mt-4 justify-content-center">
-                            <button   type="button" class="btn btn-danger mr-4"><i class="icon-arrow-left"></i> Previous</button>
+                            <button  type="button" class="btn btn-danger mr-4" onclick="goBack()"><i class="icon-arrow-left"></i> Previous</button>
                             <button id="proceed" type="button" class="btn btn-success">Continue <i class="icon-arrow-right"></i></button>
                           </div>
                         </form>
@@ -498,25 +458,89 @@
     <!-- page-body-wrapper ends -->
   <!-- container-scroller -->
   <script>
-    $(document).ready(function() {
-    $('#proceed').click(function(event) {
-        console.log("Click event triggered"); // Add this line
-        event.preventDefault(); // Prevent form submission
-        var form_data = $('#family-form').serialize(); // Serialize form data
-        $.ajax({
-            type: 'POST',
-            url: '/superlee/registration/family-details/',
-            data: form_data,
-            success: function(response) {
-              window.location.href = "/superlee/registration/work-agreement/";
-            },
-            error: function(response) {
-              alert("Response Failure");
+    window.onload = function() {
+      var storedFormData = sessionStorage.getItem('familyForm');
+      if (storedFormData) {
+        var form = document.getElementById('family-form');
+        var parsedData = JSON.parse(storedFormData);
+        console.log(parsedData)
+        for (var key in parsedData) {
+          if (parsedData.hasOwnProperty(key)) {
+            var inputElement = form.elements[key];
+            if (inputElement) {
+              inputElement.value = parsedData[key];
             }
+          }
+        }
+        sessionStorage.removeItem('familyForm');
+      }
+    };
+  </script>
+  <script>
+    const form = document.getElementById('family-form');
+    const mname = document.getElementById('mname');
+    const mcontact = document.getElementById('mcontact');
+    const moccupation = document.getElementById('moccupation');
+    const fname = document.getElementById('fname');
+    const fcon = document.getElementById('fcon');
+    const foccupation = document.getElementById('foccupation');
+    const scount = document.getElementById('scount');
+    const permanent_address = document.getElementById('permanent_address');
+    const p_pincode = document.getElementById('p_pincode');
+    const current_address = document.getElementById('current_address');
+    const c_pincode = document.getElementById('c_pincode');
+    $(document).ready(function() {
+      $('#proceed').click(function(event) {
+          console.log("Click event triggered"); // Add this line
+          event.preventDefault(); // Prevent form submission
+          var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+          var form_data = $('#family-form').serialize(); // Serialize form data
+          form_data += '&csrfmiddlewaretoken=' + csrfToken;
+          var familyForm = new FormData(form); //session data name
+          var storedData = {};
+
+          for (var [name, value] of familyForm.entries()) {
+            storedData[name] = value;
+          }
+          sessionStorage.setItem('familyForm', JSON.stringify(storedData));
+          var status = true;
+          status = checkRequired([mname,mcontact,moccupation,fname,fcon,foccupation,scount,permanent_address,p_pincode,current_address,c_pincode])
+          if(status){
+            $.ajax({
+              type: 'POST',
+              url: '/superlee/registration/family-details/',
+              data: form_data,
+              headers: {
+                'X-CSRFToken': csrfToken // Include the CSRF token in the request headers
+              },
+              success: function(response) {
+                window.location.href = "/superlee/registration/schoolings/";
+              },
+              error: function(response) {
+                Swal.fire({
+                  icon: 'error',
+                  title: 'response.responseJSON.error',
+                  text: "There is a field which mustn't be empty!",
+                  showConfirmButton: false,
+                  timer: 1500
+                })
+              }
+            });
+          }
+          else{
+            Swal.fire({
+                   icon: 'error',
+                   title: "Sorry!",
+                   text: "Something went wrong!",
+                   showConfirmButton: true,
+                 })
+          }
         });
     });
-});
-</script>
+    function goBack() {
+    window.location.href = "/superlee/registration";
+    }
+  </script>
   <!-- plugins:js -->
   <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
   <script src="{% static 'js/sortable.js' %}"></script>
@@ -534,6 +558,7 @@
   <script src="{% static 'js/template.js' %}"></script>
   <script src="{% static 'js/settings.js' %}"></script>
   <script src="{% static 'js/todolist.js' %}"></script>
+  <script src="{% static 'js/custom-validator.js' %}"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
   <script src="{% static 'js/dashboard.js' %}"></script>
@@ -545,6 +570,8 @@
 <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script> -->
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/autofill/2.5.3/js/dataTables.autoFill.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
+
 </body>
 
 </html>
