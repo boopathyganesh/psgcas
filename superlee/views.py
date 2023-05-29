@@ -269,7 +269,7 @@ def schoolings(request):
         # Retrieve form data from the request
         form_data = request.POST
         print(form_data)
-        roll_number = request.session['Roll_Number']
+        roll_number = request.session['rollno']
         request.session['sslc_school'] = form_data['sslc_school'],
         request.session['sslc_school_address'] = form_data['sslc_school_address'],
         request.session['sslc_percentage'] = form_data['sslc_percentage'],
@@ -310,7 +310,7 @@ def ug_details(request):
         form_data = request.POST
         print(form_data)
         print(request.session)
-        roll_number = request.session['Roll_Number']
+        roll_number = request.session['rollno']
 
         request.session['ug_department'] = form_data['ug_department'],
         request.session['ug_hod'] = form_data['ug_hod'],
@@ -341,7 +341,7 @@ def pg_details(request):
         # Retrieve form data from the request
         form_data = request.POST
         print(form_data)
-        roll_number = request.session['Roll_Number']
+        roll_number = request.session['rollno']
         request.session['pg_department'] = form_data['pg_department'],
         request.session['pg_hod'] = form_data['pg_hod'],
         request.session['pg_hod_no'] = form_data['pg_hod_no'],
@@ -383,7 +383,7 @@ def other_details(request):
         # Retrieve form data from the request
         form_data = request.POST
         print(form_data)
-        roll_number = request.session['Roll_Number']
+        roll_number = request.session['rollno']
         request.session['pg_hod'] = form_data['pg_hod'],
         request.session['why_placements'] = form_data['why_placements'],
         request.session['about_yourself'] = form_data['about_yourself'],
@@ -405,7 +405,7 @@ def workloc_agreement(request):
         # Retrieve form data from the request
         form_data = request.POST
         print(form_data)
-        roll_number = request.session['Roll_Number']
+        roll_number = request.session['rollno']
         request.session['work_interest'] = form_data['work_interest'],
         request.session['work_location'] = form_data['work_location'],
         request.session['sis'] = form_data['sis']
@@ -424,7 +424,7 @@ def mand_docs(request):
     if request.method == 'POST':
         # Retrieve form data from the request
         form_data = request.POST
-        roll_number = request.session['Roll_Number']
+        roll_number = request.session['rollno']
         request.session['aadhar_no'] = form_data['aadhar_no'],
         request.session['pan_number'] = form_data['pan_number'],
         request.session['linkedin_profile'] = form_data['linkedin_profile'],
@@ -455,7 +455,7 @@ def mand_docs(request):
         return HttpResponse(template.render(context, request))
 @ensure_csrf_cookie
 def ack(request):
-        roll_number = request.session['Roll_Number']
+        roll_number = request.session['rollno']
         user_data = User_reg.objects.filter(Roll_Number=roll_number).values()
         user_data=dict(user_data[0])
         return render(request,'ack_page.html',{'data':user_data})
