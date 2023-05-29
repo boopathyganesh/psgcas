@@ -27,6 +27,7 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/autofill/2.5.3/css/autoFill.dataTables.min.css">
   <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
 
 </head>
 <body>
@@ -338,30 +339,33 @@
                   <div class="container form-container scroll-forms">
                       <div class="col-md-12 py-5">
                         <form method="post" class="forms" id="ug_forms">
+                          {% csrf_token %}
                           <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group first">
+                                <div class="form-group radiogrp">
                                     <label for="gap_ug">Any gap between Schooling and UG?</label>
                                     <div class="row ml-3">
                                         <div class="form-check mr-5">
                                           <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="gap_ug" id="gap_ug" value="Yes">
+                                            <input type="radio" class="form-check-input" name="gap_ug" id="gap_ug_yes" value="Yes">
                                             Yes
                                           </label>
                                         </div>
                                         <div class="form-check">
                                           <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="gap_ug" id="gap_ug" value="No">
+                                            <input type="radio" class="form-check-input" name="gap_ug" id="gap_ug_no" value="No">
                                             No
                                           </label>
                                         </div>
                                       </div>
+                                      <small class="radio-error"></small>
                                 </div>
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-5" id="gap_yes" style="display: none;">
                               <div class="form-group first">
                                   <label for="gap_year">Year of Gap (if YES)</label>
                                   <input type="text" class="form-control" placeholder="Eg: 1, 2, 3 (must be in number)" id="gap_year" name="gap_year">
+                                  <small></small>
                               </div>    
                             </div>
                           </div>
@@ -380,58 +384,51 @@
                               </div>
                             </div>
                           </div>
-                          <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group first">
-                                    <label for="ug_hod">Department HOD's Name</label>
-                                    <input type="text" class="form-control" placeholder="HOD's Name" id="ug_hod" name="ug_hod">
-                                </div>    
-                            </div>
-                            <div class="col-md-6">
-                              <div class="form-group first">
-                                  <label for="ug_hod_no">Department HOD's Contact Number</label>
-                                  <input type="text" class="form-control" placeholder="HOD's Contact Number" id="ug_hod_no" name="ug_hod_no">
-                              </div>    
-                            </div>
                           </div> -->
                           <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group first">
                                     <label for="ug_hod">HOD's Name</label>
-                                    <input type="text" class="form-control" placeholder=" Department SEED Coordinator Name" id="ug_hod" name="ug_seed">
-                                </div>    
+                                    <input type="text" class="form-control" placeholder=" Department SEED Coordinator Name" id="ug_hod" name="ug_hod">
+                                    <small></small>
+                                  </div>    
                             </div>
                             <div class="col-md-6">
                               <div class="form-group first">
                                   <label for="ug_seed">SEED Coordinator's Name</label>
-                                  <input type="text" class="form-control" placeholder="Department SEED Coordinator contact" id="ug_seed" name="ug_seed_no">
-                              </div>    
+                                  <input type="text" class="form-control" placeholder="Department SEED Coordinator contact" id="ug_seed" name="ug_seed">
+                                  <small></small>
+                                </div>    
                             </div>
                             <div class="col-md-6">
                               <div class="form-group first">
                                   <label for="ug_hod_no">HOD's Number</label>
-                                  <input type="text" class="form-control" placeholder="Department SEED Coordinator contact" id="ug_hod_no" name="ug_seed_no">
-                              </div>    
+                                  <input type="text" class="form-control" placeholder="Department SEED Coordinator contact" id="ug_hod_no" name="ug_hod_no">
+                                  <small></small>
+                                </div>    
                             </div>
                             <div class="col-md-6">
                               <div class="form-group first">
                                   <label for="ug_seed_no">SEED Coordinator's Number</label>
                                   <input type="text" class="form-control" placeholder="Department SEED Coordinator contact" id="ug_seed_no" name="ug_seed_no">
-                              </div>    
+                                  <small></small>
+                                </div>    
                             </div>
                           </div>
                           <div class="row">
                             <div class="col-md-6">
                               <div class="form-group first">
                                   <label for="ug_hod_mail">HOD's E-Mail ID (Official)</label>
-                                  <input type="text" class="form-control" placeholder="Department SEED Coordinator E-Mail" id="ug_hod_mail" name="ug_seed_mail">
-                              </div>    
+                                  <input type="text" class="form-control" placeholder="Department SEED Coordinator E-Mail" id="ug_hod_mail" name="ug_hod_mail">
+                                  <small></small>
+                                </div>    
                             </div>
                             <div class="col-md-6">
                               <div class="form-group first">
                                   <label for="ug_seed_mail">SEED Coordinator's E-Mail ID (Official)</label>
                                   <input type="text" class="form-control" placeholder="Department SEED Coordinator E-Mail" id="ug_seed_mail" name="ug_seed_mail">
-                              </div>    
+                                  <small></small>
+                                </div>    
                             </div>
                           </div>
                           <div class="row">
@@ -440,7 +437,8 @@
                                   <label for="ug_sem1">UG Overall Percentage</label>
                                   <p>Enter the aggregate percentage till last semester & This marks will be verified before adding to your profile</p>
                                   <input type="text" class="form-control" placeholder="Eg: 95" id="ug_percentage" name="ug_percentage">
-                              </div>    
+                                  <small></small>
+                                </div>    
                             </div>
                             <div class="col-md-6">
                               <div class="form-group first">
@@ -453,94 +451,101 @@
                                     <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                                   </span>
                                 </div>
+                                <small class="file-error"></small>
                               </div>
                             </div>
                           </div>
                           <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group first">
+                                <div class="form-group radiogrp">
                                     <label for="active_ug_arrears">Do you have any Current Arrears?</label>
                                     <div class="row ml-3">
                                           <div class="form-check mr-5">
                                             <label class="form-check-label">
-                                              <input type="radio" class="form-check-input" name="active_ug_arrears" id="active_ug_arrears" value="Yes">
+                                              <input type="radio" class="form-check-input" name="active_ug_arrears" id="active_ug_arrears_yes" value="Yes">
                                               Yes
                                             </label>
                                           </div>
                                           <div class="form-check">
                                             <label class="form-check-label">
-                                              <input type="radio" class="form-check-input" name="active_ug_arrears" id="active_ug_arrears" value="No">
+                                              <input type="radio" class="form-check-input" name="active_ug_arrears" id="active_ug_arrears_no" value="No">
                                               No
                                             </label>
                                           </div>
                                     </div>
+                                    <small class="radio-error"></small>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" id="arrears_yes" style="display: none;">
                               <div class="form-group first">
                                   <label for="active_ug_arrears_count">Current Arrears in numbers</label>
                                   <input type="text" class="form-control" placeholder="Eg. 1" id="active_ug_arrears_count" name="active_ug_arrears_count">
+                                  <small></small>
                               </div>
                             </div>
                           </div>
                           <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group first">
+                                <div class="form-group radiogrp">
                                     <label for="ug_arrears">Do you have any History of Arrears?</label>
                                         <div class="row ml-3">
                                           <div class="form-check mr-5">
                                             <label class="form-check-label">
-                                              <input type="radio" class="form-check-input" name="ug_arrears" id="ug_arrears" value="Yes">
+                                              <input type="radio" class="form-check-input" name="ug_arrears" id="ug_arrears_yes" value="Yes">
                                               Yes
                                             </label>
                                           </div>
                                           <div class="form-check">
                                             <label class="form-check-label">
-                                              <input type="radio" class="form-check-input" name="ug_arrears" id="ug_arrears" value="No">
+                                              <input type="radio" class="form-check-input" name="ug_arrears" id="ug_arrears_no" value="No">
                                               No
                                             </label>
                                           </div>
                                         </div>
+                                        <small class="radio-error"></small>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" id="history_yes" style="display: none;">
                               <div class="form-group first">
                                   <label for="ug_arrears_count">History of Arrears in numbers</label>
                                   <input type="text" class="form-control" placeholder="Eg. 1" id="ug_arrears_count" name="ug_arrears_count">
+                                  <small></small>
                               </div>
                             </div>
                           </div>
                           
                           <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group first">
+                                <div class="form-group radiogrp">
                                     <label for="ug_internship">Do you have Internship as part your syllabus?</label>
                                     <div class="row ml-3">
                                           <div class="form-check mr-5">
                                             <label class="form-check-label">
-                                              <input type="radio" class="form-check-input" name="ug_internship" id="ug_internship" value="Yes">
+                                              <input type="radio" class="form-check-input" name="ug_internship" id="ug_internship_yes" value="Yes">
                                               Yes
                                             </label>
                                           </div>
                                           <div class="form-check">
                                             <label class="form-check-label">
-                                              <input type="radio" class="form-check-input" name="ug_internship" id="ug_internship" value="No">
+                                              <input type="radio" class="form-check-input" name="ug_internship" id="ug_internship_no" value="No">
                                               No
                                             </label>
                                           </div>
                                     </div>
+                                    <small class="radio-error"></small>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" id="intern_yes" style="display: none;">
                               <div class="form-group first">
                                   <label for="ug_intern_period">What is the duration of the internship period(in months)?</label>
                                   <p>Kindly discuss with the department staffs and fill the answer.</p>
                                   <input type="text" class="form-control" placeholder="Eg. 4 Months" id="ug_intern_period" name="ug_intern_period">
-                              </div>
+                                  <small></small>
+                                </div>
                             </div>
                           </div>
                           <div class="row mt-4 justify-content-center">
-                            <button id="proceed" type="button" class="btn btn-danger mr-4"><i class="icon-arrow-left"></i> Previous</button>
+                            <button type="button" class="btn btn-danger mr-4" onclick="goBack()"><i class="icon-arrow-left"></i> Previous</button>
                             <button id="proceed" type="button" class="btn btn-success">Continue <i class="icon-arrow-right"></i></button>
                           </div>
                         </form>
@@ -572,25 +577,199 @@
     <!-- page-body-wrapper ends -->
   <!-- container-scroller -->
   <script>
+    window.onload = function() {
+    var storedFormData = sessionStorage.getItem('ugForms');
+    if (storedFormData) {
+      var form = document.getElementById('ug_forms');
+      var parsedData = JSON.parse(storedFormData);
+      console.log(parsedData);
+      for (var key in parsedData) {
+        if (parsedData.hasOwnProperty(key)) {
+          var inputElement = form.elements[key];
+          if (inputElement && inputElement.type !== 'file') {
+            inputElement.value = parsedData[key];
+          }
+        }
+      }
+      sessionStorage.removeItem('ugForms');
+    }
+  };
+  </script>
+  <script>
+    var form = document.getElementById('ug_forms');
+    const radiogrp = document.querySelectorAll('.radiogrp');
+    const errorFields = document.querySelectorAll('.file-error');
+    const gap_year = document.getElementById('gap_year');
+    const ug_hod = document.getElementById('ug_hod');
+    const ug_seed = document.getElementById('ug_seed');
+    const ug_hod_no = document.getElementById('ug_hod_no');
+    const ug_seed_no = document.getElementById('ug_seed_no');
+    const ug_hod_mail = document.getElementById('ug_hod_mail');
+    const ug_seed_mail = document.getElementById('ug_seed_mail');
+    const ug_percentage = document.getElementById('ug_percentage');
+    const active_ug_arrears_count = document.getElementById('active_ug_arrears_count');
+    const ug_arrears_count = document.getElementById('ug_arrears_count');
+    const ug_intern_period = document.getElementById('ug_intern_period');
+    const ug_marksheet = document.getElementById('ug_marksheet');
+    var gap_ug = document.getElementsByName('gap_ug');
+    var active_ug_arrears = document.getElementsByName('active_ug_arrears');
+    var ug_arrears = document.getElementsByName('ug_arrears');
+    var ug_internship = document.getElementsByName('ug_internship');
+    // Define an object that maps the radio button IDs to the corresponding element IDs
+    const radioElementMap = {
+      gap_ug_yes: 'gap_yes',
+      gap_ug_no: 'gap_yes',
+      active_ug_arrears_yes: 'arrears_yes',
+      active_ug_arrears_no: 'arrears_yes',
+      ug_arrears_yes: 'history_yes',
+      ug_arrears_no: 'history_yes',
+      ug_internship_yes: 'intern_yes',
+      ug_internship_no: 'intern_yes',
+    };
+
+    // Attach a click event listener to the common parent element of the radio buttons
+    document.addEventListener('click', (event) => {
+      const clickedRadio = event.target;
+      const elementId = radioElementMap[clickedRadio.id];
+      if (elementId) {
+        const element = document.getElementById(elementId);
+        if (element) {
+          element.style.display = clickedRadio.value === 'Yes' ? 'block' : 'none';
+        }
+      }
+    });
+
+
     $(document).ready(function() {
     $('#proceed').click(function(event) {
         console.log("Click event triggered"); // Add this line
         event.preventDefault(); // Prevent form submission
-        var form_data = $('#ug_forms').serialize(); // Serialize form data
-        $.ajax({
+        var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+        //var form_data = $('#ug_forms').serialize(); // Serialize form data
+        var form_data = new FormData($('#ug_forms')[0]);
+        form_data.append('csrfmiddlewaretoken', csrfToken);
+
+        var ugForms = new FormData(form); //session data name
+        var storedData = {};
+        for (var [name, value] of ugForms.entries()) {
+          if (value instanceof File) {
+            // Handle file uploads separately
+            storedData[name] = value;
+          } else {
+            storedData[name] = value;
+          }
+        }
+        sessionStorage.setItem('ugForms', JSON.stringify(storedData));
+
+        var status = true;
+
+        var gap_ugVal,active_ug_arrearsVal,ug_arrearsVal,ug_internshipVal;
+        for (var i = 0; i < gap_ug.length; i++) {
+          if (gap_ug[i].checked) {
+            gap_ugVal = gap_ug[i].value;
+            break;
+          }
+        }
+        for (var i = 0; i < active_ug_arrears.length; i++) {
+          if (active_ug_arrears[i].checked) {
+            active_ug_arrearsVal = active_ug_arrears[i].value;
+            break;
+          }
+        }
+        for (var i = 0; i < ug_arrears.length; i++) {
+          if (ug_arrears[i].checked) {
+            ug_arrearsVal = ug_arrears[i].value;
+            break;
+          }
+        }
+        for (var i = 0; i <  ug_internship.length; i++) {
+          if ( ug_internship[i].checked) {
+            ug_internshipVal =  ug_internship[i].value;
+            break;
+          }
+        }
+        if(gap_ugVal === 'Yes' && active_ug_arrearsVal === 'Yes' && ug_arrearsVal === 'Yes' && ug_internshipVal === 'Yes'){
+          status = checkRequired([gap_year,active_ug_arrears_count,ug_arrears_count,ug_intern_period]);
+        }
+        // if(active_ug_arrearsVal === 'Yes'){
+        //   status = checkRequired();
+        // }
+        // if(ug_arrearsVal === 'Yes'){
+        //   status = checkRequired();
+        // }
+        // if(ug_internshipVal === 'Yes'){
+        //   status = checkRequired();
+        // }
+
+        status = status && checkRequired([ug_hod,ug_seed,ug_hod_no,ug_seed_no,ug_percentage]);
+        status = status && checkEmail([ug_hod_mail,ug_seed_mail]);
+        status = status && validateRadio(radiogrp);
+        status = status && isFileEmpty([ug_marksheet])
+        status  = status && validateContactFields([ug_hod_no,ug_seed_no])
+        if(status){
+          $.ajax({
             type: 'POST',
             url: '/superlee/registration/ug-details/',
             data: form_data,
+            headers: {
+                'X-CSRFToken': csrfToken // Include the CSRF token in the request headers
+              },
+            contentType: false, // Set content type to false to let the browser handle it
+            processData: false,
             success: function(response) {
               window.location.href = "/superlee/registration/others/";
             },
             error: function(response) {
-              alert("Response Failure");
+              Swal.fire({
+                  icon: 'error',
+                  title: 'response.responseJSON.error',
+                  text: "There is a field which mustn't be empty!",
+                  showConfirmButton: false,
+                  timer: 1500
+                })
             }
         });
+        }else{
+          Swal.fire({
+                   icon: 'error',
+                   title: "Sorry!",
+                   text: "Something went wrong!",
+                   showConfirmButton: true,
+                 })
+        }
     });
 });
+function goBack() {
+    window.location.href = "/superlee/registration/schoolings/";
+    }
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const fileInputs = document.querySelectorAll('input[type="file"]');
 
+    fileInputs.forEach(function(fileInput) {
+      const fileError = fileInput.parentElement.querySelector('.file-error');
+      const fileGrp = fileInput.parentElement;
+      fileInput.addEventListener('change', function() {
+        console.log(fileGrp)
+        const file = fileInput.files[0];
+        if (file) {
+          const fileType = file.type;
+          if (fileType !== 'application/pdf') {
+            fileGrp.classList.add('error')
+            fileError.textContent = 'Please select a PDF file.';
+            fileInput.value = ''; // Clear the file input
+          } else {
+            fileGrp.className = 'form-group success'
+            fileError.textContent = ''; // Clear the error message
+          }
+        } else {
+          fileGrp.classList.add('error')
+          fileError.textContent = 'Please select a file.';
+        }
+      });
+    });
+  });
 </script>
   <!-- plugins:js -->
   <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
@@ -610,6 +789,7 @@
   <script src="{% static 'js/settings.js' %}"></script>
   <script src="{% static 'js/todolist.js' %}"></script>
   <script src="{% static 'js/file-upload.js' %}"></script>
+  <script src="{% static 'js/custom-validator.js' %}"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
   <script src="{% static 'js/dashboard.js' %}"></script>
@@ -621,6 +801,7 @@
 <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script> -->
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/autofill/2.5.3/js/dataTables.autoFill.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
 </body>
 
 </html>

@@ -340,6 +340,7 @@
                   <div class="container form-container scroll-forms">
                       <div class="col-md-12 py-5">
                       <form method="post" class="forms" id="others_forms">
+                        {% csrf_token %}
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group first">
@@ -385,7 +386,7 @@
                           </div>
                         </div>
                         <div class="row mt-4 justify-content-center">
-                          <button  type="button" class="btn btn-danger mr-4"><i class="icon-arrow-left"></i>Previous</button>
+                          <button  type="button" class="btn btn-danger mr-4" onclick="goBack()"><i class="icon-arrow-left"></i>Previous</button>
                             <button id="proceed" type="button" class="btn btn-success">Finish <i class="icon-arrow-right"></i></button>
                         </div>
                   </form>
@@ -422,22 +423,87 @@
 });
   </script>
   <script>
+    window.onload = function() {
+    var storedFormData = sessionStorage.getItem('othersForms');
+    if (storedFormData) {
+      var form = document.getElementById('others_forms');
+      var parsedData = JSON.parse(storedFormData);
+      console.log(parsedData);
+      for (var key in parsedData) {
+        if (parsedData.hasOwnProperty(key)) {
+          var inputElement = form.elements[key];
+          if (inputElement && inputElement.type !== 'file') {
+            inputElement.value = parsedData[key];
+          }
+        }
+      }
+      sessionStorage.removeItem('othersForms');
+    }
+  };
+  </script>
+  <script>
+    var form = document.getElementById('others_forms');
+    const why_placements = document.getElementById('why_placements');
+    const about_yourself = document.getElementById('about_yourself');
+    const languages_known = document.getElementById('languages_known');
+    const prog_languages = document.getElementById('prog_languages');
     $(document).ready(function() {
     $('#proceed').click(function(event) {
         console.log("Click event triggered"); // Add this line
         event.preventDefault(); // Prevent form submission
+        var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
         var form_data = $('#others_forms').serialize(); // Serialize form data
-        $.ajax({
+        form_data += '&csrfmiddlewaretoken=' + csrfToken;
+        
+        var othersForms = new FormData(form); //session data name
+        var storedData = {};
+
+        for (var [name, value] of othersForms.entries()) {
+          if (value instanceof File) {
+            // Handle file uploads separately
+            storedData[name] = value;
+          } else {
+            storedData[name] = value;
+          }
+        }
+        sessionStorage.setItem('othersForms', JSON.stringify(storedData));
+
+        var status = true;
+        const selectedLanguages = Array.from(document.querySelectorAll('select[name="prog_languages[]"] option:checked')).map(option => option.value);
+
+        console.log(selectedLanguages);
+
+        if(status){
+          $.ajax({
             type: 'POST',
             url: '/superlee/registration/pg-details/',
             data: form_data,
+            headers: {
+                'X-CSRFToken': csrfToken // Include the CSRF token in the request headers
+              },
             success: function(response) {
-              alert("Data Collected");
+              Swal.fire({
+                  icon: 'success',
+                  title: 'Data Collected Successfully',
+                  text: "Please wait a minute",
+                  showConfirmButton: false,
+                  timer: 1500
+                })
             },
             error: function(response) {
-              alert("Response Failure");
+              Swal.fire({
+                  icon: 'error',
+                  title: 'response.responseJSON.error',
+                  text: "There is a field which mustn't be empty!",
+                  showConfirmButton: false,
+                  timer: 1500
+                })
             }
         });
+        }
+        else{
+
+        }
     });
 });
 

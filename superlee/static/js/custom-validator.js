@@ -109,4 +109,108 @@
       // Append the alert message to the target element
       targetSibling.appendChild(alertMessage);
     }
+
+
+    // function handleFileUpload(event, index,errorFields) {
+    //   const file = event.target.files[0];
+    //   var isValid = true;
+    //   // Validate file extension
+    //   const allowedExtensions = ['.pdf'];
+    //   const fileExtension = getFileExtension(file.name);
+    //   console.log(fileExtension);
+    //   if (!allowedExtensions.includes(fileExtension)) {
+    //     errorFields[index].textContent = 'Invalid file extension. Allowed extension is .pdf';
+    //     isValid = false;
+    //     return;
+    //   }
+    
+    //   // Validate file size
+    //   const maxSizeInBytes = 10 * 1024 * 1024; // 10MB
+    //   if (file.size > maxSizeInBytes) {
+    //     errorFields[index].textContent = 'File size exceeds the limit. Maximum allowed size is 10MB.';
+    //     isValid = false;
+    //     return;
+    //   }
+    
+    //   // Proceed with file upload
+    //   // ...
+    // return isValid;
+    // }
+    
+    // function getFileExtension(filename) {
+    //   return '.' + filename.split('.').pop();
+    // }
+
+    function fileValidation(fileInputs){
+      fileInputs.forEach(function(fileInput) {
+
+        const fileError = fileInput.parentElement.querySelector('.file-error');
+        const fileGrp = fileInput.parentElement;
+        fileInput.addEventListener('change', function() {
+          console.log(fileGrp)
+          const file = fileInput.files[0];
+          if (file) {
+            const fileType = file.type;
+            if (fileType !== 'application/pdf') {
+              fileGrp.classList.add('error')
+              fileError.textContent = 'Please select a PDF file.';
+              console.log(fileInput.value);
+              fileInput.value = ''; // Clear the file input
+
+            } else {
+              fileError.textContent = ''; // Clear the error message
+            }
+          } else {
+            fileGrp.classList.add('error')
+            fileError.textContent = 'Please select a file.';
+          }
+        });
+      });
+    }
+
+    function isFileEmpty(fileInputs) {
+      //var fileInputs = document.getElementsByClassName('fileInput');
+      var isValid = true;
+      for (var i = 0; i < fileInputs.length; i++) {
+        var fileInput = fileInputs[i];
+        var file = fileInput.value;
+        console.log(fileInput.value);
+        const fileError = fileInput.parentElement.querySelector('.file-error');
+        const fileGrp = fileInput.parentElement;
+        if (!fileInput || !file) {
+          //alert('Please select a file to upload.');
+          fileGrp.classList.add('error')
+          fileError.textContent = 'Please select the file!';
+          isValid =  false;
+        }
+        
+        if (file.size === 0) {
+          //alert('Selected file is empty.');
+          fileGrp.classList.add('error')
+          fileError.textContent = 'File is invalid! Choose another file';
+          isValid = false;
+        }
+      }
+      
+      return isValid;
+    }
+
+    function validateContactFields(contactFields) {
+      let isValid = true;
+    
+      for (let i = 0; i < contactFields.length; i++) {
+        const contactField = contactFields[i];
+        const contact = contactField.value.trim();
+        const regex = /^\d{10}$/; // Matches exactly 10 digits
+        console.log(contact);
+        if (regex.test(contact)) {
+          showSuccess(contactField);
+        } else {
+          isValid = false;
+          showError(contactField, "Contact number is invalid");
+        }
+      }
+    
+      return isValid;
+    }
     

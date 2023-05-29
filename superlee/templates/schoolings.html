@@ -27,7 +27,7 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/autofill/2.5.3/css/autoFill.dataTables.min.css">
   <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
 </head>
 <body>
   <div class="container-scroller">
@@ -339,39 +339,43 @@
                   <div class="container form-container scroll-forms">
                       <div class="col-md-12 py-5">
                         <form method="post" class="forms" id="schoolings">
-                            <div class="row">
+                          {% csrf_token %}  
+                          <div class="row">
                               <div class="col-md-12">
-                                  <div class="form-group first">
+                                  <div class="form-group radiogrp">
                                       <label for="sslc_schooling">10th Schooling</label>
-                                      <div class="row">
-                                        <div class="col-md-12">
-                                          <div class="row ml-3">
-                                            <div class="form-check">
-                                              <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="sslc_schooling" id="sslc_schooling" value="Government School">
-                                                Government School / Government-Aided School
-                                              </label>
+                                      <div class="category">
+                                        <div class="row">
+                                          <div class="col-md-12">
+                                            <div class="row ml-3">
+                                              <div class="form-check">
+                                                <label class="form-check-label">
+                                                  <input type="radio" class="form-check-input" name="sslc_schooling" id="sslc_schooling" value="Government School">
+                                                  Government School / Government-Aided School
+                                                </label>
+                                              </div>
                                             </div>
-                                          </div>
-                                          <div class="row ml-3">
-                                            <div class="form-check">
-                                              <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="sslc_schooling" id="sslc_schooling" value="Private School">
-                                                Private School
-                                              </label>
+                                            <div class="row ml-3">
+                                              <div class="form-check">
+                                                <label class="form-check-label">
+                                                  <input type="radio" class="form-check-input" name="sslc_schooling" id="sslc_schooling" value="Private School">
+                                                  Private School
+                                                </label>
+                                              </div>
                                             </div>
-                                          </div>
-                                          <div class="row ml-3">
-                                            <div class="form-check">
-                                              <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="sslc_schooling" id="sslc_schooling" value="Others">
-                                                Others
-                                              </label>
-                                              <input type="text" class="form-control" id="sslc_schooling" name="sslc_schooling" disabled hidden>
+                                            <div class="row ml-3">
+                                              <div class="form-check">
+                                                <label class="form-check-label">
+                                                  <input type="radio" class="form-check-input" name="sslc_schooling" id="sslc_schooling" value="Others">
+                                                  Others
+                                                </label>
+                                                <input type="text" class="form-control" id="sslc_schooling" name="sslc_schooling" disabled hidden>
+                                              </div>
                                             </div>
                                           </div>
                                         </div>
                                       </div>
+                                      <small class="radio-error"></small>
                                   </div>
                               </div>
                             </div>
@@ -380,78 +384,85 @@
                                     <div class="form-group first">
                                         <label for="sslc_school">10th School Name</label>
                                         <input type="text" class="form-control" placeholder="Eg: PSG Public School" id="sslc_school" name="sslc_school">
-                                    </div>    
+                                        <small></small>
+                                      </div>    
                                 </div>
                                 <div class="col-md-6">
                                   <div class="form-group first">
                                       <label for="sslc_school_address">10th School Address</label>
                                       <input type="text" class="form-control" placeholder=" " id="sslc_school_address" name="sslc_school_address"> 
-                                  </div>
+                                      <small></small>
+                                      <small></small>
+                                    </div>
                               </div>
                                 <div class="col-md-12">
                                     <div class="form-group first">
                                         <label for="sslc_school_pincode">Pincode</label>
                                         <input type="text" class="form-control" placeholder="School Address Pincode" id="sslc_school_pincode" name="sslc_school_pincode"> 
-                                    </div>
+                                        <small></small>
+                                      </div>
                                 </div>
                             </div>
                             <div class="row">
                               <div class="col-md-12">
-                                  <div class="form-group first">
+                                  <div class="form-group radiogrp">
                                       <label for="rollno">10th- Board of Studies</label>
-                                      <div class="row">
-                                        <div class="col-md-12">
-                                          <div class="row ml-3">
-                                            <div class="form-check">
-                                              <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="board" id="board" value="State Board of Education">
-                                                State Board of Education
-                                              </label>
+                                      <div class="category">
+                                        <div class="row">
+                                          <div class="col-md-12">
+                                            <div class="row ml-3">
+                                              <div class="form-check">
+                                                <label class="form-check-label">
+                                                  <input type="radio" class="form-check-input" name="board" id="board" value="State Board of Education">
+                                                  State Board of Education
+                                                </label>
+                                              </div>
                                             </div>
-                                          </div>
-                                          <div class="row ml-3">
-                                            <div class="form-check">
-                                              <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="board" id="board" value="CBSE">
-                                                CBSE
-                                              </label>
+                                            <div class="row ml-3">
+                                              <div class="form-check">
+                                                <label class="form-check-label">
+                                                  <input type="radio" class="form-check-input" name="board" id="board" value="CBSE">
+                                                  CBSE
+                                                </label>
+                                              </div>
                                             </div>
-                                          </div>
-                                          <!-- <div class="row ml-3">
-                                            <div class="form-check">
-                                              <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="board" id="board" value="ICSC">
-                                                ICSC
-                                              </label>
+                                            <!-- <div class="row ml-3">
+                                              <div class="form-check">
+                                                <label class="form-check-label">
+                                                  <input type="radio" class="form-check-input" name="board" id="board" value="ICSC">
+                                                  ICSC
+                                                </label>
+                                              </div>
+                                            </div> -->
+                                            <div class="row ml-3">
+                                              <div class="form-check">
+                                                <label class="form-check-label">
+                                                  <input type="radio" class="form-check-input" name="board" id="board" value="NIOS">
+                                                  NIOS
+                                                </label>
+                                              </div>
                                             </div>
-                                          </div> -->
-                                          <div class="row ml-3">
-                                            <div class="form-check">
-                                              <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="board" id="board" value="NIOS">
-                                                NIOS
-                                              </label>
+                                            <div class="row ml-3">
+                                              <div class="form-check">
+                                                <label class="form-check-label">
+                                                  <input type="radio" class="form-check-input" name="board" id="board" value="IGCSE">
+                                                  IGCSE
+                                                </label>
+                                              </div>
                                             </div>
-                                          </div>
-                                          <div class="row ml-3">
-                                            <div class="form-check">
-                                              <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="board" id="board" value="IGCSE">
-                                                IGCSE
-                                              </label>
-                                            </div>
-                                          </div>
-                                          <div class="row ml-3">
-                                            <div class="form-check">
-                                              <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="board" id="board" value="Others">
-                                                Others
-                                              </label>
-                                              <input type="text" class="form-control" id="others" name="others" disabled hidden>
+                                            <div class="row ml-3">
+                                              <div class="form-check">
+                                                <label class="form-check-label">
+                                                  <input type="radio" class="form-check-input" name="board" id="board" value="Others">
+                                                  Others
+                                                </label>
+                                                <input type="text" class="form-control" id="others" name="others" disabled hidden>
+                                              </div>
                                             </div>
                                           </div>
                                         </div>
                                       </div>
+                                      <small class="radio-error"></small>
                                   </div>
                               </div>
                             </div>
@@ -460,18 +471,20 @@
                                 <div class="form-group first">
                                     <label for="sslc_percentage">10th Percentage</label>
                                     <input type="text" class="form-control" placeholder="Eg: 92" id="sslc_percentage" name="sslc_percentage">
-                                </div>    
+                                    <small></small>
+                                  </div>    
                               </div>
                             <div class="col-md-6">
                               <div class="form-group first">
                                   <label for="sslc_year">10th Year of Passing</label>
                                   <input type="text" class="form-control" placeholder="Eg: 2017" id="sslc_year" name="sslc_year">
-                              </div>    
+                                  <small></small>
+                                </div>    
                             </div>
                             </div>
                             <div class="row">
                               <div class="col-md-8">
-                                <div class="form-group first">
+                                <div class="form-group">
                                   <label for="sslc_certi">10th Marksheet</label>
                                   <p>Upload a clear scanned PDF</p>
                                   <input type="file" name="sslc_certi" id="sslc_certi" class="file-upload-default">
@@ -481,71 +494,78 @@
                                       <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                                     </span>
                                   </div>
+                                  <small class="file-error"></small>
                                 </div>
-                            </div>
+                              </div>
                             </div>
                             <div class="row">
                               <div class="col-md-12">
-                                  <div class="form-group first">
+                                <div class="form-group radiogrp">
                                       <label for="hsc_or_diploma">Your Educational Journey after 10th?</label>
-                                      <div class="row">
-                                        <div class="col-md-12">
-                                          <div class="row ml-3">
-                                            <div class="form-check">
-                                              <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="hsc_or_diploma" id="choice_hsc" value="12th">
-                                                12th
-                                              </label>
+                                      <div class="category">
+                                        <div class="row">
+                                          <div class="col-md-12">
+                                            <div class="row ml-3">
+                                              <div class="form-check">
+                                                <label class="form-check-label">
+                                                  <input type="radio" class="form-check-input" name="hsc_or_diploma" value="12th" id="choice_hsc">
+                                                  12th
+                                                </label>
+                                              </div>
                                             </div>
-                                          </div>
-                                          <div class="row ml-3">
-                                            <div class="form-check">
-                                              <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="hsc_or_diploma" id="choice_diploma" value="Diploma">
-                                                Diploma
-                                              </label>
+                                            <div class="row ml-3">
+                                              <div class="form-check">
+                                                <label class="form-check-label">
+                                                  <input type="radio" class="form-check-input" name="hsc_or_diploma" value="Diploma" id="choice_diploma">
+                                                  Diploma
+                                                </label>
+                                              </div>
                                             </div>
                                           </div>
                                         </div>
                                       </div>
-                                  </div>
+                                      <small class="radio-error"></small>
+                                </div>
                               </div>
                             </div>
                             <!-- 12th section -->
                             <section id="hsc_section" style="display: none;"> 
                                 <div class="row">
                                   <div class="col-md-12">
-                                      <div class="form-group first">
+                                      <div class="form-group radiogrp">
                                           <label for="hsc_schooling">12th Schooling</label>
-                                          <div class="row">
-                                            <div class="col-md-12">
-                                              <div class="row ml-3">
-                                                <div class="form-check">
-                                                  <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" name="hsc_schooling" id="hsc_schooling" value="Government School">
-                                                    Government School / Government-Aided School
-                                                  </label>
+                                          <div class="category">
+                                            <div class="row">
+                                              <div class="col-md-12">
+                                                <div class="row ml-3">
+                                                  <div class="form-check">
+                                                    <label class="form-check-label">
+                                                      <input type="radio" class="form-check-input" name="hsc_schooling" id="hsc_schooling" value="Government School">
+                                                      Government School / Government-Aided School
+                                                    </label>
+                                                  </div>
                                                 </div>
-                                              </div>
-                                              <div class="row ml-3">
-                                                <div class="form-check">
-                                                  <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" name="hsc_schooling" id="hsc_schooling" value="Private School">
-                                                    Private School
-                                                  </label>
+                                                <div class="row ml-3">
+                                                  <div class="form-check">
+                                                    <label class="form-check-label">
+                                                      <input type="radio" class="form-check-input" name="hsc_schooling" id="hsc_schooling" value="Private School">
+                                                      Private School
+                                                    </label>
+                                                  </div>
                                                 </div>
-                                              </div>
-                                              <div class="row ml-3">
-                                                <div class="form-check">
-                                                  <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" name="hsc_schooling" id="hsc_schooling" value="Others">
-                                                    Others
-                                                  </label>
-                                                  <input type="text" class="form-control" id="hsc_schooling" name="hsc_schooling" disabled hidden>
+                                                <div class="row ml-3">
+                                                  <div class="form-check">
+                                                    <label class="form-check-label">
+                                                      <input type="radio" class="form-check-input" name="hsc_schooling" id="hsc_schooling" value="Others">
+                                                      Others
+                                                    </label>
+                                                    <input type="text" class="form-control" id="hsc_schooling" name="hsc_schooling" disabled hidden>
+                                                  </div>
                                                 </div>
                                               </div>
                                             </div>
                                           </div>
+                                          <small class="radio-error"></small>
                                       </div>
                                   </div>
                                 </div>
@@ -554,78 +574,84 @@
                                         <div class="form-group first">
                                             <label for="hsc_school">12th School Name</label>
                                             <input type="text" class="form-control" placeholder="Eg: PSG Public School" id="hsc_school" name="hsc_school">
-                                        </div>    
+                                            <small></small>
+                                          </div>    
                                     </div>
                                     <div class="col-md-6">
                                       <div class="form-group first">
                                           <label for="hsc_school_address">12th School Address</label>
                                           <input type="text" class="form-control" placeholder=" " id="hsc_school_address" name="hsc_school_address"> 
-                                      </div>
+                                          <small></small>
+                                        </div>
                                   </div>
                                     <div class="col-md-6">
                                         <div class="form-group first">
                                             <label for="hsc_school_pincode">Pincode</label>
                                             <input type="text" class="form-control" placeholder="School Address Pincode" id="hsc_school_pincode" name="hsc_school_pincode"> 
-                                        </div>
+                                            <small></small>
+                                          </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                   <div class="col-md-12">
-                                      <div class="form-group first">
+                                      <div class="form-group radiogrp">
                                           <label for="hsc_board">12th- Board of Studies</label>
-                                          <div class="row">
-                                            <div class="col-md-12">
-                                              <div class="row ml-3">
-                                                <div class="form-check">
-                                                  <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" name="hsc_board" id="hsc_board" value="State Board of Education">
-                                                    State Board of Education
-                                                  </label>
+                                          <div class="category">
+                                            <div class="row">
+                                              <div class="col-md-12">
+                                                <div class="row ml-3">
+                                                  <div class="form-check">
+                                                    <label class="form-check-label">
+                                                      <input type="radio" class="form-check-input" name="hsc_board" id="hsc_board" value="State Board of Education">
+                                                      State Board of Education
+                                                    </label>
+                                                  </div>
                                                 </div>
-                                              </div>
-                                              <div class="row ml-3">
-                                                <div class="form-check">
-                                                  <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" name="hsc_board" id="hsc_board" value="CBSE">
-                                                    CBSE
-                                                  </label>
+                                                <div class="row ml-3">
+                                                  <div class="form-check">
+                                                    <label class="form-check-label">
+                                                      <input type="radio" class="form-check-input" name="hsc_board" id="hsc_board" value="CBSE">
+                                                      CBSE
+                                                    </label>
+                                                  </div>
                                                 </div>
-                                              </div>
-                                              <div class="row ml-3">
-                                                <div class="form-check">
-                                                  <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" name="hsc_board" id="hsc_board" value="ICSC">
-                                                    ICSC
-                                                  </label>
+                                                <div class="row ml-3">
+                                                  <div class="form-check">
+                                                    <label class="form-check-label">
+                                                      <input type="radio" class="form-check-input" name="hsc_board" id="hsc_board" value="ICSC">
+                                                      ICSC
+                                                    </label>
+                                                  </div>
                                                 </div>
-                                              </div>
-                                              <div class="row ml-3">
-                                                <div class="form-check">
-                                                  <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" name="hsc_board" id="hsc_board" value="NIOS">
-                                                    NIOS
-                                                  </label>
+                                                <div class="row ml-3">
+                                                  <div class="form-check">
+                                                    <label class="form-check-label">
+                                                      <input type="radio" class="form-check-input" name="hsc_board" id="hsc_board" value="NIOS">
+                                                      NIOS
+                                                    </label>
+                                                  </div>
                                                 </div>
-                                              </div>
-                                              <!-- <div class="row ml-3">
-                                                <div class="form-check">
-                                                  <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" name="hsc_board" id="hsc_board" value="IGCSE">
-                                                    IGCSE
-                                                  </label>
-                                                </div>
-                                              </div> -->
-                                              <div class="row ml-3">
-                                                <div class="form-check">
-                                                  <label class="form-check-label">
-                                                    <input type="radio" class="form-check-input" name="hsc_board" id="hsc_board" value="Others">
-                                                    Others
-                                                  </label>
-                                                  <input type="text" class="form-control" id="hsc_board" name="hsc_board" disabled hidden>
+                                                <!-- <div class="row ml-3">
+                                                  <div class="form-check">
+                                                    <label class="form-check-label">
+                                                      <input type="radio" class="form-check-input" name="hsc_board" id="hsc_board" value="IGCSE">
+                                                      IGCSE
+                                                    </label>
+                                                  </div>
+                                                </div> -->
+                                                <div class="row ml-3">
+                                                  <div class="form-check">
+                                                    <label class="form-check-label">
+                                                      <input type="radio" class="form-check-input" name="hsc_board" id="hsc_board" value="Others">
+                                                      Others
+                                                    </label>
+                                                    <input type="text" class="form-control" id="hsc_board" name="hsc_board" disabled hidden>
+                                                  </div>
                                                 </div>
                                               </div>
                                             </div>
                                           </div>
+                                          <small class="radio-error"></small>
                                       </div>
                                   </div>
                                 </div>
@@ -634,13 +660,15 @@
                                     <div class="form-group first">
                                         <label for="hsc_percentage">12th Percentage</label>
                                         <input type="text" class="form-control" placeholder="Eg: 92" id="hsc_percentage" name="hsc_percentage">
+                                        <small></small>
                                     </div>    
                                   </div>
                                 <div class="col-md-6">
                                   <div class="form-group first">
                                       <label for="hsc_year">12th Year of Passing</label>
                                       <input type="text" class="form-control" placeholder="Eg: 2019" id="hsc_year" name="hsc_year">
-                                  </div>    
+                                      <small></small>
+                                    </div>    
                                 </div>
                                 </div>
                                 <div class="row">
@@ -648,7 +676,8 @@
                                     <div class="form-group first">
                                       <label for="high">12th Marksheet</label>
                                       <p>Upload a clear scanned PDF</p>
-                                      <input type="file" name="high" id="high" class="file-upload-default">
+                                      <input type="file" name="hsc_certi" id="hsc_certi" class="file-upload-default">
+                                      <small class="file-error"></small>
                                       <div class="input-group col-xs-12">
                                         <input type="text" class="form-control file-upload-info" disabled placeholder="Upload HSC Marksheet">
                                         <span class="input-group-append">
@@ -666,19 +695,22 @@
                                       <div class="form-group first">
                                           <label for="diploma_clg">Diploma College Name</label>
                                           <input type="text" class="form-control" placeholder="Eg: PSG Public School" id="diploma_clg" name="diploma_clg">
-                                      </div>    
+                                          <small></small>
+                                        </div>    
                                   </div>
                                   <div class="col-md-6">
                                       <div class="form-group first">
                                           <label for="diploma_clg_address">Diploma College Address</label>
                                           <input type="text" class="form-control" placeholder=" " id="diploma_clg_address" name="diploma_clg_address"> 
-                                      </div>
+                                          <small></small>
+                                        </div>
                                   </div>
                                   <div class="col-md-6">
                                     <div class="form-group first">
                                         <label for="diploma_clg_pincode">Pincode</label>
                                         <input type="text" class="form-control" placeholder=" " id="diploma_clg_pincode" name="diploma_clg_pincode"> 
-                                    </div>
+                                        <small></small>
+                                      </div>
                                 </div>
                               </div>
                               <div class="row">
@@ -686,12 +718,14 @@
                                   <div class="form-group first">
                                       <label for="diploma_percentage">Diploma Percentage</label>
                                       <input type="text" class="form-control" placeholder="Eg: 92" id="diploma_percentage" name="diploma_percentage">
-                                  </div>    
+                                      <small></small>
+                                    </div>    
                                 </div>
                               <div class="col-md-6">
                                 <div class="form-group first">
                                     <label for="diploma_year">Diploma Year of Passing</label>
                                     <input type="text" class="form-control" placeholder="Eg: 2017" id="diploma_year" name="diploma_year">
+                                    <small></small>
                                 </div>    
                               </div>
                               </div>
@@ -700,7 +734,8 @@
                                   <div class="form-group first">
                                     <label for="high">Diploma Marksheet</label>
                                     <p>Upload a clear scanned copy as Single PDF</p>
-                                    <input type="file" name="high" id="high" class="file-upload-default">
+                                    <input type="file" name="diploma_certi" id="diploma_certi" class="file-upload-default">
+                                    <small class="file-error"></small>
                                     <div class="input-group col-xs-12">
                                       <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Diploma Marksheet">
                                       <span class="input-group-append">
@@ -744,26 +779,139 @@
     <!-- page-body-wrapper ends -->
   <!-- container-scroller -->
   <script>
+    window.onload = function() {
+    var storedFormData = sessionStorage.getItem('schoolings');
+    if (storedFormData) {
+      var form = document.getElementById('schoolings');
+      var parsedData = JSON.parse(storedFormData);
+      console.log(parsedData);
+      for (var key in parsedData) {
+        if (parsedData.hasOwnProperty(key)) {
+          var inputElement = form.elements[key];
+          if (inputElement && inputElement.type !== 'file') {
+            inputElement.value = parsedData[key];
+          }
+        }
+      }
+      sessionStorage.removeItem('schoolings');
+    }
+  };
+  </script>
+  <script>
+    var form = document.getElementById('schoolings');
+    const sslc_school = document.getElementById('sslc_school');
+    const sslc_school_address = document.getElementById('sslc_school_address');
+    const sslc_school_pincode = document.getElementById('sslc_school_pincode');
+    const sslc_percentage = document.getElementById('sslc_percentage');
+    const sslc_year = document.getElementById('sslc_year');
+    const hsc_school = document.getElementById('hsc_school');
+    const hsc_school_address = document.getElementById('hsc_school_address');
+    const hsc_school_pincode = document.getElementById('hsc_school_pincode');
+    const hsc_percentage = document.getElementById('hsc_percentage');
+    const hsc_year = document.getElementById('hsc_year');
+    const diploma_clg = document.getElementById('diploma_clg');
+    const diploma_clg_address = document.getElementById('diploma_clg_address');
+    const diploma_clg_pincode = document.getElementById('diploma_clg_pincode');
+    const diploma_percentage = document.getElementById('diploma_percentage');
+    const diploma_year = document.getElementById('diploma_year');
+    const hsc = document.getElementById('choice_hsc');
+    const diploma = document.getElementById('choice_diploma');
+    const section_hsc = document.getElementById('hsc_section');
+    const section_diploma = document.getElementById('diploma_section');
+    const radiogrp = document.querySelectorAll('.radiogrp');
+    var choice = document.getElementsByName('hsc_or_diploma');
+    //const fileInputs = document.querySelectorAll('input[type="file"]');
+    const sslc_certi = document.getElementById('sslc_certi');
+    const hsc_certi = document.getElementById('hsc_certi');
+    const diploma_certi = document.getElementById('diploma_certi');
+    const errorFields = document.querySelectorAll('.file-error');
+    hsc.addEventListener('click', () => {
+      section_diploma.style.display = 'none';
+      section_hsc.style.display = 'block';
+    });
+  
+    diploma.addEventListener('click', () => { 
+      section_diploma.style.display = 'block';
+      section_hsc.style.display = 'none';
+    });
+
     $(document).ready(function() {
       $('#proceed').click(function(event) {
         console.log("Click event triggered"); // Add this line
         event.preventDefault(); // Prevent form submission
-
+        var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
         var form_data = new FormData($('#schoolings')[0]); // Use FormData object to handle file upload
+        //form_data += '&csrfmiddlewaretoken=' + csrfToken;
+        form_data.append('csrfmiddlewaretoken', csrfToken);
+        console.log(form_data)
+        var schoolings = new FormData(form); //session data name
+        var storedData = {};
 
-        $.ajax({
+        for (var [name, value] of schoolings.entries()) {
+          if (value instanceof File) {
+            // Handle file uploads separately
+            storedData[name] = value;
+          } else {
+            storedData[name] = value;
+          }
+        }
+        sessionStorage.setItem('schoolings', JSON.stringify(storedData));
+        var status = true;
+        status = checkRequired([sslc_school,sslc_school_address,sslc_school_pincode,sslc_percentage,sslc_year]);
+        status = validateRadio(radiogrp);
+        var choiceVal;
+        for (var i = 0; i < choice.length; i++) {
+          if (choice[i].checked) {
+            choiceVal = choice[i].value;
+            break;
+          }
+        }
+        console.log(choiceVal)
+        if(choiceVal === '12th'){
+          status = checkRequired([hsc_school,hsc_school_address,hsc_school_pincode,hsc_percentage,hsc_year]);
+          status = isFileEmpty([sslc_certi,hsc_certi]);
+        }
+        else if(choiceVal === 'Diploma'){
+          status = checkRequired([diploma_clg,diploma_clg_address,diploma_clg_pincode,diploma_percentage,diploma_year]);
+          status = isFileEmpty([sslc_certi,diploma_certi]);
+        }
+        else{
+          status = false
+        }
+        //status = isFileEmpty(fileInputs);
+
+        if(status){
+          $.ajax({
           type: 'POST',
           url: '/superlee/registration/schoolings/', // Use Django url template tag to generate URL
           data: form_data,
+          headers: {
+                'X-CSRFToken': csrfToken // Include the CSRF token in the request headers
+              },
           contentType: false, // Set content type to false to let the browser handle it
           processData: false, // Set processData to false to prevent jQuery from trying to serialize the data
           success: function(response) {
             window.location.href = "/superlee/registration/ug-details/"; // Use Django url template tag to generate URL
           },
           error: function(response) {
-            alert("Response Failure");
+            Swal.fire({
+                  icon: 'error',
+                  title: 'response.responseJSON.error',
+                  text: "There is a field which mustn't be empty!",
+                  showConfirmButton: false,
+                  timer: 1500
+                })
           }
         });
+        }
+        else{
+          Swal.fire({
+                   icon: 'error',
+                   title: "Sorry!",
+                   text: "Something went wrong!",
+                   showConfirmButton: true,
+                 })
+        }
       });
     });
     function goBack() {
@@ -771,19 +919,31 @@
     }
   </script>
   <script>
-    const hsc = document.getElementById('choice_hsc');
-    const diploma = document.getElementById('choice_diploma');
-    const section_hsc = document.getElementById('hsc_section');
-    const section_diploma = document.getElementById('diploma_section');
-  
-    hsc.addEventListener('click', () => {
-      section_diploma.style.display = 'none';
-      section_hsc.style.display = 'block';
-    });
-  
-    diploma.addEventListener('click', () => {
-      section_diploma.style.display = 'block';
-      section_hsc.style.display = 'none';
+    document.addEventListener('DOMContentLoaded', function() {
+      const fileInputs = document.querySelectorAll('input[type="file"]');
+
+      fileInputs.forEach(function(fileInput) {
+        const fileError = fileInput.parentElement.querySelector('.file-error');
+        const fileGrp = fileInput.parentElement;
+        fileInput.addEventListener('change', function() {
+          console.log(fileGrp)
+          const file = fileInput.files[0];
+          if (file) {
+            const fileType = file.type;
+            if (fileType !== 'application/pdf') {
+              fileGrp.classList.add('error')
+              fileError.textContent = 'Please select a PDF file.';
+              fileInput.value = ''; // Clear the file input
+            } else {
+              fileGrp.className = 'form-group success'
+              fileError.textContent = ''; // Clear the error message
+            }
+          } else {
+            fileGrp.classList.add('error')
+            fileError.textContent = 'Please select a file.';
+          }
+        });
+      });
     });
   </script>
   <!-- plugins:js -->
@@ -804,6 +964,7 @@
   <script src="{% static 'js/settings.js' %}"></script>
   <script src="{% static 'js/todolist.js' %}"></script>
   <script src="{% static 'js/file-upload.js' %}"></script>
+  <script src="{% static 'js/custom-validator.js' %}"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
   <script src="{% static 'js/dashboard.js' %}"></script>
@@ -815,6 +976,7 @@
 <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script> -->
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/autofill/2.5.3/js/dataTables.autoFill.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
 </body>
 
 </html>

@@ -262,6 +262,143 @@ def family_details(request):
         # Add CSRF token to the context
         context['csrf_token'] = get_token(request)
         return HttpResponse(template.render(context, request))
+
+@ensure_csrf_cookie
+def schoolings(request):
+    if request.method == 'POST':
+        # Retrieve form data from the request
+        form_data = request.POST
+        print(form_data)
+        roll_number = request.session['Roll_Number']
+        request.session['sslc_school'] = form_data['sslc_school'],
+        request.session['sslc_school_address'] = form_data['sslc_school_address'],
+        request.session['sslc_percentage'] = form_data['sslc_percentage'],
+        request.session['sslc_year'] = form_data['sslc_year'],
+        request.session['hsc_or_diploma'] = form_data['hsc_or_diploma'],
+        request.session['hsc_school'] = form_data['hsc_school'],
+        request.session['hsc_school_address'] = form_data['hsc_school_address'],
+        request.session['hsc_percentage'] = form_data['hsc_percentage'],
+        request.session['hsc_year'] = form_data['hsc_year'],
+        request.session['diploma_clg'] = form_data['diploma_clg'],
+        request.session['diploma_clg_address'] = form_data['diploma_clg_address'],
+        request.session['diploma_percentage'] = form_data['diploma_percentage'],
+        request.session['diploma_year'] = form_data['diploma_year'],
+        fs = FileSystemStorage(location=MEDIA_ROOT + '/' + roll_number)
+        if request.session['hsc_or_diploma'] == '12th':
+            uploaded_file = request.FILES['sslc_certi']
+            fs.save(name=roll_number + '_sslc certificate.pdf', content=uploaded_file)
+            uploaded_file = request.FILES['hsc_certi']
+            fs.save(name=roll_number + '_hsc certificate.pdf', content=uploaded_file)
+        elif request.session['hsc_or_diploma'] == 'Diploma':
+            uploaded_file = request.FILES['sslc_certi']
+            fs.save(name=roll_number + '_sslc certificate.pdf', content=uploaded_file)
+            uploaded_file = request.FILES['diploma_certi']
+            fs.save(name=roll_number + '_diploma certificate.pdf', content=uploaded_file)
+        current_pursuing = request.session['current_pursuing']
+        # Return a JSON response indicating success
+        return JsonResponse({'success': True,'pursuing':current_pursuing}, content_type='application/json')
+    else:
+        template=loader.get_template('schoolings.html')
+        context = {}
+        # Add CSRF token to the context
+        context['csrf_token'] = get_token(request)
+        return HttpResponse(template.render(context, request))
+@ensure_csrf_cookie
+def ug_details(request):
+    if request.method == 'POST':
+        # Retrieve form data from the request
+        form_data = request.POST
+        print(form_data)
+        print(request.session)
+        roll_number = request.session['Roll_Number']
+
+        request.session['ug_department'] = form_data['ug_department'],
+        request.session['ug_hod'] = form_data['ug_hod'],
+        request.session['ug_hod_no'] = form_data['ug_hod_no'],
+        request.session['ug_seed'] = form_data['ug_seed'],
+        request.session['ug_seed_no'] = form_data['ug_seed_no'],
+        request.session['ug_seed_mail'] = form_data['ug_seed_mail'],
+        request.session['ug_percentage'] = form_data['ug_percentage'],
+        request.session['active_ug_arrears_count'] = form_data['active_ug_arrears_count'],
+        request.session['ug_arrears_count'] = form_data['ug_arrears_count'],
+        request.session['ug_intern_period'] = form_data['ug_intern_period']
+
+        fs = FileSystemStorage(location=MEDIA_ROOT + '/' + roll_number)
+        uploaded_file = request.FILES['ug_marksheet']
+        fs.save(name=roll_number + '_ug_marksheet.pdf', content=uploaded_file)
+        print(roll_number)
+        # Return a JSON response indicating success
+        return JsonResponse({'success': True}, content_type='application/json')
+    else:
+        template=loader.get_template('ug_details.html')
+        context = {}
+        # Add CSRF token to the context
+        context['csrf_token'] = get_token(request)
+        return HttpResponse(template.render(context, request))
+@ensure_csrf_cookie
+def pg_details(request):
+    if request.method == 'POST':
+        # Retrieve form data from the request
+        form_data = request.POST
+        print(form_data)
+        roll_number = request.session['Roll_Number']
+        request.session['pg_department'] = form_data['pg_department'],
+        request.session['pg_hod'] = form_data['pg_hod'],
+        request.session['pg_hod_no'] = form_data['pg_hod_no'],
+        request.session['pg_seed'] = form_data['pg_seed'],
+        request.session['pg_seed_no'] = form_data['pg_seed_no'],
+        request.session['pg_seed_mail'] = form_data['pg_seed_mail'],
+        request.session['pg_percentage'] = form_data['pg_percentage'],
+        request.session['active_pg_arrears_count'] = form_data['active_pg_arrears_count'],
+        request.session['pg_arrears_count'] = form_data['pg_arrears_count'],
+        request.session['pg_intern_period'] = form_data['pg_intern_period'],
+        request.session['ex_ug_university'] = form_data['ex_ug_university'],
+        request.session['ex_ug_college'] = form_data['ex_ug_college'],
+        request.session['ex_ug_college_address'] = form_data['ex_ug_college_address'],
+        request.session['ex_ug_department'] = form_data['ex_ug_department'],
+        request.session['ex_ug_percentage'] = form_data['ex_ug_percentage'],
+        request.session['ex_ug_internship_company'] = form_data['ex_ug_internship_company'],
+        request.session['ex_ug_internship_period'] = form_data['ex_ug_internship_period'],
+        request.session['ex_ug_work_company'] = form_data['ex_ug_work_company'],
+        request.session['ex_ug_work_period']  = form_data['ex_ug_work_period'],
+        request.session['ex_ug_work_uan'] = form_data['ex_ug_work_uan']
+
+        fs = FileSystemStorage(location=MEDIA_ROOT + '/' + roll_number)
+        uploaded_file = request.FILES['ug_marksheet']
+        fs.save(name=roll_number + '_ug_marksheet.pdf', content=uploaded_file)
+        uploaded_file = request.FILES['pg_marksheet']
+        fs.save(name=roll_number + '_pg_marksheet.pdf', content=uploaded_file)
+        print(roll_number)
+        # Return a JSON response indicating success
+        return JsonResponse({'success': True}, content_type='application/json')
+    else:
+        template=loader.get_template('pg_details.html')
+        context = {}
+        # Add CSRF token to the context
+        context['csrf_token'] = get_token(request)
+        return HttpResponse(template.render(context, request))
+@ensure_csrf_cookie
+def other_details(request):
+    if request.method == 'POST':
+        # Retrieve form data from the request
+        form_data = request.POST
+        print(form_data)
+        roll_number = request.session['Roll_Number']
+        request.session['pg_hod'] = form_data['pg_hod'],
+        request.session['why_placements'] = form_data['why_placements'],
+        request.session['about_yourself'] = form_data['about_yourself'],
+        request.session['languages_known'] = form_data['languages_known'],
+        request.session['prog_languages'] = form_data['prog_languages']
+
+        print(roll_number)
+        # Return a JSON response indicating success
+        return JsonResponse({'success': True}, content_type='application/json')
+    else:
+        template=loader.get_template('others.html')
+        context = {}
+        # Add CSRF token to the context
+        context['csrf_token'] = get_token(request)
+        return HttpResponse(template.render(context, request))
 @ensure_csrf_cookie
 def workloc_agreement(request):
     if request.method == 'POST':
@@ -269,11 +406,9 @@ def workloc_agreement(request):
         form_data = request.POST
         print(form_data)
         roll_number = request.session['Roll_Number']
-        User_reg.objects.filter(Roll_Number=roll_number).update(
-            work_interest=form_data['work_interest'],
-            work_location=form_data['work_location'],
-            sis=form_data['sis']
-        )
+        request.session['work_interest'] = form_data['work_interest'],
+        request.session['work_location'] = form_data['work_location'],
+        request.session['sis'] = form_data['sis']
         print(roll_number)
         # Return a JSON response indicating success
         return JsonResponse({'success': True}, content_type='application/json')
@@ -290,13 +425,12 @@ def mand_docs(request):
         # Retrieve form data from the request
         form_data = request.POST
         roll_number = request.session['Roll_Number']
-        User_reg.objects.filter(Roll_Number=roll_number).update(
-            aadhar_no=form_data['aadhar_no'],
-            pan_number=form_data['pan_number'],
-            linkedin_profile=form_data['linkedin_profile'],
-            linkedin_link=form_data['linkedin_link'],
-            pursuing=form_data['pursuing']
-        )
+        request.session['aadhar_no'] = form_data['aadhar_no'],
+        request.session['pan_number'] = form_data['pan_number'],
+        request.session['linkedin_profile'] = form_data['linkedin_profile'],
+        request.session['linkedin_link'] = form_data['linkedin_link'],
+        request.session['pursuing'] = form_data['pursuing']
+
         fs = FileSystemStorage(location=MEDIA_ROOT + '/' + roll_number)
         uploaded_file = request.FILES['aadhar']
         fs.save(name=roll_number+'_aadhar card.pdf', content=uploaded_file)
@@ -319,141 +453,6 @@ def mand_docs(request):
         # Add CSRF token to the context
         context['csrf_token'] = get_token(request)
         return HttpResponse(template.render(context, request))
-@ensure_csrf_cookie
-def schoolings(request):
-    if request.method == 'POST':
-        # Retrieve form data from the request
-        form_data = request.POST
-        print(form_data)
-        roll_number = request.session['Roll_Number']
-        User_reg.objects.filter(Roll_Number=roll_number).update(
-            sslc_school=form_data['sslc_school'],
-            sslc_school_address=form_data['sslc_school_address'],
-            sslc_mark=form_data['sslc_mark'],
-            sslc_percentage=form_data['sslc_percentage'],
-            sslc_year=form_data['sslc_year'],
-            hsc_school=form_data['hsc_school'],
-            hsc_school_address=form_data['hsc_school_address'],
-            hsc_mark=form_data['hsc_mark'],
-            hsc_percentage=form_data['hsc_percentage'],
-            hsc_year=form_data['hsc_year'],
-            diploma_clg=form_data['diploma_clg'],
-            diploma_clg_address=form_data['diploma_clg_address'],
-            diploma_percentage=form_data['diploma_percentage'],
-            diploma_year=form_data['diploma_year'],
-        )
-        fs = FileSystemStorage(location=MEDIA_ROOT + '/' + roll_number)
-        uploaded_file = request.FILES['sslc_certi']
-        fs.save(name=roll_number + '_sslc certificate.pdf', content=uploaded_file)
-        uploaded_file = request.FILES['high']
-        fs.save(name=roll_number + '_higher studies.pdf', content=uploaded_file)
-        current_pursuing = request.session['current_pursuing']
-        # Return a JSON response indicating success
-        return JsonResponse({'success': True,'pursuing':current_pursuing}, content_type='application/json')
-    else:
-        template=loader.get_template('schoolings.html')
-        context = {}
-        # Add CSRF token to the context
-        context['csrf_token'] = get_token(request)
-        return HttpResponse(template.render(context, request))
-@ensure_csrf_cookie
-def ug_details(request):
-    if request.method == 'POST':
-        # Retrieve form data from the request
-        form_data = request.POST
-        print(form_data)
-        roll_number = request.session['Roll_Number']
-        User_reg.objects.filter(Roll_Number=roll_number).update(
-            gap_year=form_data['gap_year'],
-            ug_department=form_data['ug_department'],
-            ug_hod=form_data['ug_hod'],
-            ug_hod_no=form_data['ug_hod_no'],
-            ug_seed=form_data['ug_seed'],
-            ug_seed_no=form_data['ug_seed_no'],
-            ug_seed_mail=form_data['ug_seed_mail'],
-            ug_percentage=form_data['ug_percentage'],
-            active_ug_arrears_count=form_data['active_ug_arrears_count'],
-            ug_arrears_count=form_data['ug_arrears_count'],
-            ug_intern_period=form_data['ug_intern_period']
-        )
-        fs = FileSystemStorage(location=MEDIA_ROOT + '/' + roll_number)
-        uploaded_file = request.FILES['ug_marksheet']
-        fs.save(name=roll_number + '_ug_marksheet.pdf', content=uploaded_file)
-        print(roll_number)
-        # Return a JSON response indicating success
-        return JsonResponse({'success': True}, content_type='application/json')
-    else:
-        template=loader.get_template('ug_details.html')
-        context = {}
-        # Add CSRF token to the context
-        context['csrf_token'] = get_token(request)
-        return HttpResponse(template.render(context, request))
-@ensure_csrf_cookie
-def pg_details(request):
-    if request.method == 'POST':
-        # Retrieve form data from the request
-        form_data = request.POST
-        print(form_data)
-        roll_number = request.session['Roll_Number']
-        User_reg.objects.filter(Roll_Number=roll_number).update(
-            pg_department=form_data['pg_department'],
-            pg_hod=form_data['pg_hod'],
-            pg_hod_no=form_data['pg_hod_no'],
-            pg_seed=form_data['pg_seed'],
-            pg_seed_no=form_data['pg_seed_no'],
-            pg_seed_mail=form_data['pg_seed_mail'],
-            pg_percentage=form_data['pg_percentage'],
-            active_pg_arrears_count=form_data['active_pg_arrears_count'],
-            pg_arrears_count=form_data['pg_arrears_count'],
-            pg_intern_period=form_data['pg_intern_period'],
-            ex_ug_university=form_data['ex_ug_university'],
-            ex_ug_college=form_data['ex_ug_college'],
-            ex_ug_college_address=form_data['ex_ug_college_address'],
-            ex_ug_department=form_data['ex_ug_department'],
-            ex_ug_percentage=form_data['ex_ug_percentage'],
-            ex_ug_internship_company=form_data['ex_ug_internship_company'],
-            ex_ug_internship_period=form_data['ex_ug_internship_period'],
-            ex_ug_work_company=form_data['ex_ug_work_company'],
-            ex_ug_work_period=form_data['ex_ug_work_period'],
-            ex_ug_work_uan=form_data['ex_ug_work_uan']
-        )
-        fs = FileSystemStorage(location=MEDIA_ROOT + '/' + roll_number)
-        uploaded_file = request.FILES['ug_marksheet']
-        fs.save(name=roll_number + '_ug_marksheet.pdf', content=uploaded_file)
-        uploaded_file = request.FILES['pg_marksheet']
-        fs.save(name=roll_number + '_pg_marksheet.pdf', content=uploaded_file)
-        print(roll_number)
-        # Return a JSON response indicating success
-        return JsonResponse({'success': True}, content_type='application/json')
-    else:
-        template=loader.get_template('pg_details.html')
-        context = {}
-        # Add CSRF token to the context
-        context['csrf_token'] = get_token(request)
-        return HttpResponse(template.render(context, request))
-@ensure_csrf_cookie
-def other_details(request):
-    if request.method == 'POST':
-        # Retrieve form data from the request
-        form_data = request.POST
-        print(form_data)
-        roll_number = request.session['Roll_Number']
-        User_reg.objects.filter(Roll_Number=roll_number).update(
-            why_placements=form_data['why_placements'],
-            about_yourself=form_data['about_yourself'],
-            languages_known=form_data['languages_known'],
-            prog_languages=form_data['prog_languages']
-        )
-        print(roll_number)
-        # Return a JSON response indicating success
-        return JsonResponse({'success': True}, content_type='application/json')
-    else:
-        template=loader.get_template('others.html')
-        context = {}
-        # Add CSRF token to the context
-        context['csrf_token'] = get_token(request)
-        return HttpResponse(template.render(context, request))
-
 @ensure_csrf_cookie
 def ack(request):
         roll_number = request.session['Roll_Number']
