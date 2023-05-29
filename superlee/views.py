@@ -240,7 +240,7 @@ def family_details(request):
         # Retrieve form data from the request
         form_data = request.POST
         print(form_data)
-        roll_number=request.session['Roll_Number']
+        roll_number=request.session['rollno']
         print(roll_number)
         request.session['mname']  = form_data['mname'],
         request.session['mcontact'] = form_data['mcontact'],
