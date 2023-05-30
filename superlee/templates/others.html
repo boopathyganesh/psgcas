@@ -348,7 +348,8 @@
                                 <div class="form-group first">
                                     <label for="why_placements">Drop some of your higher acheivements?</label>
                                     <textarea class="form-control" name="why_placements" id="why_placements" cols="30" rows="5" placeholder="Describe about why you have chosen placements as your career choice !"></textarea>
-                                </div>    
+                                    <small></small>
+                                  </div>    
                             </div>
                         </div>
                         <div class="row">
@@ -356,7 +357,8 @@
                               <div class="form-group first">
                                   <label for="about_yourself">Tell us about yourself</label>
                                   <textarea class="form-control" name="about_yourself" id="about_yourself" cols="30" rows="5" placeholder="Write about yourself"></textarea>
-                              </div>    
+                                <small></small>
+                                </div>    
                           </div>
                         </div>
                         <div class="row">
@@ -370,6 +372,7 @@
                                   <option value="JAVA">JAVA</option>
                                 </select>
                                 <input type="text" class="form-control" id="languages_known" name="languages_known" disabled hidden>
+                                <small class="select-error"></small>
                             </div>
                           </div>
                         </div>
@@ -384,12 +387,13 @@
                                   <option value="JAVA">JAVA</option>
                                 </select>
                                 <input type="text" class="form-control" id="prog_languages" name="prog_languages" disabled hidden>
+                                <small class="select-error"></small>
                             </div>
                           </div>
                         </div>
                         <div class="row mt-4 justify-content-center">
                           <button  type="button" class="btn btn-danger mr-4" onclick="goBack()"><i class="icon-arrow-left"></i>Previous</button>
-                            <button id="proceed" type="button" class="btn btn-success">Finish <i class="icon-arrow-right"></i></button>
+                          <button id="proceed" type="button" class="btn btn-success">Finish <i class="icon-arrow-right"></i></button>
                         </div>
                   </form>
                       </div>
@@ -471,10 +475,7 @@
         sessionStorage.setItem('othersForms', JSON.stringify(storedData));
 
         var status = true;
-        const selectedLanguages = Array.from(document.querySelectorAll('select[name="prog_languages[]"] option:checked')).map(option => option.value);
-
-        console.log(selectedLanguages);
-
+        status = checkRequired([why_placements,about_yourself,languages_known,prog_languages]);
         if(status){
           $.ajax({
             type: 'POST',
@@ -534,6 +535,7 @@ function goBack() {
   <script src="{% static 'js/template.js' %}"></script>
   <script src="{% static 'js/settings.js' %}"></script>
   <script src="{% static 'js/todolist.js' %}"></script>
+  <script src="{% static 'js/custom-validator.js' %}"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
   <script src="{% static 'js/dashboard.js' %}"></script>

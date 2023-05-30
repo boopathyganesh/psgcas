@@ -700,12 +700,15 @@
         // if(ug_internshipVal === 'Yes'){
         //   status = checkRequired();
         // }
-
-        status = status && checkRequired([ug_hod,ug_seed,ug_hod_no,ug_seed_no,ug_percentage,ug_hod_mail,ug_seed_mail]);
-        status = status && checkEmail([ug_hod_mail,ug_seed_mail]);
-        status = status && validateRadio(radiogrp);
-        status = status && isFileEmpty([ug_marksheet])
-        status  = status && validateContactFields([ug_hod_no,ug_seed_no])
+          var empty,emailcheck,radiocheck,fileempty,contactcheck;
+          empty = checkRequired([ug_hod,ug_seed,ug_hod_no,ug_seed_no,ug_percentage,ug_hod_mail,ug_seed_mail]);
+          emailcheck = checkEmail([ug_hod_mail,ug_seed_mail]);
+          radiocheck = validateRadio(radiogrp);
+          fileempty = isFileEmpty([ug_marksheet]);
+          contactcheck = validateContactFields([ug_hod_no,ug_seed_no]);
+          if(!empty || emailcheck || !radiocheck || !fileempty || !contactcheck){
+            status=false;
+          }
         if(status){
           $.ajax({
             type: 'POST',

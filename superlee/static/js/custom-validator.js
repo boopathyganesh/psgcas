@@ -254,7 +254,21 @@
     }
     
     
+    function isNumber(input) {
+      var value = input.value;
+      var num = /^\d+$/.test(value);
+      
+      if (num) {
+        showSuccess(input);
+      } else {
+        showError(input, 'Invalid Aadhar Number');
+      }
+      
+      return isValid;
+    }
     
 
 
 
+    
+    

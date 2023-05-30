@@ -504,7 +504,12 @@
           }
           sessionStorage.setItem('familyForm', JSON.stringify(storedData));
           var status = true;
-          status = checkRequired([mname,mcontact,moccupation,fname,fcon,foccupation,scount,permanent_address,p_pincode,current_address,c_pincode])
+          var empty,contactcheck;
+          empty = checkRequired([mname,mcontact,moccupation,fname,fcon,foccupation,scount,permanent_address,p_pincode,current_address,c_pincode])
+          contactcheck = validateContactFields([mcontact,fcon])
+          if(!empty || !contactcheck){
+            status = false;
+          }
           if(status){
             $.ajax({
               type: 'POST',

@@ -52,7 +52,17 @@ id=[]
     'languages_known':'',
     'prog_languages':''
 }'''
+def storage(file_fields,file_names,request,roll_number):
 
+    fs = FileSystemStorage(location=os.path.join(MEDIA_ROOT, roll_number))
+
+    for field, name in zip(file_fields, file_names):
+        uploaded_file = request.FILES.get(field)
+        if uploaded_file:
+            old_file = os.path.join(fs.location, roll_number + '_' + name)
+            if fs.exists(old_file):
+                fs.delete(old_file)
+            fs.save(name=roll_number + '_' + name, content=uploaded_file)
 
 def index(request):
     template=loader.get_template('index.html')
@@ -285,21 +295,16 @@ def schoolings(request):
         request.session['diploma_year'] = form_data['diploma_year'],
         fs = FileSystemStorage(location=MEDIA_ROOT + '/' + roll_number)
         if request.session['hsc_or_diploma'][0] == '12th':
-            print('12th')
-            uploaded_file = request.FILES['sslc_certi']
-            print(uploaded_file)
-            fs.save(name=roll_number + '_sslc certificate.pdf', content=uploaded_file)
-            uploaded_file = request.FILES['hsc_certi']
-            fs.save(name=roll_number + '_hsc certificate.pdf', content=uploaded_file)
+            file_fields = ['sslc_certi','hsc_certi']
+            file_names = ['_sslc_certificate.pdf','_hsc_certificate.pdf']
+            storage(file_fields,file_names,request,roll_number)
         elif request.session['hsc_or_diploma'][0] == 'Diploma':
-            print('diploma')
-            uploaded_file = request.FILES['sslc_certi']
-            print(uploaded_file)
-            fs.save(name=roll_number + '_sslc certificate.pdf', content=uploaded_file)
-            uploaded_file = request.FILES['diploma_certi']
-            fs.save(name=roll_number + '_diploma certificate.pdf', content=uploaded_file)
+            file_fields = ['sslc_certi', 'diploma_certi']
+            file_names = ['_sslc_certificate.pdf', '_diploma_certificate.pdf']
+            storage(file_fields, file_names, request, roll_number)
         else:
             print(request.session['hsc_or_diploma'])
+
         current_pursuing = request.session['current_pursuing']
         # Return a JSON response indicating success
         return JsonResponse({'success': True,'pursuing':current_pursuing}, content_type='application/json')
@@ -318,7 +323,6 @@ def ug_details(request):
         print(request.session)
         roll_number = request.session['rollno']
 
-        #request.session['ug_department'] = form_data['ug_department'],
         request.session['ug_hod'] = form_data['ug_hod'],
         request.session['ug_hod_no'] = form_data['ug_hod_no'],
         request.session['ug_hod_mail'] = form_data['ug_hod_mail'],
@@ -330,9 +334,19 @@ def ug_details(request):
         request.session['ug_arrears_count'] = form_data['ug_arrears_count'],
         request.session['ug_intern_period'] = form_data['ug_intern_period']
 
-        fs = FileSystemStorage(location=MEDIA_ROOT + '/' + roll_number)
-        uploaded_file = request.FILES['ug_marksheet']
-        fs.save(name=roll_number + '_ug_marksheet.pdf', content=uploaded_file)
+        file_fields = ['ug_marksheet']
+        file_names = ['_ug_marksheet.pdf']
+
+        fs = FileSystemStorage(location=os.path.join(MEDIA_ROOT, roll_number))
+
+        for field, name in zip(file_fields, file_names):
+            uploaded_file = request.FILES.get(field)
+            if uploaded_file:
+                old_file = os.path.join(fs.location, roll_number + '_' + name)
+                if fs.exists(old_file):
+                    fs.delete(old_file)
+                fs.save(name=roll_number + '_' + name, content=uploaded_file)
+
         print(roll_number)
         # Return a JSON response indicating success
         return JsonResponse({'success': True}, content_type='application/json')
@@ -371,13 +385,19 @@ def pg_details(request):
         request.session['ex_ug_work_period']  = form_data['ex_ug_work_period'],
         request.session['ex_ug_work_uan'] = form_data['ex_ug_work_uan']
 
-        fs = FileSystemStorage(location=MEDIA_ROOT + '/' + roll_number)
-        uploaded_file = request.FILES['ex_ug_marksheets']
-        fs.save(name=roll_number + '_ug_marksheet.pdf', content=uploaded_file)
-        uploaded_file = request.FILES['ex_ug_provisional']
-        fs.save(name=roll_number + '_ug_provisional.pdf', content=uploaded_file)
-        uploaded_file = request.FILES['pg_marksheet']
-        fs.save(name=roll_number + '_pg_marksheet.pdf', content=uploaded_file)
+        file_fields = ['ex_ug_marksheets', 'ex_ug_provisional', 'pg_marksheet']
+        file_names = ['_ug_marksheet.pdf', '_ug_provisional.pdf', '_pg_marksheet.jpg']
+
+        fs = FileSystemStorage(location=os.path.join(MEDIA_ROOT, roll_number))
+
+        for field, name in zip(file_fields, file_names):
+            uploaded_file = request.FILES.get(field)
+            if uploaded_file:
+                old_file = os.path.join(fs.location, roll_number + '_' + name)
+                if fs.exists(old_file):
+                    fs.delete(old_file)
+                fs.save(name=roll_number + '_' + name, content=uploaded_file)
+
         print(roll_number)
         # Return a JSON response indicating success
         return JsonResponse({'success': True}, content_type='application/json')
@@ -439,17 +459,18 @@ def mand_docs(request):
         request.session['linkedin_profile'] = form_data['linkedin_profile'],
         request.session['linkedin_link'] = form_data['linkedin_link'],
 
-        fs = FileSystemStorage(location=MEDIA_ROOT + '/' + roll_number)
-        uploaded_file = request.FILES['aadhar']
-        fs.save(name=roll_number+'_aadhar card.pdf', content=uploaded_file)
-        uploaded_file = request.FILES['pan_card']
-        fs.save(name=roll_number+'_pan card.pdf', content=uploaded_file)
-        uploaded_file = request.FILES['pp']
-        fs.save(name=roll_number+'_PP photo.jpg', content=uploaded_file)
-        uploaded_file = request.FILES['clg_id']
-        fs.save(name=roll_number+'_college id.pdf', content=uploaded_file)
-        uploaded_file = request.FILES['passport']
-        fs.save(name=roll_number+'_passport.pdf', content=uploaded_file)
+        file_fields = ['aadhar', 'pan_card', 'pp', 'clg_id', 'passport']
+        file_names = ['aadhar_card.pdf', 'pan_card.pdf', 'PP_photo.jpg', 'college_id.pdf', 'passport.pdf']
+
+        fs = FileSystemStorage(location=os.path.join(MEDIA_ROOT, roll_number))
+
+        for field, name in zip(file_fields, file_names):
+            uploaded_file = request.FILES.get(field)
+            if uploaded_file:
+                old_file = os.path.join(fs.location, roll_number + '_' + name)
+                if fs.exists(old_file):
+                    fs.delete(old_file)
+                fs.save(name=roll_number + '_' + name, content=uploaded_file)
         #
         print(roll_number)
         # Return a JSON response indicating success
@@ -464,9 +485,8 @@ def mand_docs(request):
 @ensure_csrf_cookie
 def ack(request):
         roll_number = request.session['rollno']
-        user_data = User_reg.objects.filter(Roll_Number=roll_number).values()
-        user_data=dict(user_data[0])
-        return render(request,'ack_page.html',{'data':user_data})
+        session_data=dict(request.session)
+        return render(request,'ack_page.html',{'data':session_data})
 
 @ensure_csrf_cookie
 def application_sts(request):

@@ -435,7 +435,7 @@
                     <div class="col-md-6">
                       <div class="form-group first">
                           <label for="fname">Passport Number</label>
-                          <input type="password" class="form-control" placeholder="Passport Number" id="passport_no" minlength="9" maxlength="12">
+                          <input type="password" class="form-control" placeholder="Passport Number" id="passport_no" name="passport_no" minlength="9" maxlength="12">
                           <small></small>
                       </div>
                   </div>
@@ -559,8 +559,13 @@
         sessionStorage.setItem('docsUpload', JSON.stringify(storedData));
 
         var status = true;
-        status = checkRequired([aadhar_no,pan_number,passport_no,linkedin_profile,linkedin_link]);
-        status = isFileEmpty([aadhar,pan_card,pp,clg_id,passport]);
+        var emptyfield,number,fileempty;
+        emptyfield = checkRequired([aadhar_no,pan_number,passport_no,linkedin_profile,linkedin_link]);
+        number = isNumber(aadhar_no);
+        fileempty = isFileEmpty([aadhar,pan_card,pp,clg_id,passport]);
+        if(!emptyfield || !number || !fileempty){
+          status=false;
+        }
         if(status){
           $.ajax({
           type: 'POST',
@@ -607,18 +612,31 @@
         const fileError = fileInput.parentElement.querySelector('.file-error');
         const fileGrp = fileInput.parentElement;
         fileInput.addEventListener('change', function() {
-
+          console.log(fileInput.id)
           const file = fileInput.files[0];
           if (file) {
             const fileType = file.type;
-            if (fileType !== 'application/pdf') {
+            if(fileInput.id ==='pp'){
+              if (!fileType.startsWith('image/jpeg')) {
               fileGrp.classList.add('error')
-              fileError.textContent = 'Please select a PDF file.';
+              fileError.textContent = 'Please select a .jpg or .jpeg file.';
               fileInput.value = ''; // Clear the file input
             } 
             else {
               fileGrp.className = 'form-group success'
               fileError.textContent = ''; // Clear the error message
+            }
+            }
+            else{
+              if (fileType !== 'application/pdf') {
+                fileGrp.classList.add('error')
+                fileError.textContent = 'Please select a PDF file.';
+                fileInput.value = ''; // Clear the file input
+              } 
+              else {
+                fileGrp.className = 'form-group success'
+                fileError.textContent = ''; // Clear the error message
+              }
             }
           } else {
             fileGrp.classList.add('error')
