@@ -421,27 +421,29 @@
             storedData[name] = value;
           }
           sessionStorage.setItem('regForm', JSON.stringify(storedData));
-          let status = false;
+          let status = true;
           var empty,radiocheck,emailcheck,dep,contactcheck;
           empty = checkRequired([rollno, email,aemail, fname, con, altcon]);
+          console.log('checkRequired',empty)
           contactcheck = validateContactFields([con,altcon])
-          //console.log('checkRequired',status)
+          console.log('checkRequired',contactcheck)
           radiocheck = validateRadio(radiogrp);
-          //console.log('validateRadio',status)
+          console.log('validateRadio',radiocheck)
           emailcheck = checkEmail([email,aemail]);
-          //console.log('checkEmail',status)
-          if(dobField.value === ''){
-          }
-          if ( dept.value === "" ) {
-            dep = false;
-            showAlert(dept);
-          }
-          if ( age.value === "" ) {
-            dep = false;
-            showAlert(age);
-          }
+          console.log('checkEmail',emailcheck)
+          // if(dobField.value === ''){
+          // }
+          // if ( dept.value === "" ) {
+          //   dep = false;
+          //   showAlert(dept);
+          // }
+          // if ( age.value === "" ) {
+          //   dep = false;
+          //   showAlert(age);
+          // }
 
-          if(!empty|| !radiocheck|| !emailcheck || !dep){
+          if(!empty || !radiocheck || !emailcheck || !contactcheck){
+            console.log('$pass')
             status = false;
           }
 

@@ -255,11 +255,13 @@
     
     
     function isNumber(input) {
+      var isValid = false;
       var value = input.value;
       var num = /^\d+$/.test(value);
       
       if (num) {
         showSuccess(input);
+        isValid = true; 
       } else {
         showError(input, 'Invalid Aadhar Number');
       }

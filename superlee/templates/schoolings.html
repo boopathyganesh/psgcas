@@ -398,7 +398,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group first">
                                         <label for="sslc_school_pincode">Pincode</label>
-                                        <input type="text" class="form-control" placeholder="School Address Pincode" id="sslc_school_pincode" name="sslc_school_pincode"> 
+                                        <input type="text" class="form-control" placeholder="School Address Pincode" id="sslc_school_pincode" name="sslc_school_pincode" maxlength="6"> 
                                         <small></small>
                                       </div>
                                 </div>
@@ -587,7 +587,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group first">
                                             <label for="hsc_school_pincode">Pincode</label>
-                                            <input type="text" class="form-control" placeholder="School Address Pincode" id="hsc_school_pincode" name="hsc_school_pincode"> 
+                                            <input type="text" class="form-control" placeholder="School Address Pincode" id="hsc_school_pincode" name="hsc_school_pincode" maxlength="6"> 
                                             <small></small>
                                           </div>
                                     </div>
@@ -708,7 +708,7 @@
                                   <div class="col-md-6">
                                     <div class="form-group first">
                                         <label for="diploma_clg_pincode">Pincode</label>
-                                        <input type="text" class="form-control" placeholder=" " id="diploma_clg_pincode" name="diploma_clg_pincode"> 
+                                        <input type="text" class="form-control" placeholder=" " id="diploma_clg_pincode" name="diploma_clg_pincode" maxlength="6"> 
                                         <small></small>
                                       </div>
                                 </div>
@@ -877,7 +877,7 @@
           fileempty = isFileEmpty([sslc_certi,diploma_certi]);
         }
 
-        if(!empty || emptychoice || !radiocheck || !fileempty){
+        if(!empty || !emptychoice || !radiocheck || !fileempty){
           status = false;
         }
 

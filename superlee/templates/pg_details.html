@@ -359,14 +359,14 @@
                           <div class="col-md-6">
                             <div class="form-group first">
                                 <label for="pg_hod_no">Department HOD's Number</label>
-                                <input type="text" class="form-control" placeholder="HOD's Contact" id="pg_hod_no" name="pg_hod_no">
+                                <input type="text" class="form-control" placeholder="HOD's Contact" id="pg_hod_no" name="pg_hod_no" maxlength="10">
                                 <small></small>
                               </div>    
                           </div>
                           <div class="col-md-6">
                             <div class="form-group first">
                                 <label for="pg_seed_no">Department SEED Coordinator Number</label>
-                                <input type="text" class="form-control" placeholder="SEED Coordinator's contact" id="pg_seed_no" name="pg_seed_no">
+                                <input type="text" class="form-control" placeholder="SEED Coordinator's contact" id="pg_seed_no" name="pg_seed_no" maxlength="10">
                                 <small></small>
                               </div>    
                           </div>
@@ -933,7 +933,7 @@ function goBack() {
     window.location.href = "/superlee/registration/schoolings/";
     }
 </script>
-<script>
+<!-- <script>
   // Assuming you have a JSON object containing department names and codes
 var departments =
 [
@@ -1076,7 +1076,7 @@ departments.forEach(function(department) {
   dropdown.add(option);
 });
 
-</script>
+</script> -->
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
@@ -1104,23 +1104,6 @@ departments.forEach(function(department) {
         }
       });
     });
-  });
-</script>
-
-<script>
-  // Get the alert element
-  var alertEl = document.getElementById("alert1");
-  var area = document.getElementById("form-area");
-  // Add an event listener to the window object for the scroll event
-  area.addEventListener("scroll", function() {
-    // Check if the user has scrolled to the top of the page
-    if (window.pageYOffset === 0) {
-      // Show the alert
-      alertEl.style.display = "block";
-    } else {
-      // Hide the alert
-      alertEl.style.display = "none";
-    }
   });
 </script>
 
