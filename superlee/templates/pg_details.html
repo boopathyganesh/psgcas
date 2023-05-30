@@ -27,6 +27,7 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/autofill/2.5.3/css/autoFill.dataTables.min.css">
   <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
 
 </head>
 <body>
@@ -339,30 +340,35 @@
                   <div class="container form-container scroll-forms">
                       <div class="col-md-12 py-5">
                       <form method="post" class="forms" id="pg_forms">
+                        {% csrf_token %}
                         <div class="row">
                           <div class="col-md-6">
                               <div class="form-group first">
                                   <label for="pg_hod">Department HOD's Name</label>
                                   <input type="text" class="form-control" placeholder="HOD's Name" id="pg_hod" name="pg_hod">
-                              </div>    
+                                  <small></small>
+                                </div>    
                           </div>
                           <div class="col-md-6">
                             <div class="form-group first">
                                 <label for="pg_seed">Department SEED Coordinator's Name</label>
                                 <input type="text" class="form-control" placeholder="SEED Coordinator's Name" id="pg_seed" name="pg_seed">
+                                <small></small>
                             </div>    
                           </div>
                           <div class="col-md-6">
                             <div class="form-group first">
                                 <label for="pg_hod_no">Department HOD's Number</label>
                                 <input type="text" class="form-control" placeholder="HOD's Contact" id="pg_hod_no" name="pg_hod_no">
-                            </div>    
+                                <small></small>
+                              </div>    
                           </div>
                           <div class="col-md-6">
                             <div class="form-group first">
                                 <label for="pg_seed_no">Department SEED Coordinator Number</label>
                                 <input type="text" class="form-control" placeholder="SEED Coordinator's contact" id="pg_seed_no" name="pg_seed_no">
-                            </div>    
+                                <small></small>
+                              </div>    
                           </div>
                         </div>
                         <div class="row">
@@ -370,13 +376,15 @@
                             <div class="form-group first">
                                 <label for="pg_hod_mail">Department HOD's Email ID (Official)</label>
                                 <input type="text" class="form-control" placeholder="HOD's Email (Official)" id="pg_hod_mail" name="pg_hod_mail">
-                            </div>    
+                                <small></small>
+                              </div>    
                           </div>
                           <div class="col-md-6">
                             <div class="form-group first">
                                 <label for="pg_seed_mail">Department SEED Coordinator Email ID (Official)</label>
                                 <input type="text" class="form-control" placeholder="SEED Coordinator Email (Official)" id="pg_seed_mail" name="pg_seed_mail">
-                            </div>    
+                                <small></small>
+                              </div>    
                           </div>
                         </div>
                         <div class="row">
@@ -384,19 +392,20 @@
                             <div class="form-group first">
                                 <label for="pg_percentage">Current Percentage(as per Marksheet)</label>
                                 <input type="text" class="form-control" placeholder="Eg: 95" id="pg_percentage" name="pg_percentage">
-                            </div>    
+                                <small></small>
+                              </div>    
                           </div>
                         </div>
                         <div class="row">
                           <div class="col-md-6">
-                              <div class="form-group first">
+                              <div class="form-group radiogrp">
                                   <label for="active_pg_arrears">Do you have any Current Arrears?</label>
                                   <div class="row">
                                     <div class="col-md-12">
                                       <div class="row ml-3">
                                         <div class="form-check">
                                           <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="active_pg_arrears" id="active_pg_arrears" value="Yes">
+                                            <input type="radio" class="form-check-input" name="active_pg_arrears" id="active_pg_arrears_yes" value="Yes">
                                             Yes
                                           </label>
                                         </div>
@@ -404,32 +413,34 @@
                                       <div class="row ml-3">
                                         <div class="form-check">
                                           <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="active_pg_arrears" id="active_pg_arrears" value="No">
+                                            <input type="radio" class="form-check-input" name="active_pg_arrears" id="active_pg_arrears_no" value="No">
                                             No
                                           </label>
                                         </div>
                                       </div>
                                     </div>
                                   </div>
+                                  <small class="radio-error"></small>
                               </div>
                           </div>
-                          <div class="col-md-6">
+                          <div class="col-md-6" id="arrears_yes"style="display: none;">
                             <div class="form-group first">
                                 <label for="active_pg_arrears_count">Current Arrears in numbers</label>
                                 <input type="text" class="form-control" placeholder="Eg. 1" id="active_pg_arrears_count" name="active_pg_arrears_count">
-                            </div>
+                                <small></small>
+                              </div>
                           </div>
                         </div>
                         <div class="row">
                           <div class="col-md-6">
-                              <div class="form-group first">
+                              <div class="form-group radiogrp">
                                   <label for="pg_arrears">Do you have any History of Arrears?</label>
                                   <div class="row">
                                     <div class="col-md-12">
                                       <div class="row ml-3">
                                         <div class="form-check">
                                           <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="pg_arrears" id="pg_arrears" value="Yes">
+                                            <input type="radio" class="form-check-input" name="pg_arrears" id="pg_arrears_yes" value="Yes">
                                             Yes
                                           </label>
                                         </div>
@@ -437,20 +448,22 @@
                                       <div class="row ml-3">
                                         <div class="form-check">
                                           <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="pg_arrears" id="pg_arrears" value="No">
+                                            <input type="radio" class="form-check-input" name="pg_arrears" id="pg_arrears_no" value="No">
                                             No
                                           </label>
                                         </div>
                                       </div>
                                     </div>
                                   </div>
+                                  <small class="radio-error"></small>
                               </div>
                           </div>
-                          <div class="col-md-6">
+                          <div class="col-md-6" id="history_yes"style="display: none;">
                             <div class="form-group first">
                                 <label for="pg_arrears_count">History of Arrears in numbers</label>
                                 <input type="text" class="form-control" placeholder="Eg. 1" id="pg_arrears_count" name="pg_arrears_count">
-                            </div>
+                                <small></small>
+                              </div>
                           </div>
                         </div>
                         <div class="row">
@@ -465,19 +478,20 @@
                                   <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                                 </span>
                               </div>
+                              <small class="file-error"></small>
                             </div>
                         </div>
                         </div>
                         <div class="row">
                           <div class="col-md-6">
-                              <div class="form-group first">
+                              <div class="form-group radiogrp">
                                   <label for="pg_internship">Do you have Internship as part of your syllabus?</label>
                                   <div class="row">
                                     <div class="col-md-12">
                                       <div class="row ml-3">
                                         <div class="form-check">
                                           <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="pg_internship" id="pg_internship" value="Yes">
+                                            <input type="radio" class="form-check-input" name="pg_internship" id="pg_internship_yes" value="Yes">
                                             Yes
                                           </label>
                                         </div>
@@ -485,24 +499,26 @@
                                       <div class="row ml-3">
                                         <div class="form-check">
                                           <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="pg_internship" id="pg_internship" value="No">
+                                            <input type="radio" class="form-check-input" name="pg_internship" id="pg_internship_no" value="No">
                                             No
                                           </label>
                                         </div>
                                       </div>
                                     </div>
                                   </div>
+                                  <small class="radio-error"></small>
                               </div>
                           </div>
                         </div>
-                        <div class="row">
+                        <div class="row" id="pg_intern"style="display: none;">
                           <div class="col-md-12">
                             <div class="form-group first">
                                 <label for="pg_intern_period">What is the duration of the internship period(in months)?</label>
                                 <p>1. Kindly discuss with the department staffs and fill the answer. <br>
                                   2.If No,Type as NA</p>
                                 <input type="text" class="form-control" placeholder="Eg: 4 months" id="pg_intern_period" name="pg_intern_period">
-                            </div>
+                                <small></small>
+                              </div>
                           </div>
                         </div>
                         <div class="row">
@@ -510,7 +526,8 @@
                               <div class="form-group first">
                                 <label for="ugregno">UG Register Number</label>
                                   <input type="text" class="form-control" placeholder="Enter your UG Register Number" id="ug_regno" name="ug_regno">
-                              </div>
+                                  <small></small>
+                                </div>
                             </div>
                           </div>
                         <div class="row">
@@ -518,6 +535,7 @@
                             <div class="form-group">
                               <label for="ex_ug_university">UG University</label>
                               <input type="text" class="form-control" placeholder="UG University Name" id="ex_ug_university" name="ex_ug_university">
+                              <small></small>
                             </div>
                           </div>
                         </div>
@@ -526,13 +544,15 @@
                               <div class="form-group first">
                                   <label for="ex_ug_college">UG College Name</label>
                                   <input type="text" class="form-control" placeholder="UG College Name" id="ex_ug_college" name="ex_ug_college">
-                              </div>    
+                                  <small></small>
+                                </div>    
                           </div>
                           <div class="col-md-6">
                             <div class="form-group first">
                                 <label for="ex_ug_college_address">UG College Address with PINCODE</label>
                                 <input type="text" class="form-control" placeholder="UG College Address with PINCODE" id="ex_ug_college_address" name="ex_ug_college_address">
-                            </div>    
+                                <small></small>
+                              </div>    
                           </div>
                         </div>
                         <div class="row">
@@ -540,13 +560,15 @@
                               <div class="form-group first">
                                   <label for="ex_ug_department">UG Department</label>
                                   <input type="text" class="form-control" placeholder="UG Department" id="ex_ug_department" name="ex_ug_department">
-                              </div>    
+                                  <small></small>
+                                </div>    
                           </div>
                           <div class="col-md-6">
                             <div class="form-group first">
                                 <label for="ex_ug_percentage">UG Percentage</label>
                                 <input type="text" class="form-control" placeholder="UG Percentage" id="ex_ug_percentage" name="ex_ug_percentage">
-                            </div>    
+                                <small></small>
+                              </div>    
                           </div>
                         </div>
                         <div class="row">
@@ -561,6 +583,7 @@
                                   <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                                 </span>
                               </div>
+                              <small class="file-error"></small>
                             </div>
                           </div>
                           <div class="col-md-12">
@@ -574,19 +597,20 @@
                                   <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                                 </span>
                               </div>
+                              <small class="file-error"></small>
                             </div>
                           </div>
                         </div>
                         <div class="row">
                           <div class="col-md-12">
-                              <div class="form-group first">
+                              <div class="form-group radiogrp">
                                   <label for="ex_ug_internship">Did you Undergone any Internship during your UG?</label>
                                   <div class="row">
                                     <div class="col-md-12">
                                       <div class="row ml-3">
                                         <div class="form-check">
                                           <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="ex_ug_internship" id="ex_ug_internship" value="Yes">
+                                            <input type="radio" class="form-check-input" name="ex_ug_internship" id="ex_ug_internship_yes" value="Yes">
                                             Yes
                                           </label>
                                         </div>
@@ -594,52 +618,59 @@
                                       <div class="row ml-3">
                                         <div class="form-check">
                                           <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="ex_ug_internship" id="ex_ug_internship" value="No">
+                                            <input type="radio" class="form-check-input" name="ex_ug_internship" id="ex_ug_internship_no" value="No">
                                             No
                                           </label>
                                         </div>
                                       </div>
                                     </div>
                                   </div>
+                                  <small class="radio-error"></small>
                               </div>
                           </div>
                         </div>
+                        <section id="worked_intern"style="display: none;">
+                          <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group first">
+                                    <label for="ex_ug_internship_companyplace">Place of Internship</label>
+                                    <input type="text" class="form-control" placeholder="Place of Internship (or) NA" id="ex_ug_internship_companyplace" name="ex_ug_internship_companyplace">
+                                    <small></small>
+                                  </div>    
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group first">
+                                    <label for="ex_ug_internship_companyname">Company name</label>
+                                    <input type="text" class="form-control" placeholder="Company name (or) NA" id="ex_ug_internship_companyname" name="ex_ug_internship_companyname">
+                                    <small></small>
+                                  </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group first">
+                                    <label for="ex_ug_internship_companyaddress">Company Address</label>
+                                    <input type="text" class="form-control" placeholder="Company Address (or) NA" id="ex_ug_internship_companyaddress" name="ex_ug_internship_companyaddress">
+                                    <small></small>
+                                  </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group first">
+                                  <label for="ex_ug_internship_period">Internship period</label>
+                                  <input type="text" class="form-control" placeholder="Eg. 4 months (or) NA" id="ex_ug_internship_period" name="ex_ug_internship_period">
+                                  <small></small>
+                                </div>    
+                            </div>
+                          </div>
+                        </section>
                       <div class="row">
                         <div class="col-md-6">
-                            <div class="form-group first">
-                                <label for="ex_ug_internship_companyplace">Place of Internship</label>
-                                <input type="text" class="form-control" placeholder="Place of Internship (or) NA" id="ex_ug_internship_companyplace" name="ex_ug_internship_companyplace">
-                            </div>    
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group first">
-                                <label for="ex_ug_internship_companyname">Company name</label>
-                                <input type="text" class="form-control" placeholder="Company name (or) NA" id="ex_ug_internship_companyname" name="ex_ug_internship_companyname">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group first">
-                                <label for="ex_ug_internship_companyaddress">Company Address</label>
-                                <input type="text" class="form-control" placeholder="Company Address (or) NA" id="ex_ug_internship_companyaddress" name="ex_ug_internship_companyaddress">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-group first">
-                              <label for="ex_ug_internship_period">Internship period</label>
-                              <input type="text" class="form-control" placeholder="Eg. 4 months (or) NA" id="ex_ug_internship_period" name="ex_ug_internship_period">
-                          </div>    
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group first">
+                            <div class="form-group radiogrp">
                                 <label for="ex_ug_work_exp">Do you have any work experience?</label>
                                 <div class="row">
                                   <div class="col-md-12">
                                     <div class="row ml-3">
                                       <div class="form-check">
                                         <label class="form-check-label">
-                                          <input type="radio" class="form-check-input" name="ex_ug_work_exp" id="ex_ug_work_exp" value="Yes">
+                                          <input type="radio" class="form-check-input" name="ex_ug_work_exp" id="ex_ug_work_exp_yes" value="Yes">
                                           Yes
                                         </label>
                                       </div>
@@ -647,38 +678,44 @@
                                     <div class="row ml-3">
                                       <div class="form-check">
                                         <label class="form-check-label">
-                                          <input type="radio" class="form-check-input" name="ex_ug_work_exp" id="ex_ug_work_exp" value="No">
+                                          <input type="radio" class="form-check-input" name="ex_ug_work_exp" id="ex_ug_work_exp_yes" value="No">
                                           No
                                         </label>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
+                                <small class="radio-error"></small>
                             </div>
                         </div>
                       </div>
-                    <div class="row">
-                      <div class="col-md-4">
-                          <div class="form-group first">
-                              <label for="ex_ug_work_company">Worked Company name</label>
-                              <input type="text" class="form-control" placeholder="Company name (or) NA" id="ex_ug_work_company" name="ex_ug_work_company">
-                          </div>    
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group first">
-                            <label for="ex_ug_work_period">Period of Working</label>
-                            <input type="text" class="form-control" placeholder="In months/years (or) NA" id="ex_ug_work_period" name="ex_ug_work_period">
-                        </div>    
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group first">
-                            <label for="ex_ug_work_uan">UAN Number</label>
-                            <input type="text" class="form-control" placeholder="UAN Number or NA" id="ex_ug_work_uan" name="ex_ug_work_uan">
-                        </div>    
-                      </div>
-                    </div>
+                      <section id="worked_company"style="display: none;">
+                        <div class="row">
+                          <div class="col-md-4">
+                              <div class="form-group first">
+                                  <label for="ex_ug_work_company">Worked Company name</label>
+                                  <input type="text" class="form-control" placeholder="Company name (or) NA" id="ex_ug_work_company" name="ex_ug_work_company">
+                                  <small></small>
+                                </div>    
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group first">
+                                <label for="ex_ug_work_period">Period of Working</label>
+                                <input type="text" class="form-control" placeholder="In months/years (or) NA" id="ex_ug_work_period" name="ex_ug_work_period">
+                                <small></small>
+                              </div>    
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group first">
+                                <label for="ex_ug_work_uan">UAN Number</label>
+                                <input type="text" class="form-control" placeholder="UAN Number or NA" id="ex_ug_work_uan" name="ex_ug_work_uan">
+                                <small></small>
+                              </div>    
+                          </div>
+                        </div>
+                      </section>
                         <div class="row mt-4 justify-content-center">
-                          <button id="proceed" type="button" class="btn btn-danger mr-4"><i class="icon-arrow-left"></i> Previous</button>
+                          <button  type="button" class="btn btn-danger mr-4" onclick="goBack()"><i class="icon-arrow-left"></i> Previous</button>
                             <button id="proceed" type="button" class="btn btn-success">Continue <i class="icon-arrow-right"></i></button>
                         </div>
                       </form>
@@ -710,26 +747,191 @@
     <!-- page-body-wrapper ends -->
   <!-- container-scroller -->
   <script>
+    window.onload = function() {
+    var storedFormData = sessionStorage.getItem('pgForms');
+    if (storedFormData) {
+      var form = document.getElementById('pg_forms');
+      var parsedData = JSON.parse(storedFormData);
+      console.log(parsedData);
+      for (var key in parsedData) {
+        if (parsedData.hasOwnProperty(key)) {
+          var inputElement = form.elements[key];
+          if (inputElement && inputElement.type !== 'file') {
+            inputElement.value = parsedData[key];
+          }
+        }
+      }
+      sessionStorage.removeItem('pgForms');
+    }
+  };
+  </script>
+  <script>
+    const form = document.getElementById('pg_forms');
+    const radiogrp = document.querySelectorAll('.radiogrp');
+    const errorFields = document.querySelectorAll('.file-error');
+    const pg_hod = document.getElementById('pg_hod');
+    const pg_seed = document.getElementById('pg_seed');
+    const pg_hod_no = document.getElementById('pg_hod_no');
+    const pg_seed_no = document.getElementById('pg_seed_no');
+    const pg_hod_mail = document.getElementById('pg_hod_mail');
+    const pg_seed_mail = document.getElementById('pg_seed_mail');
+    const pg_percentage = document.getElementById('pg_percentage');
+    const active_pg_arrears = document.getElementById('active_pg_arrears_count');
+    const pg_arrears = document.getElementById('pg_arrears_count');
+    const pg_intern_period = document.getElementById('pg_intern_period');
+    const ug_regno = document.getElementById('ug_regno');
+    const ex_ug_university = document.getElementById('ex_ug_university');
+    const ex_ug_college = document.getElementById('ex_ug_college');
+    const ex_ug_college_address = document.getElementById('ex_ug_college_address');
+    const ex_ug_department = document.getElementById('ex_ug_department');
+    const ex_ug_percentage = document.getElementById('ex_ug_percentage');
+    const ex_ug_internship_companyplace = document.getElementById('ex_ug_internship_companyplace');
+    const ex_ug_internship_companyname = document.getElementById('ex_ug_internship_companyname');
+    const ex_ug_internship_companyaddress = document.getElementById('ex_ug_internship_companyaddress');
+    const ex_ug_internship_period = document.getElementById('ex_ug_internship_period');
+    const ex_ug_work_company = document.getElementById('ex_ug_work_company');
+    const ex_ug_work_period = document.getElementById('ex_ug_work_period');
+    const ex_ug_work_uan = document.getElementById('ex_ug_work_uan');
+
+    var pg_internship = document.getElementsByName('pg_internship');
+    var ex_ug_internship = document.getElementsByName('ex_ug_internship');
+    var ex_ug_work_exp = document.getElementsByName('ex_ug_work_exp');
+    const pg_intern = document.getElementById('pg_intern');
+    const worked_intern = document.getElementById('worked_intern');
+    const worked_company = document.getElementById('worked_company');
+
+    const pg_marksheet = document.getElementById('pg_marksheet');
+    const ex_ug_marksheets = document.getElementById('ex_ug_marksheets');
+    const ex_ug_provisional = document.getElementById('ex_ug_provisional');
+
+    const radioElementMap = {
+      active_pg_arrears_yes: 'arrears_yes',
+      active_pg_arrears_no: 'arrears_yes',
+      pg_arrears_yes: 'history_yes',
+      pg_arrears_no: 'history_yes',
+      pg_internship_yes: 'pg_intern',
+      pg_internship_no: 'pg_intern',
+      ex_ug_internship_yes:'worked_intern',
+      ex_ug_internship_no:'worked_intern',
+      ex_ug_work_exp_yes:'worked_company',
+      ex_ug_work_exp_no:'worked_company',
+
+    };
+    // Attach a click event listener to the common parent element of the radio buttons
+    document.addEventListener('click', (event) => {
+      const clickedRadio = event.target;
+      const elementId = radioElementMap[clickedRadio.id];
+      if (elementId) {
+        const element = document.getElementById(elementId);
+        if (element) {
+          element.style.display = clickedRadio.value === 'Yes' ? 'block' : 'none';
+        }
+      }
+    });
+
     $(document).ready(function() {
     $('#proceed').click(function(event) {
         console.log("Click event triggered"); // Add this line
         event.preventDefault(); // Prevent form submission
-        var form_data = $('#pg_forms').serialize(); // Serialize form data
+        var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+        //var form_data = $('#pg_forms').serialize(); // Serialize form data
+        var form_data = new FormData($('#pg_forms')[0]);
+        form_data.append('csrfmiddlewaretoken', csrfToken);
 
-        $.ajax({
+        var pgForms = new FormData(form); //session data name
+        var storedData = {};
+        for (var [name, value] of pgForms.entries()) {
+          if (value instanceof File) {
+            // Handle file uploads separately
+            storedData[name] = value;
+          } else {
+            storedData[name] = value;
+          }
+        }
+        sessionStorage.setItem('pgForms', JSON.stringify(storedData));
+        var status = true;
+        var active_pg_arrearsVal,pg_arrearsVal,pg_internshipVal,ex_ug_internshipVal,ex_ug_work_expVal;
+        for (var i = 0; i < active_pg_arrears.length; i++) {
+          if (active_pg_arrears[i].checked) {
+            active_pg_arrearsVal = active_pg_arrears[i].value;
+            break;
+          }
+        }
+        for (var i = 0; i < pg_arrears.length; i++) {
+          if (pg_arrears[i].checked) {
+            pg_arrearsVal = pg_arrears[i].value;
+            break;
+          }
+        }
+        for (var i = 0; i < pg_internship.length; i++) {
+          if (pg_internship[i].checked) {
+            pg_internshipVal = pg_internship[i].value;
+            break;
+          }
+        }
+        for (var i = 0; i <  ex_ug_internship.length; i++) {
+          if ( ex_ug_internship[i].checked) {
+            ex_ug_internshipVal =  ex_ug_internship[i].value;
+            break;
+          }
+        }
+        for (var i = 0; i <  ex_ug_work_exp.length; i++) {
+          if ( ex_ug_work_exp[i].checked) {
+            ex_ug_work_expVal =  ex_ug_work_exp[i].value;
+            break;
+          }
+        }
+        if(active_pg_arrearsVal === 'Yes' && pg_arrearsVal === 'Yes' && pg_internshipVal === 'Yes' && ex_ug_internshipVal === 'Yes' && ex_ug_work_expVal === 'Yes'){
+          status = checkRequired([active_pg_arrears_count,pg_arrears_count,pg_intern_period,ex_ug_internship_companyplace,ex_ug_internship_companyname,ex_ug_internship_companyaddress,ex_ug_internship_period,ex_ug_work_company,ex_ug_work_period,ex_ug_work_uan]);
+        }
+        
+        var validatecontactFields,checkemail,checkrequired,validateradio,isfileEmpty;
+        checkrequired = checkRequired([pg_hod,pg_seed,pg_hod_no,pg_seed_no,pg_hod_mail,pg_seed_mail,pg_percentage,ug_regno,ex_ug_university,ex_ug_college,ex_ug_college_address,ex_ug_department,ex_ug_percentage]);
+        checkemail = checkEmail([pg_hod_mail,pg_seed_mail]);
+        validateradio = validateRadio(radiogrp);
+        isfileEmpty = isFileEmpty([pg_marksheet,ex_ug_marksheets,ex_ug_provisional])
+        validatecontactFields  =validateContactFields([pg_hod_no,pg_seed_no])
+        if(!validatecontactFields || !checkemail || !checkrequired || !validateradio || !isfileEmpty){
+          status = false
+        }
+        if(status){
+          $.ajax({
             type: 'POST',
             url: '/superlee/registration/pg-details/',
             data: form_data,
+            headers: {
+                'X-CSRFToken': csrfToken // Include the CSRF token in the request headers
+              },
+            contentType: false, // Set content type to false to let the browser handle it
+            processData: false,
             success: function(response) {
               console.log(response)
-              window.location.href = "/superlee/registration/others/";
+              window.location.href = "/superlee/registration/work-agreement/";
             },
             error: function(response) {
-              alert("Response Failure");
+              Swal.fire({
+                  icon: 'error',
+                  title: 'response.responseJSON.error',
+                  text: "There is a field which mustn't be empty!",
+                  showConfirmButton: false,
+                  timer: 1500
+                })
             }
         });
+        }
+        else{
+          Swal.fire({
+                   icon: 'error',
+                   title: "Sorry!",
+                   text: "Something went wrong!",
+                   showConfirmButton: true,
+                 })
+        }
     });
 });
+function goBack() {
+    window.location.href = "/superlee/registration/schoolings/";
+    }
 </script>
 <script>
   // Assuming you have a JSON object containing department names and codes
@@ -875,6 +1077,36 @@ departments.forEach(function(department) {
 });
 
 </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const fileInputs = document.querySelectorAll('input[type="file"]');
+
+    fileInputs.forEach(function(fileInput) {
+      const fileError = fileInput.parentElement.querySelector('.file-error');
+      const fileGrp = fileInput.parentElement;
+      fileInput.addEventListener('change', function() {
+        console.log(fileGrp)
+        const file = fileInput.files[0];
+        if (file) {
+          const fileType = file.type;
+          if (fileType !== 'application/pdf') {
+            fileGrp.classList.add('error')
+            fileError.textContent = 'Please select a PDF file.';
+            fileInput.value = ''; // Clear the file input
+          } else {
+            fileGrp.className = 'form-group success'
+            fileError.textContent = ''; // Clear the error message
+          }
+        } else {
+          fileGrp.classList.add('error')
+          fileError.textContent = 'Please select a file.';
+        }
+      });
+    });
+  });
+</script>
+
 <script>
   // Get the alert element
   var alertEl = document.getElementById("alert1");
@@ -910,6 +1142,7 @@ departments.forEach(function(department) {
   <script src="{% static 'js/settings.js' %}"></script>
   <script src="{% static 'js/todolist.js' %}"></script>
   <script src="{% static 'js/file-upload.js' %}"></script>
+  <script src="{% static 'js/custom-validator.js' %}"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
   <script src="{% static 'js/dashboard.js' %}"></script>
@@ -921,6 +1154,8 @@ departments.forEach(function(department) {
 <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script> -->
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/autofill/2.5.3/js/dataTables.autoFill.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
+
 </body>
 
 </html>

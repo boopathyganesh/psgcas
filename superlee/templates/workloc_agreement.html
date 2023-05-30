@@ -27,6 +27,7 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/autofill/2.5.3/css/autoFill.dataTables.min.css">
   <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
 
 </head>
 <body>
@@ -339,9 +340,10 @@
                   <div class="container form-container scroll-forms">
                       <div class="col-md-12 py-5">
                         <form id="work-form" method="post" class="forms">
+                          {% csrf_token %}
                           <div class="row">
                             <div class="col-md-12">
-                                <div class="form-group first">
+                                <div class="form-group radiogrp">
                                     <div class="gender-details">
                                     <span class="gender-title">Are you interested to work in Night Shift?</span>
                                     <div class="category">
@@ -363,12 +365,13 @@
                                       </div>
                                     </div>
                                     </div>
+                                    <small class="radio-error"></small>
                                 </div>    
                             </div>
                           </div>
                           <div class="row">
                               <div class="col-md-12">
-                                <div class="form-group first">
+                                <div class="form-group radiogrp">
                                   <div class="gender-details">
                                     <span class="gender-title">Are you interested to work at any location in INDIA?</span>
                                     <div class="category">
@@ -390,19 +393,20 @@
                                       </div>
                                     </div>
                                     </div>
+                                    <small class="radio-error"></small>
                                 </div>
                               </div>
                           </div>
                           <div class="row">
                             <div class="col-md-12">
-                              <div class="form-group first">
+                              <div class="form-group radiogrp">
                                 <div class="gender-details">
                                     <span class="gender-title">Are you interested to Sign in a Service Agreement (Bond) with Companies?</span>
                                     <div class="category">
                                       <div class="col-sm-4">
                                         <div class="form-check">
                                           <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="bond"  value="Yes">
+                                            <input type="radio" class="form-check-input" name="bond"  value="Interested">
                                             Interested
                                           </label>
                                         </div>
@@ -410,13 +414,14 @@
                                       <div class="col-sm-5">
                                         <div class="form-check">
                                           <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="bond"  value="Yes">
+                                            <input type="radio" class="form-check-input" name="bond"  value="Not Interested">
                                             Not Interested
                                           </label>
                                         </div>
                                       </div>
                                     </div>
                                     </div>
+                                    <small class="radio-error"></small>
                               </div>
                             </div>
                         </div>
@@ -453,12 +458,19 @@
     <!-- page-body-wrapper ends -->
   <!-- container-scroller -->
   <script>
+    const form = document.getElementById('pg_forms');
+    const radiogrp = document.querySelectorAll('.radiogrp');
     $(document).ready(function() {
     $('#proceed').click(function(event) {
         console.log("Click event triggered"); // Add this line
         event.preventDefault(); // Prevent form submission
+        var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
         var form_data = $('#work-form').serialize(); // Serialize form data
-        $.ajax({
+        form_data += '&csrfmiddlewaretoken=' + csrfToken;
+        var status = true;
+        status = validateRadio(radiogrp)
+        if(status){
+          $.ajax({
             type: 'POST',
             url: '/superlee/registration/work-agreement/',
             data: form_data,
@@ -466,13 +478,28 @@
               window.location.href = "/superlee/registration/upload-documents/";
             },
             error: function(response) {
-              alert("Response Failure");
+              Swal.fire({
+                  icon: 'error',
+                  title: 'response.responseJSON.error',
+                  text: "There is a field which mustn't be empty!",
+                  showConfirmButton: false,
+                  timer: 1500
+                })
             }
         });
+        }
+        else{
+          Swal.fire({
+                   icon: 'error',
+                   title: "Sorry!",
+                   text: "Something went wrong!",
+                   showConfirmButton: true,
+                 })
+        }
     });
 });
 function goBack() {
-    window.location.href = "/superlee/registration/family-details/";
+    window.history.back();
     }
 </script>
   <!-- plugins:js -->
@@ -492,6 +519,7 @@ function goBack() {
   <script src="{% static 'js/template.js' %}"></script>
   <script src="{% static 'js/settings.js' %}"></script>
   <script src="{% static 'js/todolist.js' %}"></script>
+  <script src="{% static 'js/custom-validator.js' %}"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
   <script src="{% static 'js/dashboard.js' %}"></script>
@@ -503,6 +531,8 @@ function goBack() {
 <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script> -->
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/autofill/2.5.3/js/dataTables.autoFill.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
+
 </body>
 
 </html>

@@ -20,17 +20,36 @@
     }
 
     // Check if email is valid
+    // function checkEmail(inputs) {
+    //   const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    //   let allValid = true;
+    //   inputs.forEach(input => {
+    //     if (re.test(input.value.trim())) {
+    //       showSuccess(input);
+    //     } else {
+    //       showError(input, 'Email is invalid');
+    //       allValid = false;
+    //     }
+    //   });
+    //   return allValid;
+    // }
     function checkEmail(inputs) {
-      const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      const validDomains = ['gmail.com', 'psgcas.ac.in', 'outlook.com'];
+      const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,})$/;
       let allValid = true;
+      
       inputs.forEach(input => {
-        if (re.test(input.value.trim())) {
+        const email = input.value.trim();
+        const domain = email.substring(email.lastIndexOf('@') + 1);
+        
+        if (re.test(email) && validDomains.includes(domain)) {
           showSuccess(input);
         } else {
           showError(input, 'Email is invalid');
           allValid = false;
         }
       });
+      
       return allValid;
     }
     
@@ -214,3 +233,28 @@
       return isValid;
     }
     
+    function formatter(input) {
+      input.addEventListener('input', (event) => {
+        let { value } = event.target;
+        value = value.replace(/[\s.-]/g, ''); // Remove spaces, dots, and hyphens
+        value = value.slice(0, 12); // Restrict the total number of characters to 12
+        value = value.replace(/\./g, '#'); // Replace dots with the desired symbol
+        event.target.value = value;
+        console.log("$", value);
+      });
+    }
+    
+    function modifyPasswordField(passwordField) {
+      const modifiedPassword = passwordField.value.split('.').join('#'); // Replace '.' with the desired symbol
+      passwordField.value = modifiedPassword;
+    
+      passwordField.addEventListener('input', () => {
+        modifyPasswordField(passwordField);
+      });
+    }
+    
+    
+    
+
+
+

@@ -596,7 +596,7 @@
   };
   </script>
   <script>
-    var form = document.getElementById('ug_forms');
+    const form = document.getElementById('ug_forms');
     const radiogrp = document.querySelectorAll('.radiogrp');
     const errorFields = document.querySelectorAll('.file-error');
     const gap_year = document.getElementById('gap_year');
@@ -701,7 +701,7 @@
         //   status = checkRequired();
         // }
 
-        status = status && checkRequired([ug_hod,ug_seed,ug_hod_no,ug_seed_no,ug_percentage]);
+        status = status && checkRequired([ug_hod,ug_seed,ug_hod_no,ug_seed_no,ug_percentage,ug_hod_mail,ug_seed_mail]);
         status = status && checkEmail([ug_hod_mail,ug_seed_mail]);
         status = status && validateRadio(radiogrp);
         status = status && isFileEmpty([ug_marksheet])
@@ -717,7 +717,7 @@
             contentType: false, // Set content type to false to let the browser handle it
             processData: false,
             success: function(response) {
-              window.location.href = "/superlee/registration/others/";
+              window.location.href = "/superlee/registration/work-agreement/";
             },
             error: function(response) {
               Swal.fire({

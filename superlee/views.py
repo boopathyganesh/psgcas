@@ -284,16 +284,22 @@ def schoolings(request):
         request.session['diploma_percentage'] = form_data['diploma_percentage'],
         request.session['diploma_year'] = form_data['diploma_year'],
         fs = FileSystemStorage(location=MEDIA_ROOT + '/' + roll_number)
-        if request.session['hsc_or_diploma'] == '12th':
+        if request.session['hsc_or_diploma'][0] == '12th':
+            print('12th')
             uploaded_file = request.FILES['sslc_certi']
+            print(uploaded_file)
             fs.save(name=roll_number + '_sslc certificate.pdf', content=uploaded_file)
             uploaded_file = request.FILES['hsc_certi']
             fs.save(name=roll_number + '_hsc certificate.pdf', content=uploaded_file)
-        elif request.session['hsc_or_diploma'] == 'Diploma':
+        elif request.session['hsc_or_diploma'][0] == 'Diploma':
+            print('diploma')
             uploaded_file = request.FILES['sslc_certi']
+            print(uploaded_file)
             fs.save(name=roll_number + '_sslc certificate.pdf', content=uploaded_file)
             uploaded_file = request.FILES['diploma_certi']
             fs.save(name=roll_number + '_diploma certificate.pdf', content=uploaded_file)
+        else:
+            print(request.session['hsc_or_diploma'])
         current_pursuing = request.session['current_pursuing']
         # Return a JSON response indicating success
         return JsonResponse({'success': True,'pursuing':current_pursuing}, content_type='application/json')
@@ -312,9 +318,10 @@ def ug_details(request):
         print(request.session)
         roll_number = request.session['rollno']
 
-        request.session['ug_department'] = form_data['ug_department'],
+        #request.session['ug_department'] = form_data['ug_department'],
         request.session['ug_hod'] = form_data['ug_hod'],
         request.session['ug_hod_no'] = form_data['ug_hod_no'],
+        request.session['ug_hod_mail'] = form_data['ug_hod_mail'],
         request.session['ug_seed'] = form_data['ug_seed'],
         request.session['ug_seed_no'] = form_data['ug_seed_no'],
         request.session['ug_seed_mail'] = form_data['ug_seed_mail'],
@@ -342,7 +349,6 @@ def pg_details(request):
         form_data = request.POST
         print(form_data)
         roll_number = request.session['rollno']
-        request.session['pg_department'] = form_data['pg_department'],
         request.session['pg_hod'] = form_data['pg_hod'],
         request.session['pg_hod_no'] = form_data['pg_hod_no'],
         request.session['pg_seed'] = form_data['pg_seed'],
@@ -357,15 +363,19 @@ def pg_details(request):
         request.session['ex_ug_college_address'] = form_data['ex_ug_college_address'],
         request.session['ex_ug_department'] = form_data['ex_ug_department'],
         request.session['ex_ug_percentage'] = form_data['ex_ug_percentage'],
-        request.session['ex_ug_internship_company'] = form_data['ex_ug_internship_company'],
+        request.session['ex_ug_internship_companyplace'] = form_data['ex_ug_internship_companyplace'],
+        request.session['ex_ug_internship_companyname'] = form_data['ex_ug_internship_companyname'],
+        request.session['ex_ug_internship_companyaddress'] = form_data['ex_ug_internship_companyaddress'],
         request.session['ex_ug_internship_period'] = form_data['ex_ug_internship_period'],
         request.session['ex_ug_work_company'] = form_data['ex_ug_work_company'],
         request.session['ex_ug_work_period']  = form_data['ex_ug_work_period'],
         request.session['ex_ug_work_uan'] = form_data['ex_ug_work_uan']
 
         fs = FileSystemStorage(location=MEDIA_ROOT + '/' + roll_number)
-        uploaded_file = request.FILES['ug_marksheet']
+        uploaded_file = request.FILES['ex_ug_marksheets']
         fs.save(name=roll_number + '_ug_marksheet.pdf', content=uploaded_file)
+        uploaded_file = request.FILES['ex_ug_provisional']
+        fs.save(name=roll_number + '_ug_provisional.pdf', content=uploaded_file)
         uploaded_file = request.FILES['pg_marksheet']
         fs.save(name=roll_number + '_pg_marksheet.pdf', content=uploaded_file)
         print(roll_number)
@@ -384,7 +394,6 @@ def other_details(request):
         form_data = request.POST
         print(form_data)
         roll_number = request.session['rollno']
-        request.session['pg_hod'] = form_data['pg_hod'],
         request.session['why_placements'] = form_data['why_placements'],
         request.session['about_yourself'] = form_data['about_yourself'],
         request.session['languages_known'] = form_data['languages_known'],
@@ -407,8 +416,8 @@ def workloc_agreement(request):
         print(form_data)
         roll_number = request.session['rollno']
         request.session['work_interest'] = form_data['work_interest'],
-        request.session['work_location'] = form_data['work_location'],
-        request.session['sis'] = form_data['sis']
+        request.session['work_location'] = form_data['pan_inpyd'],
+        request.session['sis'] = form_data['bond']
         print(roll_number)
         # Return a JSON response indicating success
         return JsonResponse({'success': True}, content_type='application/json')
