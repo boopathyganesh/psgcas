@@ -363,7 +363,7 @@
                           <div class="col-md-12">
                             <div class="form-group">
                               <label for="languages_known">Languages Know</label>
-                                <select class="row form-control multipleselect w-100" name="states[]" multiple="multiple" id="states">
+                                <select class="row form-control multipleselect w-100" name="languages_known" multiple="multiple" id="languages_known">
                                   <option value="Python">Python</option>
                                   <option value="C">C</option>
                                   <option value="C++">C++</option>
@@ -377,7 +377,7 @@
                           <div class="col-md-12">
                             <div class="form-group">
                               <label for="prog_languages">Programming Languages Known(if any)</label>
-                                <select class="row form-control multipleselect w-100" name="prog_languages[]" id="prog_languages" multiple="multiple">
+                                <select class="row form-control multipleselect w-100" name="prog_languages" id="prog_languages" multiple="multiple">
                                   <option value="Python">Python</option>
                                   <option value="C">C</option>
                                   <option value="C++">C++</option>
@@ -456,7 +456,7 @@
         var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
         var form_data = $('#others_forms').serialize(); // Serialize form data
         form_data += '&csrfmiddlewaretoken=' + csrfToken;
-        
+        console.log(form_data)
         var othersForms = new FormData(form); //session data name
         var storedData = {};
 
@@ -478,7 +478,7 @@
         if(status){
           $.ajax({
             type: 'POST',
-            url: '/superlee/registration/pg-details/',
+            url: '/superlee/registration/others/',
             data: form_data,
             headers: {
                 'X-CSRFToken': csrfToken // Include the CSRF token in the request headers

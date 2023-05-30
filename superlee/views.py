@@ -416,7 +416,7 @@ def workloc_agreement(request):
         print(form_data)
         roll_number = request.session['rollno']
         request.session['work_interest'] = form_data['work_interest'],
-        request.session['work_location'] = form_data['pan_inpyd'],
+        request.session['work_location'] = form_data['pan_ind'],
         request.session['sis'] = form_data['bond']
         print(roll_number)
         # Return a JSON response indicating success
@@ -438,7 +438,6 @@ def mand_docs(request):
         request.session['pan_number'] = form_data['pan_number'],
         request.session['linkedin_profile'] = form_data['linkedin_profile'],
         request.session['linkedin_link'] = form_data['linkedin_link'],
-        request.session['pursuing'] = form_data['pursuing']
 
         fs = FileSystemStorage(location=MEDIA_ROOT + '/' + roll_number)
         uploaded_file = request.FILES['aadhar']

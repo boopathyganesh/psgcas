@@ -607,7 +607,7 @@
         const fileError = fileInput.parentElement.querySelector('.file-error');
         const fileGrp = fileInput.parentElement;
         fileInput.addEventListener('change', function() {
-          console.log(fileGrp)
+
           const file = fileInput.files[0];
           if (file) {
             const fileType = file.type;
@@ -615,7 +615,8 @@
               fileGrp.classList.add('error')
               fileError.textContent = 'Please select a PDF file.';
               fileInput.value = ''; // Clear the file input
-            } else {
+            } 
+            else {
               fileGrp.className = 'form-group success'
               fileError.textContent = ''; // Clear the error message
             }
