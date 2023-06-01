@@ -403,14 +403,14 @@
                             <div class="col-md-6">
                               <div class="form-group first">
                                   <label for="ug_hod_no">HOD's Number</label>
-                                  <input type="text" class="form-control" placeholder="Head of the Department Number" id="ug_hod_no" name="ug_hod_no">
+                                  <input type="text" class="form-control" placeholder="Head of the Department Number" id="ug_hod_no" name="ug_hod_no" maxlength="10">
                                   <small></small>
                                 </div>    
                             </div>
                             <div class="col-md-6">
                               <div class="form-group first">
                                   <label for="ug_seed_no">SEED Coordinator's Number</label>
-                                  <input type="text" class="form-control" placeholder="Department SEED Coordinator contact" id="ug_seed_no" name="ug_seed_no">
+                                  <input type="text" class="form-control" placeholder="Department SEED Coordinator contact" id="ug_seed_no" name="ug_seed_no" maxlength="10">
                                   <small></small>
                                 </div>    
                             </div>
@@ -706,7 +706,7 @@
           radiocheck = validateRadio(radiogrp);
           fileempty = isFileEmpty([ug_marksheet]);
           contactcheck = validateContactFields([ug_hod_no,ug_seed_no]);
-          if(!empty || emailcheck || !radiocheck || !fileempty || !contactcheck){
+          if(!empty || !emailcheck || !radiocheck || !fileempty || !contactcheck){
             status=false;
           }
         if(status){
