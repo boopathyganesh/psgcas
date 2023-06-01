@@ -231,7 +231,7 @@ def registration(request):
             request.session['altcon'] = form_data['altcon']
             request.session['aemail'] = form_data['aemail']
             request.session['gender'] = form_data['gender']
-            request.session['marital-sts'] = form_data['marital-sts']
+            request.session['marital_sts'] = form_data['marital_sts']
             # Return a JSON response indicating success
             return JsonResponse({'success': True}, content_type='application/json')
         else:
@@ -484,9 +484,16 @@ def mand_docs(request):
         return HttpResponse(template.render(context, request))
 @ensure_csrf_cookie
 def ack(request):
+    if request.method == ['POST']:
+        form_data = request.POST
+        print('$',form_data)
         roll_number = request.session['rollno']
         session_data=dict(request.session)
+        print(session_data)
         return render(request,'ack_page.html',{'data':session_data})
+    else:
+        session_data = dict(request.session)
+        return render(request, 'ack_page.html', {'data': session_data})
 
 @ensure_csrf_cookie
 def application_sts(request):

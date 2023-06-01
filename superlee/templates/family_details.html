@@ -390,7 +390,7 @@
                             <div class="col-md-6">
                                 <div class="form-group first">
                                   <label for="mname">Sibling Count</label>
-                                  <input type="text" class="form-control" placeholder="Sibling Count" id="scount" name="scount">
+                                  <input type="number" class="form-control" placeholder="Sibling Count" id="scount" name="scount">
                                   <small></small>
                                 </div>    
                             </div>
@@ -406,7 +406,7 @@
                             <div class="col-md-6">
                                 <div class="form-group first">
                                   <label for="mname">Pincode</label>
-                                  <input type="text" class="form-control" placeholder="Permanent Address Pincode" id="p_pincode" name="p_pincode">
+                                  <input type="text" class="form-control" placeholder="Permanent Address Pincode" id="p_pincode" name="p_pincode" maxlength="6">
                                   <small></small>
                                 </div>
                               </div>
@@ -420,7 +420,7 @@
                             <div class="col-md-6">
                                 <div class="form-group first">
                                   <label for="mname">Pincode</label>
-                                  <input type="text" class="form-control" placeholder="Present Address Pincode" id="c_pincode" name="c_pincode">
+                                  <input type="text" class="form-control" placeholder="Present Address Pincode" id="c_pincode" name="c_pincode" maxlength="6">
                                   <small></small>
                                 </div>
                               </div>
@@ -504,10 +504,11 @@
           }
           sessionStorage.setItem('familyForm', JSON.stringify(storedData));
           var status = true;
-          var empty,contactcheck;
+          var empty,contactcheck,pincode;
           empty = checkRequired([mname,mcontact,moccupation,fname,fcon,foccupation,scount,permanent_address,p_pincode,current_address,c_pincode])
           contactcheck = validateContactFields([mcontact,fcon])
-          if(!empty || !contactcheck){
+          pincode = validatePincode([p_pincode,c_pincode]);
+          if(!empty || !contactcheck || !pincode){
             status = false;
           }
           if(status){

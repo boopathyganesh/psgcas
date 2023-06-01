@@ -366,10 +366,6 @@
                             <div class="form-group">
                               <label for="languages_known">Languages Know</label>
                                 <select class="row form-control multipleselect w-100" name="languages_known" multiple="multiple" id="languages_known">
-                                  <option value="Python">Python</option>
-                                  <option value="C">C</option>
-                                  <option value="C++">C++</option>
-                                  <option value="JAVA">JAVA</option>
                                 </select>
                                 <input type="text" class="form-control" id="languages_known" name="languages_known" disabled hidden>
                                 <small class="select-error"></small>
@@ -381,10 +377,7 @@
                             <div class="form-group">
                               <label for="prog_languages">Programming Languages Known(if any)</label>
                                 <select class="row form-control multipleselect w-100" name="prog_languages" id="prog_languages" multiple="multiple">
-                                  <option value="Python">Python</option>
-                                  <option value="C">C</option>
-                                  <option value="C++">C++</option>
-                                  <option value="JAVA">JAVA</option>
+                                  
                                 </select>
                                 <input type="text" class="form-control" id="prog_languages" name="prog_languages" disabled hidden>
                                 <small class="select-error"></small>
@@ -518,6 +511,67 @@ function goBack() {
     window.location.href = "/superlee/registration/upload-documents/";
     }
 </script>
+<script>
+  // Assuming you have a JSON object containing department names and codes
+
+  // Add more department objects as needed
+  var jsonFile = "{% static 'js/prog_lang.json' %}";
+  fetch(jsonFile)
+    .then(response => response.json())
+    .then(data => {
+      const itemListElement = data.itemListElement;
+      var dropdown = document.getElementById("prog_languages");
+
+      for (let i = 0; i < itemListElement.length; i++) {
+        const name = itemListElement[i].item.name;
+        // Do something with the name data
+
+        // Create a new option element
+        var option = document.createElement("option");
+
+        // Set the text and value of the option
+        option.text = name;
+        option.value = name;
+
+        // Append the option to the dropdown
+        dropdown.add(option);
+      }
+    })
+    .catch(error => {
+      console.error('Error loading JSON data:', error);
+    });
+</script>
+<script>
+  // Assuming you have a JSON object containing department names and codes
+
+  // Add more department objects as needed
+  var jsonFile = "{% static 'js/language.json' %}";
+  fetch(jsonFile)
+    .then(response => response.json())
+    .then(data => {
+      // Get a reference to the select dropdown element
+  var dropdown = document.getElementById("languages_known");
+
+for (var key in data) {
+  var name = data[key].name;
+  // Do something with the name data
+
+  // Create a new option element
+  var option = document.createElement("option");
+
+  // Set the text and value of the option
+  option.text = name;
+  option.value = name;
+
+  // Append the option to the dropdown
+  dropdown.add(option);
+}
+    })
+    .catch(error => {
+      console.error('Error loading JSON data:', error);
+    });
+</script>
+
   <!-- plugins:js -->
   <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
   <script src="{% static 'js/sortable.js' %}"></script>

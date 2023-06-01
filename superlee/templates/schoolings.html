@@ -398,7 +398,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group first">
                                         <label for="sslc_school_pincode">Pincode</label>
-                                        <input type="text" class="form-control" placeholder="School Address Pincode" id="sslc_school_pincode" name="sslc_school_pincode"> 
+                                        <input type="text" class="form-control" placeholder="School Address Pincode" id="sslc_school_pincode" name="sslc_school_pincode" maxlength="6"> 
                                         <small></small>
                                       </div>
                                 </div>
@@ -587,7 +587,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group first">
                                             <label for="hsc_school_pincode">Pincode</label>
-                                            <input type="text" class="form-control" placeholder="School Address Pincode" id="hsc_school_pincode" name="hsc_school_pincode"> 
+                                            <input type="text" class="form-control" placeholder="School Address Pincode" id="hsc_school_pincode" name="hsc_school_pincode" maxlength="6"> 
                                             <small></small>
                                           </div>
                                     </div>
@@ -708,7 +708,7 @@
                                   <div class="col-md-6">
                                     <div class="form-group first">
                                         <label for="diploma_clg_pincode">Pincode</label>
-                                        <input type="text" class="form-control" placeholder=" " id="diploma_clg_pincode" name="diploma_clg_pincode"> 
+                                        <input type="text" class="form-control" placeholder=" " id="diploma_clg_pincode" name="diploma_clg_pincode" maxlength="6"> 
                                         <small></small>
                                       </div>
                                 </div>
@@ -857,9 +857,10 @@
         }
         sessionStorage.setItem('schoolings', JSON.stringify(storedData));
         var status = true;
-        var empty,emptychoice,radiocheck,fileempty;
+        var empty,emptychoice,radiocheck,fileempty,pincode;
         empty = checkRequired([sslc_school,sslc_school_address,sslc_school_pincode,sslc_percentage,sslc_year]);
         radiocheck = validateRadio(radiogrp);
+        pincode = validatePincode([sslc_school_pincode]);
         var choiceVal;
         for (var i = 0; i < choice.length; i++) {
           if (choice[i].checked) {
@@ -871,13 +872,15 @@
         if(choiceVal === '12th'){
           emptychoice = checkRequired([hsc_school,hsc_school_address,hsc_school_pincode,hsc_percentage,hsc_year]);
           fileempty = isFileEmpty([sslc_certi,hsc_certi]);
+          pincode = validatePincode([hsc_school_pincode]);
         }
         else if(choiceVal === 'Diploma'){
           emptychoice = checkRequired([diploma_clg,diploma_clg_address,diploma_clg_pincode,diploma_percentage,diploma_year]);
           fileempty = isFileEmpty([sslc_certi,diploma_certi]);
+          pincode = validatePincode([diploma_clg_pincode]);
         }
 
-        if(!empty || emptychoice || !radiocheck || !fileempty){
+        if(!empty || emptychoice || !radiocheck || !fileempty ||!pincode){
           status = false;
         }
 

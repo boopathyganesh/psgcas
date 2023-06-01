@@ -27,6 +27,7 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/autofill/2.5.3/css/autoFill.dataTables.min.css">
   <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
 
 </head>
 <body>
@@ -360,20 +361,21 @@
                                     <h4 class="mb-5 mt-4">Personal Details:</h4>
                                     <div class="row pl-5 pr-5">
                                         <div class="col-md-6">
-                                            <p>Full Name : {{data.Full_Name}}</p>
-                                            <p>Pursuing Graduation : {{data.Pursuing_Degree}}</p>
+                                          {% csrf_token %}
+                                            <p>Full Name : {{data.full_name}}</p>
+                                            <p>Pursuing Graduation : {{data.current_pursuing}}</p>
                                             <p>Date of Birth : {{data.DOB}}</p>
-                                            <p>Gender : {{data.Gender}}</p>
+                                            <p>Gender : {{data.gender}}</p>
                                             <p>Age : {{data.Age}}</p>
-                                            <p>Email ID : {{data.Email}}</p>
+                                            <p>Email ID : {{data.email}}</p>
                                         </div>
                                         <div class="col-md-6">
-                                            <p>Reg.No : {{data.Roll_Number}}</p>
-                                            <p>Department : {{data.Department}}</p>
+                                            <p>Reg.No : {{data.rollno}}</p>
+                                            <p>Department : {{data.department}}</p>
                                             <p>Contact No : {{data.Contact}}</p>
-                                            <p>Alternative Contact : {{data.Alternate_Contact}}</p>
-                                            <p>Alternative Email :{{data.Alternate_Email}}</p>
-                                            <p>Marital Status : {{data.Marital_Status}}</p>
+                                            <p>Alternative Contact : {{data.altcon}}</p>
+                                            <p>Alternative Email :{{data.aemail}}</p>
+                                            <p>Marital Status : {{data.marital_sts}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -383,18 +385,17 @@
                                 <h4 class="mb-5 mt-4">Family Details:</h4>
                                 <div class="row pl-5 pr-5">
                                     <div class="col-md-6">
-                                        <p>Family Strength : {{data.fstrength}}</p>
                                         <p>Mother Name : {{data.mname}}</p>
                                         <p>Mother Contact : {{data.mcontact}}</p>
                                         <p>Mother Occupation : {{data.moccupation}}</p>
-                                        <p>Sibling Name : {{data.sname}}</p>
-                                        <p>Sibling Occupation  : {{data.soccupation}}</p>
+                                        <p>Permanent Address : {{data.permanent_address}}</p>
+                                        <p>Current Address : {{data.current_address}}</p>
                                     </div>
                                     <div class="col-md-6">
                                         <p>Father Name : {{data.fname}}</p>
                                         <p>Father Contact : {{data.fcon}}</p>
                                         <p>Father Occupation :{{data.foccupation}}</p>
-                                        <p>Sibling Contact : {{data.scontact}}</p>
+                                        <p>Sibling Count : {{data.scount}}</p>
                                         <p>Permanent Address : {{data.permanent_address}}</p>
                                         <p>Current Address : {{data.current_address}}</p>
                                     </div>
@@ -520,7 +521,7 @@
                                     </div>
                                 </div>
                               </div>
-                              <button class="btn btn-success" type="submit">Submit</button>
+                              <button class="btn btn-success" type="button" id="proceed">Submit</button>
                             </div>
                         </section>
                       </div>
@@ -549,17 +550,30 @@
     <!-- page-body-wrapper ends -->
   <!-- container-scroller -->
   <script>
+    const ack_verify =document.getElementById('ack_verify');
     $(document).ready(function() {
     $('#proceed').click(function(event) {
         console.log("Click event triggered"); // Add this line
         event.preventDefault(); // Prevent form submission
-        var form_data = $('#reg-form').serialize(); // Serialize form data
+        //var form_data = $('#reg-form').serialize(); // Serialize form data
+        var form_data = ack_verify.value.trim();
+        var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+        form_data += '&csrfmiddlewaretoken=' + csrfToken;
         $.ajax({
             type: 'POST',
-            url: '/superlee/registration/',
+            url: '/superlee/registration/acknowledgement/',
             data: form_data,
+            headers: {
+                'X-CSRFToken': csrfToken // Include the CSRF token in the request headers
+              },
             success: function(response) {
-              window.location.href = "/superlee/registration/family-details/";
+              Swal.fire({
+                  icon: 'success',
+                  title: 'Data Collected Successfully',
+                  text: "You can check the status of you application here",
+                  showConfirmButton: false,
+                  timer: 1500
+                })
             },
             error: function(response) {
               alert("Response Failure");
@@ -597,6 +611,7 @@
 <!-- <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script> -->
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/autofill/2.5.3/js/dataTables.autoFill.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
 </body>
 
 </html>

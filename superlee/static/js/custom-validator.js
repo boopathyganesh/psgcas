@@ -1,9 +1,11 @@
     // Show input error messages
-    function showError(input, message) {
+    function showError(inputs, message) {
+      inputs.forEach(input => {
         const formControl = input.parentElement;
         formControl.className = 'form-group error';
         const small = formControl.querySelector('small');
         small.innerText = message;
+      });
     }
     function showErrorRadio(radioGroup) {
       //console.log(radioGroup);
@@ -45,7 +47,7 @@
         if (re.test(email) && validDomains.includes(domain)) {
           showSuccess(input);
         } else {
-          showError(input, 'Email is invalid');
+          showError([input], 'Email is invalid');
           allValid = false;
         }
       });
@@ -59,7 +61,7 @@
         let sts = true
         inputArr.forEach(function(input) {
             if (input.value.trim() === '') {
-                showError(input, `${getFieldName(input)} is required`);
+                showError([input], `${getFieldName(input)} is required`);
                 sts = false;
             } else {
                 showSuccess(input);
@@ -226,7 +228,25 @@
           showSuccess(contactField);
         } else {
           isValid = false;
-          showError(contactField, "Contact number is invalid");
+          showError([contactField], "Contact number is invalid");
+        }
+      }
+    
+      return isValid;
+    }
+    function validatePincode(contactFields) {
+      let isValid = true;
+    
+      for (let i = 0; i < contactFields.length; i++) {
+        const contactField = contactFields[i];
+        const contact = contactField.value.trim();
+        const regex = /^\d{6}$/; // Matches exactly 10 digits
+        console.log(contact);
+        if (regex.test(contact)) {
+          showSuccess(contactField);
+        } else {
+          isValid = false;
+          showError([contactField], "Pincode is invalid");
         }
       }
     
@@ -261,14 +281,151 @@
       if (num) {
         showSuccess(input);
       } else {
-        showError(input, 'Invalid Aadhar Number');
+        showError([input], 'Invalid Aadhar Number');
       }
       
       return isValid;
     }
-    
 
 
+    async function Convert(jsonFile) {
+    try {
+        const response = await fetch(jsonFile);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        //console.log(data);
+        return data;
+      } catch (error) {
+        Swal.fire({
+          icon: 'error',
+          title: "Internal Server Error!: 404",
+          text: 'Error loading JSON data:'+ error,
+          showConfirmButton: false,
+          timer: 1500
+        })
+        //alert('Error loading JSON data:', error);
+      }
+}
+async function getData(promise) {
+  let jsondata; // Define the variable outside the try block
 
-    
-    
+  try {
+    jsondata = await promise; // Assign the resolved value to jsondata
+    //console.log(jsondata);
+    // Process the data or return it as needed
+  } catch (error) {
+    console.error(error);
+    // Handle any errors that occur during Promise resolution
+  }
+
+  return jsondata;
+}
+
+
+function rollNumberValid(jsonFile,rollno,department) {
+  // Load the JSON data
+  //var jsonFile = "{% static 'js/data.json' %}";
+  var isValid = false;
+  fetch(jsonFile)
+    .then(response => response.json())
+    .then(data => {
+      var dept = data; // Assign the loaded data to the "dept" variable
+
+      //var rollno = document.getElementById("rollno");
+      //var department = document.getElementById("department");
+
+      rollno.addEventListener("blur", function() {
+        // Get the input value
+        var inputValue = this.value;
+        this.value = inputValue.toUpperCase();
+
+        // Trim the first 2 characters and last 3 characters from the input value
+        var trimmedValue = inputValue.toUpperCase().substring(2, inputValue.length - 2);
+        if (trimmedValue in dept) {
+          // Set the corresponding department value
+          department.value = dept[trimmedValue];
+          isValid = true;
+        } else {
+          department.value = "";
+          // Show an error message using SweetAlert
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 5000,
+            timerProgressBar: true,
+            showCloseButton: true,
+          });
+
+          Toast.fire({
+            icon: 'error',
+            title: 'Invalid Register number'
+          });
+        }
+
+        // Set the trimmed value as the new input value
+        console.log(trimmedValue);
+        // department.value = dept[trimmedValue];
+        // console.log(dept[trimmedValue]);
+      });
+    })
+    .catch(error => {
+      console.error('Error loading JSON data:', error);
+    });
+  return isValid;
+}
+
+
+function validateDate(dateString) {
+  var startDate = new Date("1-1-1975");
+  var endDate = new Date("01-05-2004");
+  var date = dateString.value
+  console.log(date)
+  var parts = date.split("-");
+  var day = parseInt(parts[0], 10);
+  var month = parseInt(parts[1], 10);
+  var year = parseInt(parts[2], 10);
+  var inputDate = new Date(year, month - 1, day);
+  console.log("#", inputDate)
+  if (inputDate >= startDate ) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Error in Date of Birth',
+      text: "I Think you are aged for this registration",
+      showConfirmButton: false,
+      timer: 3500
+    })
+    return false; // Date is valid and falls within the specified range
+  }
+  else if( inputDate >= endDate){
+    Swal.fire({
+      icon: 'error',
+      title: 'Error in Date of Birth',
+      text: "I Think you are too young for this registration",
+      showConfirmButton: false,
+      timer: 3500
+    })
+    return false;
+  }
+  else if( inputDate >= Date.now() ){
+    Swal.fire({
+      icon: 'error',
+      title: 'Error in Date of Birth',
+      text: "Future Dates are not accepted.",
+      showConfirmButton: false,
+      timer: 3500
+    })
+    return false;
+  }
+  else if (inputDate <= startDate && inputDate <= endDate) {
+    var ageDiffMs = Date.now() - inputDate.getTime();
+    var ageDate = new Date(ageDiffMs);
+    var age = Math.abs(ageDate.getUTCFullYear() - 1970);
+    return age;
+  }
+  else {
+    return false; // Date is invalid or falls outside the specified range
+  }
+}

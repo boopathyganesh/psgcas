@@ -286,6 +286,7 @@
                                   <div class="form-group first">
                                     <label for="age">Age </label>
                                     <input type="text" class="form-control" name="age" id="age" readonly>
+                                    <small></small>
                                     <div class="custom-target mt-2"></div>
                                   </div>
                                 </div>
@@ -324,7 +325,7 @@
                                       <div class="col-sm-6">
                                         <div class="form-check form-check-inline">
                                           <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="marital-sts" value="Married">
+                                            <input type="radio" class="form-check-input" name="marital_sts" value="Married">
                                             Married
                                           </label>
                                         </div>
@@ -332,7 +333,7 @@
                                       <div class="col-sm-6">
                                         <div class="form-check form-check-inline">
                                           <label class="form-check-label">
-                                            <input class="form-check-input" type="radio" name="marital-sts" value="Unmarried">
+                                            <input class="form-check-input" type="radio" name="marital_sts" value="Unmarried">
                                             Unmarried
                                           </label>
                                         </div>
@@ -396,6 +397,7 @@
   <script>
     const form = document.getElementById('reg-form');
     const rollno = document.getElementById('rollno');
+    const department = document.getElementById("department");
     const email = document.getElementById('email');
     const aemail = document.getElementById('aemail');
     var dobField = document.getElementById("dob");
@@ -407,7 +409,7 @@
     const age = document.getElementById('age');
     const target = document.querySelector(".custom-target");
     $(document).ready(function() {
-      $('#proceed').click(function(event) {
+      $('#proceed').click(function(event,rollnumbervalid) {
           console.log('clicked'); // Add this line
           event.preventDefault(); // Prevent form submission
           var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
@@ -421,30 +423,46 @@
             storedData[name] = value;
           }
           sessionStorage.setItem('regForm', JSON.stringify(storedData));
-          let status = false;
-          var empty,radiocheck,emailcheck,dep,contactcheck;
+          var status = true;
+          var datecheck,agecheck,dobcheck,empty,radiocheck,emailcheck,dep,contactcheck,rollnumbervalid;
           empty = checkRequired([rollno, email,aemail, fname, con, altcon]);
+          console.log('checkRequired',empty)
           contactcheck = validateContactFields([con,altcon])
-          //console.log('checkRequired',status)
+          console.log('contactcheck',contactcheck)
           radiocheck = validateRadio(radiogrp);
-          //console.log('validateRadio',status)
+          console.log('validateRadio',radiocheck)
           emailcheck = checkEmail([email,aemail]);
-          //console.log('checkEmail',status)
+          console.log('checkEmail',emailcheck)
           if(dobField.value === ''){
+            dobcheck = false;
+            showError([dobField,age]);
+          }
+          else{
+            console.log('dobField.value',dobField.value)
+            showSuccess(dobField);
+            showSuccess(age);
+            dobcheck = true;
           }
           if ( dept.value === "" ) {
             dep = false;
             showAlert(dept);
           }
+          else{
+            dep = true;
+          }
           if ( age.value === "" ) {
-            dep = false;
+            agecheck = false;
             showAlert(age);
           }
-
-          if(!empty|| !radiocheck|| !emailcheck || !dep){
-            status = false;
+          else{
+            agecheck = true;
           }
-
+          console.log('$',dep)
+          console.log('$',agecheck)
+          if(!empty|| !radiocheck|| !emailcheck || !dep || !agecheck ){
+            status = false
+          }
+          console.log('$',status)
           if(status){
             $.ajax({
               type: 'POST',
@@ -467,14 +485,15 @@
               }
             });//
           }
-          else{
-             Swal.fire({
-                   icon: 'error',
-                   title: "Sorry!",
-                   text: "Something went wrong!",
-                   showConfirmButton: true,
-                 })
-          }
+          // else{
+          //   Swal.fire({
+          //         icon: 'error',
+          //         title: 'Sorry!',
+          //         text: "There is a field value is incorrect",
+          //         showConfirmButton: true,
+          //         timer: 1500
+          //       })
+          // }
       });
     });
 </script>
@@ -521,10 +540,10 @@
     var ageDate = new Date(ageDiffMs);
     var age = Math.abs(ageDate.getUTCFullYear() - 1970);
     // set the value of the age field
-    document.getElementById("age").value = age;
+    document.getElementById("age").value = age+' Years';
   });
   </script>
-  <script>
+ <script>
     // Load the JSON data
     jsonFile = "{% static 'js/data.json' %}"
     fetch(jsonFile)
